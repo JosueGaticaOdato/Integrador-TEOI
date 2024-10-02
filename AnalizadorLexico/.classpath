@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Universidad/2024/Teoria de la computacion/Integrador/Integrador-TEOI/java-cup-11b-runtime.jar"/>
+	<classpathentry kind="lib" path="C:/Universidad/2024/Teoria de la computacion/Integrador/Integrador-TEOI/java-cup-11b-runtime_2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
