@@ -40,9 +40,9 @@ OP_MAYOR_IGUAL = ">="
 OP_MENOR_IGUAL = "<="
 OP_IGUAL = "=="
 OP_DISTINTO = "!="
-OP_AND = "AND"
-OP_OR = "OR"
-OP_NOT = "NOT"
+OP_AND = "AND" | "and"
+OP_OR = "OR" | "or"
+OP_NOT = "NOT" | "not"
 
 //Simbolos
 
@@ -59,7 +59,7 @@ DOS_PUNTOS = ":"
 
 //Ids y tabla
 
-WRITE = "WRITE"
+WRITE = "WRITE"|"write"|"Write"
 ID = {LETRA} ({LETRA}|{DIGITO})*
 CONST_INT = {DIGITO}+
 CONST_STR = "'" ({DIGITO}|{LETRA}|{ESPACIO})* "'" 
