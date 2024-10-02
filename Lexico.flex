@@ -1,4 +1,3 @@
-@@ -0,0 +1,86 @@
 package ejemploflex;
 import java_cup.runtime.*;
 import java.util.*;
@@ -14,15 +13,73 @@ import java.util.*;
 %char
 
 
-
-
 LETRA = [a-zA-Z]
 DIGITO = [0-9]
 ESPACIO = [ \t\f\n\r\n]+
-ID = {LETRA} ({LETRA}|{DIGITO}|_)*
+
+
+
+//Comentarios 
+
+COMMENT = "/*" ~ "*/"
+INLINE_COMENT = "//" ~
+
+//Operadores aritmeticos
+OP_ASIGN = "="
+OP_SUMA = "+"
+OP_RESTA = "-"
+OP_DIV = "/"
+OP_MULT = "*"
+OP_MOD = "%"
+OP_POT = "^"
+
+//Operadores logicos
+OP_MEN = "<"
+OP_MAY = ">"
+OP_MAY_IG = ">="
+OP_MEN_IG = "<="
+OP_IG = "=="
+OP_DIST = "!="
+OP_AND = "AND"
+OP_OR = "OR"
+OP_NOT = "NOT"
+
+//Simbolos
+PAREN_ABRE = "("
+PAREN_CIERRA = ")"
+BLOCK_ABRE = "{"
+BLOCK_CIERRA = "}"
+BRACK_ABRE = "["
+BRACK_CIERRA = "]"
+PUNTO_COMA = ";"
+COMA = ","
+PUNTO = "."
+DOS_PUNTOS = ":"
+
+//Ids y tabla
+WRITE = "WRITE"
+ID = {LETRA} ({LETRA}|{DIGITO})*
 CONST_INT = {DIGITO}+
-COMENTARIO = "</" ~ "</" ~ "/>" ~ "/>" | "</" ~ "/>"
-COMENT_JAVA = "/*" ~ "*/" // El simbolo ~ incluye cualquier caracter
+CONST_STR = "“" ({LETRA}|{DIGITO}|_)* "”" 
+CONST_BIN = "(" ("0"|"1")+  "," "2" ")"
+CONST_HEX = "("  ({DIGITO} | "A" | "B" | "C" | "D" | "E" | "F")+  "," "16"  ")"
+INTEGER = "INTEGER"
+STRING = "STRING"
+FLOAT = "FLOAT"
+
+//Palabras reservadas
+WHILE = "WHILE"
+DO = "DO"
+IF = "IF"
+THEN = "THEN"
+ELSE = "ELSE"
+WRITE = "WRITE"
+DECLARE = "DECLARE"
+ENDDECLARE = "ENDDECLARE"
+PROGRAM_SECTION = "PROGRAMSECTION"
+ENDPROGRAM_SECTION "ENDPROGRAMSECTION"
+CONTAR_PRIMOS = "CONTARPRIMOS"
+
 
 
 %%
