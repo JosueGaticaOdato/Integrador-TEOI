@@ -62,26 +62,27 @@ DOS_PUNTOS = ":"
 WRITE = "WRITE"
 ID = {LETRA} ({LETRA}|{DIGITO})*
 CONST_INT = {DIGITO}+
-CONST_STR = "“" ({LETRA}|{DIGITO}|_)* "”" 
-CONST_BIN = "(" ("0"|"1")+  "," "2" ")"
-CONST_HEX = "("  ({DIGITO} | "A" | "B" | "C" | "D" | "E" | "F")+  "," "16"  ")"
-INTEGER = "INTEGER"
-STRING = "STRING"
-FLOAT = "FLOAT"
+CONST_STR = "'" ({DIGITO}|{LETRA}|{ESPACIO})* "'" 
+CONST_BIN = "(" {ESPACIO}* ("0"|"1")+ {ESPACIO}* "," {ESPACIO}* "2" {ESPACIO}* ")"
+CONST_HEX = "(" {ESPACIO}* ({DIGITO} | "A" | "B" | "C" | "D" | "E" | "F")+ {ESPACIO}* "," {ESPACIO}* "16" {ESPACIO}* ")"
+
+INTEGER = "INTEGER"|"integer"|"Integer"
+STRING = "STRING"|"string"|"String"
+FLOAT = "FLOAT"|"float"|"Float"
 
 //Palabras reservadas
 
-WHILE = "WHILE"
-DO = "DO"
-IF = "IF"
-THEN = "THEN"
-ELSE = "ELSE"
-WRITE = "WRITE"
-DECLARE = "DECLARE"
-ENDDECLARE = "ENDDECLARE"
-PROGRAM_SECTION = "PROGRAMSECTION"
-ENDPROGRAM_SECTION = "ENDPROGRAMSECTION"
-CONTAR_PRIMOS = "CONTARPRIMOS"
+WHILE = "WHILE" |"while"|"While"
+DO = "DO" |"do"|"Do"
+IF = "IF" |"if"|"If"
+THEN = "THEN"|"then"|"Then"
+ELSE = "ELSE"|"else"|"Else"
+WRITE = "WRITE"|"write"|"Write"
+DECLARE = "DECLARE"|"declare"|"Declare"
+ENDDECLARE = "ENDDECLARE"|"enddeclare"|"Enddeclare"
+PROGRAM_SECTION = "PROGRAMSECTION"|"programsection"|"ProgramSection"
+ENDPROGRAM_SECTION = "ENDPROGRAMSECTION"|"endprogramsection"|"EndProgramSection"
+CONTAR_PRIMOS = "CONTARPRIMOS"|"contarprimos"|"ContarPrimos"|"contarPrimos"
 
 %%
 
