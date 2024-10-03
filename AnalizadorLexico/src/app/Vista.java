@@ -51,7 +51,7 @@ public class Vista {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 25, 924, 761);
+		frame.setBounds(100, 25, 924, 490);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -60,7 +60,7 @@ public class Vista {
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_1.setBounds(10, 39, 404, 592);
+		scrollPane_1.setBounds(10, 39, 404, 296);
 		panel.add(scrollPane_1);
 		JTextArea inputTextArea = new JTextArea();
 		scrollPane_1.setViewportView(inputTextArea);
@@ -69,7 +69,7 @@ public class Vista {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(484, 39, 404, 592);
+		scrollPane.setBounds(484, 39, 404, 296);
 		panel.add(scrollPane);
 		
 		JTextArea outputTextArea = new JTextArea();
@@ -82,7 +82,7 @@ public class Vista {
 		JLabel filePath = new JLabel("Ubicacion no seleccionada");
 		filePath.setVerticalAlignment(SwingConstants.BOTTOM);
 		filePath.setFont(new Font("Calibri", Font.ITALIC, 14));
-		filePath.setBounds(10, 659, 309, 24);
+		filePath.setBounds(10, 366, 309, 24);
 		panel.add(filePath);
 		
 		JButton btnCompile = new JButton("Compilar");
@@ -119,7 +119,7 @@ public class Vista {
 			}
 		});
 		btnCompile.setFont(new Font("Calibri", Font.PLAIN, 18));
-		btnCompile.setBounds(484, 648, 190, 44);
+		btnCompile.setBounds(698, 358, 190, 44);
 		btnCompile.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnCompile.setEnabled(false);
 		panel.add(btnCompile);
@@ -148,22 +148,18 @@ public class Vista {
 		btnClear.setForeground(new Color(255, 255, 255));
 		btnClear.setBackground(new Color(248, 38, 38));
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 18));
-		btnClear.setBounds(698, 648, 190, 44);
+		btnClear.setBounds(484, 358, 190, 44);
 		btnClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel.add(btnClear);
 		
-		JLabel lblNewLabel_1 = new JLabel("=");
-		lblNewLabel_1.setFont(new Font("Calibri", Font.BOLD, 30));
-		lblNewLabel_1.setBounds(440, 311, 15, 24);
-		panel.add(lblNewLabel_1);
-		
 		JLabel informationLabel = new JLabel("Indicar ubicacion destino del archivo ts.txt");
 		informationLabel.setFont(new Font("Calibri", Font.PLAIN, 15));
-		informationLabel.setBounds(10, 641, 404, 20);
+		informationLabel.setBounds(10, 346, 404, 20);
 		panel.add(informationLabel);
 		
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setSelectedFile(new File("ts.txt"));
+		
 		JButton exploreBtn = new JButton("Explorar ...");
 		exploreBtn.setFont(new Font("Calibri", Font.PLAIN, 12));
 		exploreBtn.addActionListener(new ActionListener() {
@@ -184,18 +180,12 @@ public class Vista {
 	            }
 			}
 		});
-		exploreBtn.setBounds(329, 656, 85, 30);
+		exploreBtn.setBounds(10, 394, 85, 30);
 		panel.add(exploreBtn);
 		
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Archivo");
-		mnNewMenu.setBackground(new Color(192, 192, 192));
-		menuBar.add(mnNewMenu);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Cargar un archivo...");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		JButton btnArchivo = new JButton("Buscar archivo con codigo");
+		btnArchivo.setFont(new Font("Calibri", Font.PLAIN, 12));
+		btnArchivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser();
 		        fileChooser.showOpenDialog(null);
@@ -215,10 +205,11 @@ public class Vista {
 		        		JOptionPane.showMessageDialog(null, "Error", "Error al abrir el archivo", JOptionPane.ERROR_MESSAGE);
 		        	}
 		        }
-			}
+		}
 		});
-		mntmNewMenuItem.setBackground(new Color(211, 211, 211));
-		mnNewMenu.add(mntmNewMenuItem);
+		btnArchivo.setBounds(201, 8, 213, 30);
+		panel.add(btnArchivo);
+			
 		
 	}
 }

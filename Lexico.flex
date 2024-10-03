@@ -107,7 +107,6 @@ DOS_PUNTOS = ":"
 //Ids y tabla
 
 WRITE = "WRITE"|"write"|"Write"
-ID = {LETRA} ({LETRA}|{DIGITO})*
 CONST_INT = {DIGITO}+
 CONST_STR = "'" ({DIGITO}|{LETRA}|{ESPACIO})* "'" 
 CONST_BIN = "(" {ESPACIO}* ("0"|"1")+ {ESPACIO}* "," {ESPACIO}* "2" {ESPACIO}* ")"
@@ -130,6 +129,8 @@ ENDDECLARE = "ENDDECLARE"|"enddeclare"|"Enddeclare"
 PROGRAM_SECTION = "PROGRAMSECTION"|"programsection"|"ProgramSection"
 ENDPROGRAM_SECTION = "ENDPROGRAMSECTION"|"endprogramsection"|"EndProgramSection"
 CONTAR_PRIMOS = "CONTARPRIMOS"|"contarprimos"|"ContarPrimos"|"contarPrimos"
+
+ID = {LETRA} ({LETRA}|{DIGITO})*
 
 %%
 
@@ -283,11 +284,6 @@ CONTAR_PRIMOS = "CONTARPRIMOS"|"contarprimos"|"ContarPrimos"|"contarPrimos"
     lista.add("Token WRITE, encontrado Lexema "+ yytext()); 
 }
 
-{ID}   {
-    lista.add("Token ID, encontrado Lexema "+ yytext());
-    System.out.println("Token ID, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("ID", yytext());
-}
 
 {CONST_INT}   {
     System.out.println("Token CONST_INT, encontrado Lexema "+ yytext()); 
@@ -329,7 +325,7 @@ CONTAR_PRIMOS = "CONTARPRIMOS"|"contarprimos"|"ContarPrimos"|"contarPrimos"
 
 // -------------------- Palabras reservadas  -------------------------
 
-{WHILE}   {{
+{WHILE}   {
     System.out.println("Token WHILE, encontrado Lexema "+ yytext());
     lista.add("Token WHILE, encontrado Lexema "+ yytext()); 
 }
@@ -384,6 +380,12 @@ CONTAR_PRIMOS = "CONTARPRIMOS"|"contarprimos"|"ContarPrimos"|"contarPrimos"
     lista.add("Token CONTAR_PRIMOS, encontrado Lexema "+ yytext());
 }
 
+{ID}   {
+    lista.add("Token ID, encontrado Lexema "+ yytext());
+    System.out.println("Token ID, encontrado Lexema "+ yytext()); 
+    agregarATablaDeSimbolos("ID", yytext());
+}
+
 {ESPACIO}		      {/* no se realiza accion por lo tanto se ignoran*/}
 
 {COMENTARIO}		{
@@ -391,7 +393,7 @@ CONTAR_PRIMOS = "CONTARPRIMOS"|"contarprimos"|"ContarPrimos"|"contarPrimos"
     lista.add("Token COMENTARIO, encontrado Lexema "+ yytext());
 }
 
-}}
+}
 
 [^]		{ throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline); }
 
