@@ -1,53 +1,37 @@
-::=
-:=
-+
--
-/
-*
-%
-^
-<
->
->=
-<=
-==
-!=
-AND
-OR
-NOT
-()
-{}
-[]
-;
-,
-.
-:
-1
-1.2
-0123
-99.
-.99
-'teststring'
-''
-(F, 16)
-(F12,16)
-(H,16)
-(10,2)
-(111, 2)
-(5,2)
-/*asd*/
-WRITE
-INTEGER
-STRING
-FLOAT
-WHILE
-DO
-IF
-THEN
-ELSE
-WRITE
-DECLARE
-ENDDECLARE
 PROGRAMSECTION
+
+DECLARE
+    <string>:<msg>
+    <integer>:<i>
+    <float>:<d>
+    <float>:<resultado>
+ENDDECLARE
+
+i=1
+msg='numero par'
+while(i < 100){
+   /* Escribe si la variable i es par */
+   if(i % 2 == 0) {
+   	WRITE msg;
+   }
+
+   i=i+1;
+}
+
 ENDPROGRAMSECTION
-CONTARPRIMOS
+
+/* Operadores */
++ - / * % ^ < > >= <= == <> & || !
+
+/* Contarprimos - Funcion especial grupo 1 */
+z::=0;
+a::=2;
+b::=2;
+c::=53;
+x = ContarPrimos([11,b+8,2,55,z*b+7,C]) /* x = 4 */
+
+/* Constante binaria */
+(10, 2)
+
+/* Constante hexadecimal */
+(5A, 16)
