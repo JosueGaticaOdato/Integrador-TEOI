@@ -108,9 +108,9 @@ DOS_PUNTOS = ":"
 
 WRITE = "WRITE"|"write"|"Write"
 CONST_INT = {DIGITO}+
+CONST_DOU = ({DIGITO}* "." {DIGITO}+) | ({DIGITO}+ "." {DIGITO}*)
 CONST_STR = "'" ({DIGITO}|{LETRA}|{ESPACIO})* "'" 
 CONST_BIN = "(" {ESPACIO}* ("0"|"1")+ {ESPACIO}* "," {ESPACIO}* "2" {ESPACIO}* ")"
-CONST_HEX = "(" {ESPACIO}* ({DIGITO} | "A" | "B" | "C" | "D" | "E" | "F")+ {ESPACIO}* "," {ESPACIO}* "16" {ESPACIO}* ")"
 
 INTEGER = "INTEGER"|"integer"|"Integer"
 STRING = "STRING"|"string"|"String"
@@ -297,15 +297,16 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
     lista.add("Token CONST_STR, encontrado Lexema "+ yytext()); 
 }
 
+{CONST_DOU}   {
+    System.out.println("Token CONST_DOU, encontrado Lexema "+ yytext()); 
+    agregarATablaDeSimbolos("CONST_DOU", yytext());
+    lista.add("Token CONST_DOU, encontrado Lexema "+ yytext()); 
+}
+
 {CONST_BIN}  {
     System.out.println("Token CONST_BIN, encontrado Lexema "+ yytext()); 
     agregarATablaDeSimbolos("CONST_BIN", yytext());
     lista.add("Token CONST_BIN, encontrado Lexema "+ yytext()); 
-}
-{CONST_HEX}   {
-    System.out.println("Token CONST_HEX, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_HEX", yytext());
-    lista.add("Token CONST_HEX, encontrado Lexema "+ yytext()); 
 }
 
 {INTEGER}   {

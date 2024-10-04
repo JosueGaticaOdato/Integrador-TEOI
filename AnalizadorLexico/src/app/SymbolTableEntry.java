@@ -1,5 +1,6 @@
 package app;
 
+//Clase para realizar la creacion de la tabla de simbolos
 public class SymbolTableEntry {
 	private String nombre;
 	private String token;
