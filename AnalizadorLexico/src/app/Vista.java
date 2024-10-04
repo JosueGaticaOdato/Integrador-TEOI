@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.io.StringReader;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -143,7 +143,7 @@ public class Vista {
 					outputTextArea.setText("");
 
 					// Obtengo la lista de elementos que fue guardando el Lexico
-					List<String> elements = lexer.getList();
+					ArrayList<String> elements = lexer.getList();
 					
 					//Recorro la lista y muestro la salida en pantalla
 					for (int i = 0; i < elements.size(); i++) {
