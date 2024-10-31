@@ -1,4 +1,4 @@
-# Trabajo practico Integrador - TEOI
+# Trabajo practico Integrador - TEOI - Grupo 01
 
 ## Integrantes
 
