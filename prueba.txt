@@ -9,10 +9,7 @@ ENDDECLARE.SECTION
 i::=1
 msg::='numero par'
 while(i < 100){
-   if(i % 2 == 0) then {
-   	WRITE msg;
-   }
-
+   WRITE msg;
    i::=i+1;
 }
 
