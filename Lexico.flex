@@ -285,7 +285,7 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
         agregarATablaDeSimbolos("CONST_INTEGER", yytext());
         lista.add("Token CONST_INTEGER, encontrado Lexema "+ yytext());
     } else {
-        throw new Error("Constante integer fuera de rango: |" + yytext() + "|" );
+        throw new Exception("Constante integer fuera de rango: |" + yytext() + "|" );
     }
 }
 
@@ -296,7 +296,7 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
         agregarATablaDeSimbolos("CONST_STR", yytext());
         lista.add("Token CONST_STR, encontrado Lexema "+ yytext());
     } else {
-        throw new Error("Constante string fuera de rango: |" + yytext() + "|" );
+        throw new Exception("Constante string fuera de rango: |" + yytext() + "|" );
     }
 }
 
@@ -307,7 +307,7 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
         agregarATablaDeSimbolos("CONST_DOU", yytext());
         lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
     } else {
-        throw new Error("Constante real fuera de rango: |" + yytext() + "|" );
+        throw new Exception("Constante real fuera de rango: |" + yytext() + "|" );
     }
 }
 
@@ -411,7 +411,7 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
 
 }
 
-[^]		{ throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline); }
+[^]		{ throw new Exception("Caracter no permitido: <" + yytext() + "> en la linea " + yyline); }
 
 
 
