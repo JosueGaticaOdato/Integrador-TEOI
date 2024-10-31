@@ -107,7 +107,7 @@ DOS_PUNTOS = ":"
 //Ids y tabla
 
 WRITE = "WRITE"|"write"|"Write"
-CONST_INT = {DIGITO}+
+CONST_INTEGER = {DIGITO}+
 CONST_DOU = ({DIGITO}* "." {DIGITO}+) | ({DIGITO}+ "." {DIGITO}*)
 CONST_STR = "'" ({DIGITO}|{LETRA}|{ESPACIO})* "'" 
 CONST_BIN = "(" {ESPACIO}* ("0"|"1")+ {ESPACIO}* "," {ESPACIO}* "2" {ESPACIO}* ")"
@@ -124,10 +124,10 @@ IF = "IF" |"if"|"If"
 THEN = "THEN"|"then"|"Then"
 ELSE = "ELSE"|"else"|"Else"
 WRITE = "WRITE"|"write"|"Write"
-DECLARE = "DECLARE"|"declare"|"Declare"
-ENDDECLARE = "ENDDECLARE"|"enddeclare"|"Enddeclare"
-PROGRAM_SECTION = "PROGRAMSECTION"|"programsection"|"ProgramSection"
-ENDPROGRAM_SECTION = "ENDPROGRAMSECTION"|"endprogramsection"|"EndProgramSection"
+DECLARE = "DECLARE.SECTION"|"declare.section"
+ENDDECLARE = "ENDDECLARE.SECTION"|"enddeclare.section"
+PROGRAM = "PROGRAM.SECTION"|"program.section"
+ENDPROGRAM = "ENDPROGRAM.SECTION"|"endprogram.section"
 CONTAR_PRIMOS = "CONTARPRIMOS"|"contarprimos"|"ContarPrimos"|"contarPrimos"
 
 ID = {LETRA} ({LETRA}|{DIGITO})*
@@ -285,10 +285,10 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
 }
 
 
-{CONST_INT}   {
-    System.out.println("Token CONST_INT, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_INT", yytext());
-    lista.add("Token CONST_INT, encontrado Lexema "+ yytext()); 
+{CONST_INTEGER}   {
+    System.out.println("Token CONST_INTEGER, encontrado Lexema "+ yytext()); 
+    agregarATablaDeSimbolos("CONST_INTEGER", yytext());
+    lista.add("Token CONST_INTEGER, encontrado Lexema "+ yytext()); 
 }
 
 {CONST_STR}   {
@@ -366,12 +366,12 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
     lista.add("Token ENDDECLARE, encontrado Lexema "+ yytext()); 
 }
 
-{PROGRAM_SECTION}   {
+{PROGRAM}   {
     System.out.println("Token PROGRAM_SECTION, encontrado Lexema "+ yytext());
     lista.add("Token PROGRAM_SECTION, encontrado Lexema "+ yytext());
 }
 
-{ENDPROGRAM_SECTION}   {
+{ENDPROGRAM}   {
     System.out.println("Token ENDPROGRAM_SECTION, encontrado Lexema "+ yytext());
     lista.add("Token ENDPROGRAM_SECTION, encontrado Lexema "+ yytext());
 }
@@ -389,10 +389,12 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
 
 {ESPACIO}		      {/* no se realiza accion por lo tanto se ignoran*/}
 
-{COMENTARIO}		{
-    System.out.println("Token COMENTARIO, encontrado Lexema "+ yytext());
-    lista.add("Token COMENTARIO, encontrado Lexema "+ yytext());
-}
+{COMENTARIO}		      {/* no se realiza accion por lo tanto se ignoran*/}
+
+//{COMENTARIO}		{
+//    System.out.println("Token COMENTARIO, encontrado Lexema "+ yytext());
+//    lista.add("Token COMENTARIO, encontrado Lexema "+ yytext());
+//}
 
 }
 

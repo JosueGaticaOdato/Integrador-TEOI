@@ -14,8 +14,12 @@ public class app {
 		{
 			System.out.println("No se encontro el archivo");
 		}*/
-		Vista vista = new Vista();
-		vista.frame.setVisible(true);
+		try {
+			Vista vista = new Vista();
+			vista.frame.setVisible(true);
+		}catch (Exception e) {
+			System.out.println("Hubo un problema en la compilacion:" + e);
+		}
 	}
 
 }

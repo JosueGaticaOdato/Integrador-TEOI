@@ -1,10 +1,10 @@
 //* Ejemplo de programa *//
-PROGRAMSECTION
+PROGRAM.SECTION
 
-DECLARE
+DECLARE.SECTION
 [a1, b1] := [FLOAT, INTEGER]
 [p1, p2, p3] := [FLOAT,FLOAT,INTEGER]
-ENDDECLARE
+ENDDECLARE.SECTION
 
 i::=1
 msg::='numero par'
@@ -16,7 +16,7 @@ while(i < 100){
    i::=i+1;
 }
 
-ENDPROGRAMSECTION
+ENDPROGRAM.SECTION
 
 
 //* Tipo de datos *//
@@ -50,15 +50,15 @@ write var ///* donde var debe ser cualquier variable numérica *///
 (expresion >= expresion) AND (expresion < expresion)
 
 //* Declaraciones *//
-DECLARE
+DECLARE.SECTION
 [a1, b1] := [FLOAT, INT]
 [p1, p2, p3] := [FLOAT,FLOAT,INT]
-ENDDECLARE
+ENDDECLARE.SECTION
 
 //* Programa *//
-PROGRAMSECTION
+PROGRAM.SECTION
 ListadeSentencias
-ENDPROGRAMSECTION
+ENDPROGRAM.SECTION
 
 //* Contarprimos - Funcion especial grupo 1 *//
 z::=0;
