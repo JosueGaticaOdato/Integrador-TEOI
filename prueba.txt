@@ -1,11 +1,11 @@
 //* Ejemplo de programa *//
-PROGRAM.SECTION
 
 DECLARE.SECTION
 [a1, b1] := [FLOAT, INTEGER]
 [p1, p2, p3] := [FLOAT,FLOAT,INTEGER]
 ENDDECLARE.SECTION
 
+PROGRAM.SECTION
 i::=1
 msg::='numero par'
 while(i < 100){
