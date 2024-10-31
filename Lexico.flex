@@ -107,7 +107,7 @@ DOS_PUNTOS = ":"
 WRITE = "WRITE"|"write"|"Write"
 CONST_INTEGER = {DIGITO}+
 CONST_DOU = ({DIGITO}* "." {DIGITO}+) | ({DIGITO}+ "." {DIGITO}*)
-CONST_STR = "'" ({DIGITO}|{LETRA}|{ESPACIO})* "'" 
+CONST_STR = """ ({DIGITO}|{LETRA}|{ESPACIO})* """
 CONST_BIN = ("0b") ("0"|"1")+
 INTEGER = "INTEGER"|"integer"|"Integer"
 STRING = "STRING"|"string"|"String"
@@ -125,6 +125,7 @@ DO = "DO" |"do"|"Do"
 IF = "IF" |"if"|"If"
 THEN = "THEN"|"then"|"Then"
 ELSE = "ELSE"|"else"|"Else"
+ENDIF = "ENDIF"|"endif"|"EndIF"
 WRITE = "WRITE"|"write"|"Write"
 DECLARE = "DECLARE.SECTION"|"declare.section"
 ENDDECLARE = "ENDDECLARE.SECTION"|"enddeclare.section"
@@ -284,7 +285,7 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
         agregarATablaDeSimbolos("CONST_INTEGER", yytext());
         lista.add("Token CONST_INTEGER, encontrado Lexema "+ yytext());
     } else {
-        throw new Exception("Constante integer fuera de rango: |" + yytext() + "|" );
+        throw new Error("Constante integer fuera de rango: |" + yytext() + "|" );
     }
 }
 
@@ -295,7 +296,7 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
         agregarATablaDeSimbolos("CONST_STR", yytext());
         lista.add("Token CONST_STR, encontrado Lexema "+ yytext());
     } else {
-        throw new Exception("Constante string fuera de rango: |" + yytext() + "|" );
+        throw new Error("Constante string fuera de rango: |" + yytext() + "|" );
     }
 }
 
@@ -306,7 +307,7 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
         agregarATablaDeSimbolos("CONST_DOU", yytext());
         lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
     } else {
-        throw new Exception("Constante real fuera de rango: |" + yytext() + "|" );
+        throw new Error("Constante real fuera de rango: |" + yytext() + "|" );
     }
 }
 
@@ -356,6 +357,11 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
 {ELSE}   {
     System.out.println("Token ELSE, encontrado Lexema "+ yytext());
     lista.add("Token ELSE, encontrado Lexema "+ yytext()); 
+}
+
+{ENDIF}   {
+    System.out.println("Token ENDIF, encontrado Lexema "+ yytext());
+    lista.add("Token ENDIF, encontrado Lexema "+ yytext()); 
 }
 
 {WRITE}   {
