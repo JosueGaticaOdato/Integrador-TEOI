@@ -116,6 +116,11 @@ INTEGER = "INTEGER"|"integer"|"Integer"
 STRING = "STRING"|"string"|"String"
 FLOAT = "FLOAT"|"float"|"Float"
 
+//Rangos maximos
+//MAX_INTEGER = 65536
+//MAX_REALES = 2147483647.0
+//MAX_STRING = 30
+
 //Palabras reservadas
 
 WHILE = "WHILE" |"while"|"While"
@@ -286,21 +291,36 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
 
 
 {CONST_INTEGER}   {
-    System.out.println("Token CONST_INTEGER, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_INTEGER", yytext());
-    lista.add("Token CONST_INTEGER, encontrado Lexema "+ yytext()); 
+    System.out.println("Token CONST_INTEGER, encontrado Lexema "+ yytext());
+    if((Integer.parseInt(yytext()) >= 0) && (Integer.parseInt(yytext()) <= 65536))
+    {
+        agregarATablaDeSimbolos("CONST_INTEGER", yytext());
+        lista.add("Token CONST_INTEGER, encontrado Lexema "+ yytext());
+    } else {
+        throw new Exception("Constante integer fuera de rango: |" + yytext() + "|" );
+    }
 }
 
 {CONST_STR}   {
-    System.out.println("Token CONST_STR, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_STR", yytext());
-    lista.add("Token CONST_STR, encontrado Lexema "+ yytext()); 
+    System.out.println("Token CONST_STR, encontrado Lexema "+ yytext());
+    if(yytext().length() <= 30 )
+    {
+        agregarATablaDeSimbolos("CONST_STR", yytext());
+        lista.add("Token CONST_STR, encontrado Lexema "+ yytext());
+    } else {
+        throw new Exception("Constante string fuera de rango: |" + yytext() + "|" );
+    }
 }
 
 {CONST_DOU}   {
     System.out.println("Token CONST_DOU, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_DOU", yytext());
-    lista.add("Token CONST_DOU, encontrado Lexema "+ yytext()); 
+    if((Double.parseDouble(yytext()) >= 0) && (Double.parseDouble(yytext()) <= 2147483647.0))
+    {
+        agregarATablaDeSimbolos("CONST_DOU", yytext());
+        lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
+    } else {
+        throw new Exception("Constante real fuera de rango: |" + yytext() + "|" );
+    }
 }
 
 {CONST_BIN}  {

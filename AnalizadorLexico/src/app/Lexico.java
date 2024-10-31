@@ -790,9 +790,9 @@ public class Lexico implements java_cup.runtime.Scanner {
    * the end of input is encountered or an I/O-Error occurs.
    *
    * @return      the next token
-   * @exception   java.io.IOException  if any I/O-Error occurs
+ * @throws Exception 
    */
-  public java_cup.runtime.Symbol next_token() throws java.io.IOException {
+  public java_cup.runtime.Symbol next_token() throws Exception {
     int zzInput;
     int zzAction;
 
@@ -948,9 +948,14 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 50: break;
           case 3: 
-            { System.out.println("Token CONST_INTEGER, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_INTEGER", yytext());
-    lista.add("Token CONST_INTEGER, encontrado Lexema "+ yytext());
+            { System.out.println("Token CONST_INTEGER, encontrado Lexema "+ yytext());
+    if((Integer.parseInt(yytext()) >= 0) && (Integer.parseInt(yytext()) <= 65536))
+    {
+        agregarATablaDeSimbolos("CONST_INTEGER", yytext());
+        lista.add("Token CONST_INTEGER, encontrado Lexema "+ yytext());
+    } else {
+        throw new Exception("Constante integer fuera de rango: |" + yytext() + "|" );
+    }
             } 
             // fall through
           case 51: break;
@@ -1069,8 +1074,13 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 70: break;
           case 23: 
             { System.out.println("Token CONST_DOU, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_DOU", yytext());
-    lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
+    if((Double.parseDouble(yytext()) >= 0) && (Double.parseDouble(yytext()) <= 2147483647.0))
+    {
+        agregarATablaDeSimbolos("CONST_DOU", yytext());
+        lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
+    } else {
+        throw new Exception("Constante real fuera de rango: |" + yytext() + "|" );
+    }
             } 
             // fall through
           case 71: break;
@@ -1123,9 +1133,14 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 79: break;
           case 32: 
-            { System.out.println("Token CONST_STR, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_STR", yytext());
-    lista.add("Token CONST_STR, encontrado Lexema "+ yytext());
+            { System.out.println("Token CONST_STR, encontrado Lexema "+ yytext());
+    if(yytext().length() <= 30 )
+    {
+        agregarATablaDeSimbolos("CONST_STR", yytext());
+        lista.add("Token CONST_STR, encontrado Lexema "+ yytext());
+    } else {
+        throw new Exception("Constante string fuera de rango: |" + yytext() + "|" );
+    }
             } 
             // fall through
           case 80: break;
