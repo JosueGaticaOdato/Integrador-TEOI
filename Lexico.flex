@@ -110,8 +110,7 @@ WRITE = "WRITE"|"write"|"Write"
 CONST_INTEGER = {DIGITO}+
 CONST_DOU = ({DIGITO}* "." {DIGITO}+) | ({DIGITO}+ "." {DIGITO}*)
 CONST_STR = "'" ({DIGITO}|{LETRA}|{ESPACIO})* "'" 
-CONST_BIN = "(" {ESPACIO}* ("0"|"1")+ {ESPACIO}* "," {ESPACIO}* "2" {ESPACIO}* ")"
-
+CONST_BIN = ("0b") ("0"|"1")+
 INTEGER = "INTEGER"|"integer"|"Integer"
 STRING = "STRING"|"string"|"String"
 FLOAT = "FLOAT"|"float"|"Float"
