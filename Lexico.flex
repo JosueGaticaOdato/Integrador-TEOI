@@ -76,8 +76,6 @@ OP_SUMA = "+"
 OP_RESTA = "-"
 OP_DIVISION = "/"
 OP_MULTIPLICACION = "*"
-OP_MODULO = "%"
-OP_POTENCIA = "^"
 
 //Operadores logicos
 
@@ -170,16 +168,6 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
 {OP_MULTIPLICACION}		{
     lista.add("Token OP_MULTIPLICACION, encontrado Lexema "+ yytext());
     System.out.println("Token OP_MULTIPLICACION encontrado, Lexema "+ yytext());
-}
-
-{OP_MODULO}		{
-    lista.add("Token OP_MODULO, encontrado Lexema "+ yytext());
-    System.out.println("Token OP_MODULO encontrado, Lexema "+ yytext());
-}
-
-{OP_POTENCIA}		{
-    lista.add("Token OP_POTENCIA, encontrado Lexema "+ yytext());
-    System.out.println("Token OP_POTENCIA encontrado, Lexema "+ yytext());
 }
 
 // -------------------- Operadores logicos -------------------------

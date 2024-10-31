@@ -25,7 +25,7 @@ a::= 99.
 a::= .9999
 
 //* Operadores *//
-+ - / * % ^ < > >= <= == != AND OR NOT
++ - / * < > >= <= == != AND OR NOT
 
 //* Constantes String *//
 var ::= 'HOLA MUNDO'
