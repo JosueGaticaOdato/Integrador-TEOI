@@ -48,9 +48,10 @@ write var ///* donde var debe ser cualquier variable numérica *///
 
 //* Declaraciones *//
 DECLARE.SECTION
-[a1, b1] := [FLOAT, INT]
-[p1, p2, p3] := [FLOAT,FLOAT,INT]
+[a1, b1,c1] := [FLOAT, INTEGER,STRING]
+[p1, p2, p3] := [FLOAT,STRING,INTEGER]
 ENDDECLARE.SECTION
+
 
 //* Programa *//
 PROGRAM.SECTION
