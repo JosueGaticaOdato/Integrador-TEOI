@@ -1,0 +1,17 @@
+package app;
+import java_cup.runtime.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
+parser code {}
+
+action code {}
+
+terminal ID;
+
+non terminal codigo, programa, definiciones;
+
+start with codigo;
+
+codigo ::= definiciones programa {:System.out.println("Test");:};
