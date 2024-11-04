@@ -3,15 +3,15 @@ import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.List;
 
+parser code {: :}
 
-parser code {}
+action code {: :}
 
-action code {}
-
-terminal ID;
+terminal ID,OP_ASIGNACION, OP_DECLARACION, OP_SUMA, OP_RESTA, OP_DIVISION, OP_MULTIPLICACION,OP_MENOR, OP_MAYOR, OP_MAYOR_IGUAL, OP_MENOR_IGUAL, OP_IGUAL, OP_DISTINTO, OP_AND, OP_OR, OP_NOT,PARENTESIS_ABRE,  PARENTESIS_CIERRA, LLAVE_ABRE, LLAVE_CIERRA, CORCHETE_ABRE, CORCHETE_CIERRA, PUNTO_COMA, COMA, PUNTO, DOS_PUNTOS, IGUAL, CONST_INTEGER, CONST_DOU, CONST_STR, CONST_BIN, INTEGER, STRING, FLOAT, WHILE, IF, THEN, ELSE, ENDIF, WRITE,DECLARE, ENDDECLARE, PROGRAM,
+ENDPROGRAM, CONTAR_PRIMOS;
 
 non terminal codigo, programa, definiciones;
 
 start with codigo;
 
-codigo ::= definiciones programa {:System.out.println("Test");:};
+codigo ::= definiciones programa {::};
