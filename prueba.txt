@@ -9,8 +9,8 @@ PROGRAM.SECTION
 i::=1
 msg::='numero par'
 while(i < 100){
-   WRITE msg;
-   i::=i+1;
+   WRITE msg
+   i::=i+1
 }
 
 ENDPROGRAM.SECTION

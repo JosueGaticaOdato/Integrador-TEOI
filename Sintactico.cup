@@ -20,10 +20,109 @@ action code {::}
 terminal ID,OP_ASIGNACION, OP_DECLARACION, OP_SUMA, OP_RESTA, OP_DIVISION, OP_MULTIPLICACION,OP_MENOR, OP_MAYOR, OP_MAYOR_IGUAL, OP_MENOR_IGUAL, OP_IGUAL, OP_DISTINTO, OP_AND, OP_OR, OP_NOT,PARENTESIS_ABRE,  PARENTESIS_CIERRA, LLAVE_ABRE, LLAVE_CIERRA, CORCHETE_ABRE, CORCHETE_CIERRA, PUNTO_COMA, COMA, PUNTO, DOS_PUNTOS, IGUAL, CONST_INTEGER, CONST_DOU, CONST_STR, CONST_BIN, INTEGER, STRING, FLOAT, WHILE, IF, THEN, ELSE, ENDIF, WRITE,DECLARE, ENDDECLARE, PROGRAM,
 ENDPROGRAM, CONTAR_PRIMOS;
 
-non terminal programa, declaraciones;
+non terminal programa, declaraciones, asignacion_tipos, declaracion, lista, tipo, miprograma, miprog, sentWrite, codigo, asignacion, expresion, termino, factor, iteracion, seleccion, condicion, comparacion, comparador, salida, funcioncontarprimos, parametros;
 
 start with programa;
 
-programa ::= declaraciones {: reglas.add("[Regla 0] codigo: El programa compila correctamente"); :};
+programa ::= declaraciones miprograma {: reglas.add("Regla N°0: declaraciones miprograma"); :};
+programa ::= miprog {: reglas.add("Regla N°1: miprog "); :};
 
-declaraciones ::=  DECLARE ENDDECLARE {: reglas.add("[Regla 1]"); :};
+
+
+declaraciones ::= DECLARE declaracion ENDDECLARE {: reglas.add("Regla N°2: DECLARE declaracion ENDDECLARE "); :};
+
+declaracion ::= declaracion asignacion_tipos {: reglas.add("Regla N°3: declaracion asignacion_tipos "); :};
+declaracion ::= asignacion_tipos {: reglas.add("Regla N°4: asignacion_tipos "); :};
+
+asignacion_tipos ::= CORCHETE_ABRE lista CORCHETE_CIERRA {: reglas.add("Regla N°5: CORCHETE_ABRE lista CORCHETE_CIERRA "); :};
+
+lista ::= ID COMA lista COMA tipo {: reglas.add("Regla N°6: ID COMA lista COMA tipo "); :};
+lista ::= ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo {: reglas.add("Regla N°7: ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo "); :};
+
+tipo ::= INTEGER  {: reglas.add("Regla N°8: INTEGER"); :};
+tipo ::= STRING   {: reglas.add("Regla N°9: STRING"); :};
+tipo ::= FLOAT   {: reglas.add("Regla N°10: FLOAT"); :};
+
+
+
+
+miprograma ::= PROGRAM codigo ENDPROGRAM {: reglas.add("Regla N°11: PROGRAM codigo ENDPROGRAM"); :};
+miprog ::= miprog sentWrite {: reglas.add("Regla N°12: miprog sentWrite"); :};
+sentWrite ::= WRITE CONST_STR {: reglas.add("Regla N°13: WRITE CONST_STR"); :};
+
+
+
+
+codigo ::= asignacion {: reglas.add("Regla N°14: asignacion"); :};
+codigo ::= asignacion codigo {: reglas.add("Regla N°15: asignacion codigo"); :};
+
+codigo ::= iteracion {: reglas.add("Regla N°16: iteracion"); :};
+codigo ::= iteracion codigo {: reglas.add("Regla N°17: iteracion codigo"); :};
+
+codigo ::= seleccion {: reglas.add("Regla N°18: seleccion"); :};
+codigo ::= seleccion codigo {: reglas.add("Regla N°19: seleccion codigo"); :};
+
+codigo ::= salida {: reglas.add("Regla N°20: salida"); :};
+codigo ::= salida codigo {: reglas.add("Regla N°21: salida codigo"); :};
+
+
+
+
+asignacion ::= ID OP_ASIGNACION expresion {: reglas.add("Regla N°22: ID OP_ASIGNACION expresion"); :};
+asignacion ::= ID OP_ASIGNACION CONST_STR {: reglas.add("Regla N°23: ID OP_ASIGNACION CONST_STR"); :};
+
+expresion ::= expresion OP_SUMA termino {: reglas.add("Regla N°24: expresion OP_SUMA termino"); :};
+expresion ::= expresion OP_RESTA termino {: reglas.add("Regla N°25: expresion OP_RESTA termino"); :};
+expresion ::= termino  {: reglas.add("Regla N°26: termino "); :};
+
+termino  ::= termino OP_MULTIPLICACION factor  {: reglas.add("Regla N°27: termino OP_MULTIPLICACION factor "); :};
+termino  ::= termino OP_DIVISION factor  {: reglas.add("Regla N°28: termino OP_DIVISION factor "); :};
+termino  ::= factor  {: reglas.add("Regla N°29: factor "); :};
+
+factor   ::= PARENTESIS_ABRE expresion PARENTESIS_CIERRA  {: reglas.add("Regla N°30: PARENTESIS_ABRE expresion PARENTESIS_CIERRA "); :};
+factor   ::= ID {: reglas.add("Regla N°31: ID"); :};
+factor   ::= CONST_DOU {: reglas.add("Regla N°32: CONST_DOU"); :};
+factor   ::= CONST_BIN {: reglas.add("Regla N°33: CONST_BIN"); :};
+factor   ::= CONST_INTEGER {: reglas.add("Regla N°34: CONST_INTEGER"); :};
+factor   ::= funcioncontarprimos {: reglas.add("Regla N°35: funcioncontarprimos"); :};
+
+
+
+
+iteracion ::= WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA {: reglas.add("Regla N°34: WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA "); :};
+
+
+
+
+seleccion ::= IF condicion THEN codigo ENDIF {: reglas.add("Regla N°35: IF condicion THEN codigo ENDIF "); :};
+seleccion ::= IF condicion THEN codigo ELSE ENDIF {: reglas.add("Regla N°36: IF condicion THEN codigo ELSE ENDIF"); :};
+
+
+
+
+condicion ::= comparacion {: reglas.add("Regla N°37: comparacion"); :};
+condicion ::= comparacion OP_AND comparacion {: reglas.add("Regla N°38: comparacion OP_AND comparacion"); :};
+condicion ::= comparacion OP_OR comparacion {: reglas.add("Regla N°39: comparacion OP_OR comparacion"); :};
+
+
+comparacion ::= PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA {: reglas.add("Regla N°40: PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA "); :};
+comparacion ::= OP_NOT comparacion  {: reglas.add("Regla N°41: OP_NOT comparacion  "); :};
+
+
+comparador ::= OP_MENOR {: reglas.add("Regla N°42: OP_MENOR"); :};
+comparador ::= OP_MAYOR {: reglas.add("Regla N°43: OP_MAYOR"); :};
+comparador ::= OP_MAYOR_IGUAL {: reglas.add("Regla N°44: OP_MAYOR_IGUAL"); :};
+comparador ::= OP_MENOR_IGUAL {: reglas.add("Regla N°45: OP_MENOR_IGUAL"); :};
+comparador ::= OP_IGUAL {: reglas.add("Regla N°46: OP_IGUAL"); :};
+comparador ::= OP_DISTINTO {: reglas.add("Regla N°47: OP_DISTINTO "); :};
+
+
+salida ::= WRITE ID {: reglas.add("Regla N°48: WRITE ID"); :};
+salida ::= WRITE CONST_STR {: reglas.add("Regla N°49: WRITE CONST_STR"); :};
+
+
+
+
+funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {: reglas.add("Regla N°50: CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); :};
+parametros ::= expresion {: reglas.add("Regla N°51: expresion"); :};
+parametros ::= expresion COMA parametros {: reglas.add("Regla N°52: expresion COMA parametros"); :};
