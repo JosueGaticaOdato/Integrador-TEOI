@@ -89,40 +89,40 @@ factor   ::= funcioncontarprimos {: reglas.add("Regla N°35: funcioncontarprimos
 
 
 
-iteracion ::= WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA {: reglas.add("Regla N°34: WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA "); :};
+iteracion ::= WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA {: reglas.add("Regla N°36: WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA "); :};
 
 
 
 
-seleccion ::= IF condicion THEN codigo ENDIF {: reglas.add("Regla N°35: IF condicion THEN codigo ENDIF "); :};
-seleccion ::= IF condicion THEN codigo ELSE ENDIF {: reglas.add("Regla N°36: IF condicion THEN codigo ELSE ENDIF"); :};
+seleccion ::= IF condicion THEN codigo ENDIF {: reglas.add("Regla N°37: IF condicion THEN codigo ENDIF "); :};
+seleccion ::= IF condicion THEN codigo ELSE ENDIF {: reglas.add("Regla N°38: IF condicion THEN codigo ELSE ENDIF"); :};
 
 
 
 
-condicion ::= comparacion {: reglas.add("Regla N°37: comparacion"); :};
-condicion ::= comparacion OP_AND comparacion {: reglas.add("Regla N°38: comparacion OP_AND comparacion"); :};
-condicion ::= comparacion OP_OR comparacion {: reglas.add("Regla N°39: comparacion OP_OR comparacion"); :};
+condicion ::= comparacion {: reglas.add("Regla N°39: comparacion"); :};
+condicion ::= comparacion OP_AND comparacion {: reglas.add("Regla N°40: comparacion OP_AND comparacion"); :};
+condicion ::= comparacion OP_OR comparacion {: reglas.add("Regla N°41: comparacion OP_OR comparacion"); :};
 
 
-comparacion ::= PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA {: reglas.add("Regla N°40: PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA "); :};
-comparacion ::= OP_NOT comparacion  {: reglas.add("Regla N°41: OP_NOT comparacion  "); :};
+comparacion ::= PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA {: reglas.add("Regla N°42: PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA "); :};
+comparacion ::= OP_NOT comparacion  {: reglas.add("Regla N°43: OP_NOT comparacion  "); :};
 
 
-comparador ::= OP_MENOR {: reglas.add("Regla N°42: OP_MENOR"); :};
-comparador ::= OP_MAYOR {: reglas.add("Regla N°43: OP_MAYOR"); :};
-comparador ::= OP_MAYOR_IGUAL {: reglas.add("Regla N°44: OP_MAYOR_IGUAL"); :};
-comparador ::= OP_MENOR_IGUAL {: reglas.add("Regla N°45: OP_MENOR_IGUAL"); :};
-comparador ::= OP_IGUAL {: reglas.add("Regla N°46: OP_IGUAL"); :};
-comparador ::= OP_DISTINTO {: reglas.add("Regla N°47: OP_DISTINTO "); :};
+comparador ::= OP_MENOR {: reglas.add("Regla N°44: OP_MENOR"); :};
+comparador ::= OP_MAYOR {: reglas.add("Regla N°45: OP_MAYOR"); :};
+comparador ::= OP_MAYOR_IGUAL {: reglas.add("Regla N°46: OP_MAYOR_IGUAL"); :};
+comparador ::= OP_MENOR_IGUAL {: reglas.add("Regla N°47: OP_MENOR_IGUAL"); :};
+comparador ::= OP_IGUAL {: reglas.add("Regla N°48: OP_IGUAL"); :};
+comparador ::= OP_DISTINTO {: reglas.add("Regla N°49: OP_DISTINTO "); :};
 
 
-salida ::= WRITE ID {: reglas.add("Regla N°48: WRITE ID"); :};
-salida ::= WRITE CONST_STR {: reglas.add("Regla N°49: WRITE CONST_STR"); :};
+salida ::= WRITE ID {: reglas.add("Regla N°50: WRITE ID"); :};
+salida ::= WRITE CONST_STR {: reglas.add("Regla N°51: WRITE CONST_STR"); :};
 
 
 
 
-funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {: reglas.add("Regla N°50: CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); :};
-parametros ::= expresion {: reglas.add("Regla N°51: expresion"); :};
-parametros ::= expresion COMA parametros {: reglas.add("Regla N°52: expresion COMA parametros"); :};
+funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {: reglas.add("Regla N°52: CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); :};
+parametros ::= expresion {: reglas.add("Regla N°53: expresion"); :};
+parametros ::= expresion COMA parametros {: reglas.add("Regla N°54: expresion COMA parametros"); :};
