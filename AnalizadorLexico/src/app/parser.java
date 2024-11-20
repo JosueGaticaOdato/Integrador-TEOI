@@ -33,8 +33,10 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\003\000\002\002\004\000\002\002\003\000\002\003" +
-    "\004" });
+    "\000\014\000\002\002\004\000\002\002\003\000\002\002" +
+    "\003\000\002\003\005\000\002\005\004\000\002\005\003" +
+    "\000\002\004\005\000\002\006\007\000\002\006\007\000" +
+    "\002\007\003\000\002\007\003\000\002\007\003" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -42,9 +44,20 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\004\054\005\001\002\000\004\002\000\001" +
-    "\002\000\004\055\010\001\002\000\004\002\007\001\002" +
-    "\000\004\002\001\001\002\000\004\002\uffff\001\002" });
+    "\000\031\000\004\054\005\001\002\000\004\002\000\001" +
+    "\002\000\004\030\011\001\002\000\004\002\010\001\002" +
+    "\000\004\002\uffff\001\002\000\004\002\001\001\002\000" +
+    "\004\004\016\001\002\000\006\030\011\055\014\001\002" +
+    "\000\006\030\ufffc\055\ufffc\001\002\000\004\002\ufffe\001" +
+    "\002\000\006\030\ufffd\055\ufffd\001\002\000\006\031\022" +
+    "\033\021\001\002\000\004\031\020\001\002\000\006\030" +
+    "\ufffb\055\ufffb\001\002\000\004\004\016\001\002\000\004" +
+    "\006\023\001\002\000\004\030\024\001\002\000\010\043" +
+    "\025\044\026\045\030\001\002\000\006\031\ufff8\033\ufff8" +
+    "\001\002\000\006\031\ufff7\033\ufff7\001\002\000\006\031" +
+    "\ufff9\033\ufff9\001\002\000\006\031\ufff6\033\ufff6\001\002" +
+    "\000\004\033\032\001\002\000\010\043\025\044\026\045" +
+    "\030\001\002\000\006\031\ufffa\033\ufffa\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -52,9 +65,16 @@ public class parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\006\000\006\002\005\003\003\001\001\000\002\001" +
+    "\000\031\000\010\002\005\003\003\011\006\001\001\000" +
+    "\002\001\001\000\006\004\012\005\011\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\006" +
+    "\016\001\001\000\004\004\014\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\006\030\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\007\026\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001" });
+    "\000\002\001\001\000\002\001\001\000\004\007\032\001" +
+    "\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -148,17 +168,98 @@ class CUP$parser$actions {
           case 1: // programa ::= declaraciones 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 0] codigo: El programa compila correctamente"); 
+		 reglas.add("Regla N°0 declaraciones miprograma"); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("programa",0, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // declaraciones ::= DECLARE ENDDECLARE 
+          case 2: // programa ::= miprog 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 1]"); 
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("declaraciones",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+		 reglas.add("Regla N°1 miprog "); 
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("programa",0, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 3: // declaraciones ::= DECLARE declaracion ENDDECLARE 
+            {
+              Object RESULT =null;
+		 reglas.add("Regla N°2 DECLARE declaracion ENDDECLARE "); 
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("declaraciones",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 4: // declaracion ::= declaracion asignacion_tipos 
+            {
+              Object RESULT =null;
+		 reglas.add("Regla N°3 declaracion asignacion_tipos "); 
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("declaracion",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // declaracion ::= asignacion_tipos 
+            {
+              Object RESULT =null;
+		 reglas.add("Regla N°4 asignacion_tipos "); 
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("declaracion",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // asignacion_tipos ::= CORCHETE_ABRE lista CORCHETE_CIERRA 
+            {
+              Object RESULT =null;
+		 reglas.add("Regla N°5 CORCHETE_ABRE lista CORCHETE_CIERRA "); 
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion_tipos",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // lista ::= ID COMA lista COMA tipo 
+            {
+              Object RESULT =null;
+		 reglas.add("Regla N°6 ID COMA lista COMA tipo "); 
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("lista",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // lista ::= ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo 
+            {
+              Object RESULT =null;
+		 reglas.add("Regla N°7 ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo "); 
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("lista",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // tipo ::= INTEGER 
+            {
+              Object RESULT =null;
+
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 10: // tipo ::= STRING 
+            {
+              Object RESULT =null;
+
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+            }
+          return CUP$parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // tipo ::= FLOAT 
+            {
+              Object RESULT =null;
+		
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
