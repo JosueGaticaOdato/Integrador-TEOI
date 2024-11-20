@@ -1,5 +1,9 @@
 package app;
 import java_cup.runtime.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 %%
@@ -450,14 +454,9 @@ ID = {LETRA} ({LETRA}|{DIGITO})*
 
 {COMENTARIO}		      {/* no se realiza accion por lo tanto se ignoran*/}
 
-//{COMENTARIO}		{
-//    System.out.println("Token COMENTARIO, encontrado Lexema "+ yytext());
-//    lista.add("Token COMENTARIO, encontrado Lexema "+ yytext());
-//}
-
 }
 
-[^]		{ throw new Exception("Caracter no permitido: <" + yytext() + "> en la linea " + yyline); }
+[^]		{ throw new Exception("Caracter no permitido: <" + yytext() + "> en la linea"); }
 
 
 

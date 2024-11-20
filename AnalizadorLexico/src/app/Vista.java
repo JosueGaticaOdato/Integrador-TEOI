@@ -138,12 +138,16 @@ public class Vista {
 					
 					//Creo el objeto Lexico pasandole el codigo y el path donde se guardara la tabla de simbolos
 					Lexico lexer = new Lexico(reader, path);
-					lexer.next_token();
+					//lexer.next_token();
+					
+					parser sintactico = new parser(lexer);
+					sintactico.parse();
 
 					outputTextArea.setText("");
 
 					// Obtengo la lista de elementos que fue guardando el Lexico
-					ArrayList<String> elements = lexer.getList();
+					//ArrayList<String> elements = lexer.getList();
+					ArrayList<String> elements = (ArrayList<String>) sintactico.getList();
 					
 					//Recorro la lista y muestro la salida en pantalla
 					for (int i = 0; i < elements.size(); i++) {

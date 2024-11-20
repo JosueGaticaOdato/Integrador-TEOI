@@ -3,48 +3,27 @@ import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.List;
 
-parser code {: :}
+parser code {:
+    // Metodo al que se llama automaticamente ante algun error sintactico.
+    public void syntax_error(Symbol s){
+        System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
+            + s + " no reconocido. valor " + s.value );
+    }
+    private List<String> reglas = new ArrayList<String>();
+    public List<String> getList() {
+        return this.reglas;
+    }
+:}
 
-action code {: :}
+action code {::}
 
 terminal ID,OP_ASIGNACION, OP_DECLARACION, OP_SUMA, OP_RESTA, OP_DIVISION, OP_MULTIPLICACION,OP_MENOR, OP_MAYOR, OP_MAYOR_IGUAL, OP_MENOR_IGUAL, OP_IGUAL, OP_DISTINTO, OP_AND, OP_OR, OP_NOT,PARENTESIS_ABRE,  PARENTESIS_CIERRA, LLAVE_ABRE, LLAVE_CIERRA, CORCHETE_ABRE, CORCHETE_CIERRA, PUNTO_COMA, COMA, PUNTO, DOS_PUNTOS, IGUAL, CONST_INTEGER, CONST_DOU, CONST_STR, CONST_BIN, INTEGER, STRING, FLOAT, WHILE, IF, THEN, ELSE, ENDIF, WRITE,DECLARE, ENDDECLARE, PROGRAM,
 ENDPROGRAM, CONTAR_PRIMOS;
 
-non terminal programa, declaraciones, asignacion_tipos, declaracion, lista, tipo, miprograma, miprog, sentWrite, codigo, asignacion, expresion, termino, factor, iteracion, seleccion, condicion, comparacion, comparador, salida, funcioncontarprimos, parametros;
+non terminal programa, declaraciones;
 
 start with programa;
 
-programa ::= declaraciones miprograma | miprog {::};
+programa ::= declaraciones {: reglas.add("[Regla 0] codigo: El programa compila correctamente"); :};
 
-declaraciones ::= DECLARE declaracion ENDDECLARE {::};
-declaracion ::= declaracion asignacion_tipos | asignacion_tipos {::};
-asignacion_tipos ::= CORCHETE_ABRE lista CORCHETE_CIERRA {::};
-lista ::= ID COMA lista COMA tipo | ID CORCHETE_ABRE OP_DECLARACION CORCHETE_ABRE tipo {::};
-tipo ::= INTEGER | STRING | FLOAT {::};
-
-miprograma ::= PROGRAM codigo ENDPROGRAM {::};
-miprog ::= miprog sentWrite {::};
-sentWrite ::= WRITE CONST_STR {::};
-
-codigo ::= asignacion | asignacion codigo {::};
-codigo ::= iteracion | iteracion codigo {::};
-codigo ::= seleccion | seleccion codigo {::};
-codigo ::= salida | salida codigo {::};
-
-asignacion ::= ID OP_ASIGNACION expresion {::};
-expresion ::= expresion OP_SUMA termino | expresion OP_RESTA termino | termino {::};
-termino ::= termino OP_MULTIPLICACION factor | termino OP_DIVISION factor | factor {::};
-factor ::= PARENTESIS_ABRE expresion PARENTESIS_CIERRA | ID | CONST_DOU | CONST_BIN | CONST_INTEGER | funcioncontarprimos {::};
-
-iteracion ::= WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA {::};
-
-seleccion ::= IF condicion THEN codigo ENDIF | IF condicion THEN codigo ELSE ENDIF {::};
-
-condicion ::= comparacion | comparacion OP_AND comparacion | comparacion OP_OR comparacion{::};
-comparacion ::= PARENTESIS_ABRE expresion comparador expresion PARENTESIS_CIERRA | OP_NOT comparacion {::};
-comparador ::= OP_MENOR | OP_MAYOR | OP_MAYOR_IGUAL | OP_MENOR_IGUAL | OP_IGUAL | OP_DISTINTO {::};
-
-salida ::= WRITE ID | WRITE CONST_STR {::};
- 
-funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {::};
-parametros ::= expresion | expresion COMA parametros {::};
+declaraciones ::=  DECLARE ENDDECLARE {: reglas.add("[Regla 1]"); :};
