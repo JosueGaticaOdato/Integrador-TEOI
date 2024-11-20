@@ -5,32 +5,16 @@ p1                        | ID              |            | -                    
 p2                        | ID              |            | -                         |-    
 p3                        | ID              |            | -                         |-    
 i                         | ID              |            | -                         |-    
-_1                        | CONST_INT       | -          | 1                         |-    
+_1                        | CONST_INTEGER   | -          | 1                         |-    
 msg                       | ID              |            | -                         |-    
 _numero par               | CONST_STR       | -          | numero par                |10   
-_100                      | CONST_INT       | -          | 100                       |-    
-_2                        | CONST_INT       | -          | 2                         |-    
-_0                        | CONST_INT       | -          | 0                         |-    
-a                         | ID              |            | -                         |-    
-_99999.99                 | CONST_DOU       | -          | 99999.99                  |-    
-_99.                      | CONST_DOU       | -          | 99.                       |-    
-_.9999                    | CONST_DOU       | -          | .9999                     |-    
-var                       | ID              |            | -                         |-    
-_HOLA MUNDO               | CONST_STR       | -          | HOLA MUNDO                |10   
-_(10, 2)                  | CONST_BIN       | -          | (10, 2)                   |-    
-ENDIF                     | ID              |            | -                         |-    
-_ewr                      | CONST_STR       | -          | ewr                       |3    
-_99.999                   | CONST_DOU       | -          | 99.999                    |-    
-expresion                 | ID              |            | -                         |-    
-INT                       | ID              |            | -                         |-    
-ListadeSentencias         | ID              |            | -                         |-    
-z                         | ID              |            | -                         |-    
-b                         | ID              |            | -                         |-    
-c                         | ID              |            | -                         |-    
-_53                       | CONST_INT       | -          | 53                        |-    
+_100                      | CONST_INTEGER   | -          | 100                       |-    
+_2                        | CONST_INTEGER   | -          | 2                         |-    
 x                         | ID              |            | -                         |-    
-_11                       | CONST_INT       | -          | 11                        |-    
-_8                        | CONST_INT       | -          | 8                         |-    
-_55                       | CONST_INT       | -          | 55                        |-    
-_7                        | CONST_INT       | -          | 7                         |-    
+_11                       | CONST_INTEGER   | -          | 11                        |-    
+b                         | ID              |            | -                         |-    
+_8                        | CONST_INTEGER   | -          | 8                         |-    
+_55                       | CONST_INTEGER   | -          | 55                        |-    
+z                         | ID              |            | -                         |-    
+_7                        | CONST_INTEGER   | -          | 7                         |-    
 C                         | ID              |            | -                         |-    

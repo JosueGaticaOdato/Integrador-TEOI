@@ -15,6 +15,27 @@ while(i < 100){
 
 ENDPROGRAM.SECTION
 
+DECLARE.SECTION
+[a1, b1] := [FLOAT, INTEGER]
+[p1, p2, p3] := [FLOAT,FLOAT,INTEGER]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+i::=1
+msg::='numero par'
+while(i < 100){
+   if(i == 2) then
+     WRITE msg
+     i::=i+1
+   endif
+}
+
+WRITE '@sdADaSjfla%dfg'
+var ::= 'HOLA MUNDO'
+x = ContarPrimos([11,b+8,2,55,z*b+7,C])
+
+ENDPROGRAM.SECTION
+
 
 //* Tipo de datos *//
 a::= 99999.99
