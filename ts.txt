@@ -10,11 +10,15 @@ msg                       | ID              |            | -                    
 _numero par               | CONST_STR       | -          | numero par                |10   
 _100                      | CONST_INTEGER   | -          | 100                       |-    
 _2                        | CONST_INTEGER   | -          | 2                         |-    
+z                         | ID              |            | -                         |-    
+_0                        | CONST_INTEGER   | -          | 0                         |-    
+a                         | ID              |            | -                         |-    
+b                         | ID              |            | -                         |-    
+c                         | ID              |            | -                         |-    
+_53                       | CONST_INTEGER   | -          | 53                        |-    
 x                         | ID              |            | -                         |-    
 _11                       | CONST_INTEGER   | -          | 11                        |-    
-b                         | ID              |            | -                         |-    
 _8                        | CONST_INTEGER   | -          | 8                         |-    
 _55                       | CONST_INTEGER   | -          | 55                        |-    
-z                         | ID              |            | -                         |-    
 _7                        | CONST_INTEGER   | -          | 7                         |-    
 C                         | ID              |            | -                         |-    

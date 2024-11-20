@@ -9,30 +9,17 @@ PROGRAM.SECTION
 i::=1
 msg::='numero par'
 while(i < 100){
-   WRITE msg
-   i::=i+1
-}
-
-ENDPROGRAM.SECTION
-
-DECLARE.SECTION
-[a1, b1] := [FLOAT, INTEGER]
-[p1, p2, p3] := [FLOAT,FLOAT,INTEGER]
-ENDDECLARE.SECTION
-
-PROGRAM.SECTION
-i::=1
-msg::='numero par'
-while(i < 100){
    if(i == 2) then
      WRITE msg
      i::=i+1
    endif
 }
 
-WRITE '@sdADaSjfla%dfg'
-var ::= 'HOLA MUNDO'
-x = ContarPrimos([11,b+8,2,55,z*b+7,C])
+z::=0
+a::=2
+b::=2
+c::=53
+x ::= ContarPrimos([11,b+8,2,55,z*b+7,C])
 
 ENDPROGRAM.SECTION
 
@@ -80,8 +67,8 @@ ListadeSentencias
 ENDPROGRAM.SECTION
 
 //* Contarprimos - Funcion especial grupo 1 *//
-z::=0;
-a::=2;
-b::=2;
-c::=53;
+z::=0
+a::=2
+b::=2
+c::=53
 x ::= ContarPrimos([11,b+8,2,55,z*b+7,C]) //* x = 4 *//
