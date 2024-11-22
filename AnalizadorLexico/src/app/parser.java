@@ -287,7 +287,7 @@ public class parser extends java_cup.runtime.lr_parser {
 
     // Metodo al que se llama automaticamente ante algun error sintactico.
     public void syntax_error(Symbol s){
-        errorMsg = "Error en la linea " + (s.right + 1) + " columna " + (s.left + 1) + ". "
+        errorMsg = "Error en la linea " + (s.right - 1) + ". "
             + s + " no reconocido. valor " + s.value;
     }
 
@@ -452,7 +452,7 @@ class CUP$parser$actions {
 		int integerright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object integer = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
-  reglas.add("Regla N°8: INTEGER -> " + integer);
+  reglas.add("Regla N°8: INTEGER");
   RESULT = integer;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -467,7 +467,7 @@ class CUP$parser$actions {
 		int stringright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object string = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-  reglas.add("Regla N°9: STRING -> " + string);
+  reglas.add("Regla N°9: STRING");
   RESULT = string;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -482,7 +482,7 @@ class CUP$parser$actions {
 		int flotanteright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		Object flotante = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-  reglas.add("Regla N°10: FLOAT -> " + flotante);
+  reglas.add("Regla N°10: FLOAT");
   RESULT = flotante;
 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",5, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);

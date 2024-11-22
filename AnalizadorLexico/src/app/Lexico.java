@@ -926,7 +926,7 @@ public class Lexico implements java_cup.runtime.Scanner {
             { lista.add("Token ID, encontrado Lexema "+ yytext());
     System.out.println("Token ID, encontrado Lexema "+ yytext()); 
     agregarATablaDeSimbolos("ID", yytext());
-    return new Symbol(sym.ID, yytext());
+    return new Symbol(sym.ID, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 49: break;
@@ -936,7 +936,7 @@ public class Lexico implements java_cup.runtime.Scanner {
     {
         agregarATablaDeSimbolos("CONST_INTEGER", yytext());
         lista.add("Token CONST_INTEGER, encontrado Lexema "+ yytext());
-        return new Symbol(sym.CONST_INTEGER, yytext());
+        return new Symbol(sym.CONST_INTEGER, yycolumn + 1, yyline + 1, yytext());
     } else {
         throw new Exception("Constante integer fuera de rango: |" + yytext() + "|" );
     }
@@ -951,119 +951,119 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 5: 
             { lista.add("Token OP_DIVISION, encontrado Lexema "+ yytext());
     System.out.println("Token OP_DIVISION encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_DIVISION, yytext());
+    return new Symbol(sym.OP_DIVISION, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 52: break;
           case 6: 
             { lista.add("Token OP_MULTIPLICACION, encontrado Lexema "+ yytext());
     System.out.println("Token OP_MULTIPLICACION encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_MULTIPLICACION, yytext());
+    return new Symbol(sym.OP_MULTIPLICACION, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 53: break;
           case 7: 
             { lista.add("Token DOS_PUNTOS, encontrado Lexema "+ yytext());
     System.out.println("Token DOS_PUNTOS encontrado, Lexema "+ yytext());
-    return new Symbol(sym.DOS_PUNTOS, yytext());
+    return new Symbol(sym.DOS_PUNTOS, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 54: break;
           case 8: 
             { lista.add("Token IGUAL, encontrado Lexema "+ yytext());
     System.out.println("Token IGUAL encontrado, Lexema "+ yytext());
-    return new Symbol(sym.IGUAL, yytext());
+    return new Symbol(sym.IGUAL, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 55: break;
           case 9: 
             { lista.add("Token OP_SUMA, encontrado Lexema "+ yytext());
     System.out.println("Token OP_SUMA encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_SUMA, yytext());
+    return new Symbol(sym.OP_SUMA, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 56: break;
           case 10: 
             { lista.add("Token OP_RESTA, encontrado Lexema "+ yytext());
     System.out.println("Token OP_RESTA encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_RESTA, yytext());
+    return new Symbol(sym.OP_RESTA, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 57: break;
           case 11: 
             { lista.add("Token OP_MENOR, encontrado Lexema "+ yytext());
     System.out.println("Token OP_MENOR encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_MENOR, yytext());
+    return new Symbol(sym.OP_MENOR, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 58: break;
           case 12: 
             { lista.add("Token OP_MAYOR, encontrado Lexema "+ yytext());
     System.out.println("Token OP_MAYOR encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_MAYOR, yytext());
+    return new Symbol(sym.OP_MAYOR, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 59: break;
           case 13: 
             { lista.add("Token PARENTESIS_ABRE, encontrado Lexema "+ yytext());
     System.out.println("Token PARENTESIS_ABRE encontrado, Lexema "+ yytext());
-    return new Symbol(sym.PARENTESIS_ABRE, yytext());
+    return new Symbol(sym.PARENTESIS_ABRE, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 60: break;
           case 14: 
             { lista.add("Token PARENTESIS_CIERRA, encontrado Lexema "+ yytext());
     System.out.println("Token PARENTESIS_CIERRA encontrado, Lexema "+ yytext());
-    return new Symbol(sym.PARENTESIS_CIERRA, yytext());
+    return new Symbol(sym.PARENTESIS_CIERRA, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 61: break;
           case 15: 
             { lista.add("Token LLAVE_ABRE, encontrado Lexema "+ yytext());
     System.out.println("Token LLAVE_ABRE encontrado, Lexema "+ yytext());
-    return new Symbol(sym.LLAVE_ABRE, yytext());
+    return new Symbol(sym.LLAVE_ABRE, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 62: break;
           case 16: 
             { lista.add("Token LLAVE_CIERRA, encontrado Lexema "+ yytext());
     System.out.println("Token LLAVE_CIERRA encontrado, Lexema "+ yytext());
-    return new Symbol(sym.LLAVE_CIERRA, yytext());
+    return new Symbol(sym.LLAVE_CIERRA, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 63: break;
           case 17: 
             { lista.add("Token CORCHETE_ABRE, encontrado Lexema "+ yytext());
     System.out.println("Token CORCHETE_ABRE encontrado, Lexema "+ yytext());
-    return new Symbol(sym.CORCHETE_ABRE, yytext());
+    return new Symbol(sym.CORCHETE_ABRE, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 64: break;
           case 18: 
             { lista.add("Token CORCHETE_CIERRA, encontrado Lexema "+ yytext());
     System.out.println("Token CORCHETE_CIERRA encontrado, Lexema "+ yytext());
-    return new Symbol(sym.CORCHETE_CIERRA, yytext());
+    return new Symbol(sym.CORCHETE_CIERRA, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 65: break;
           case 19: 
             { lista.add("Token PUNTO_COMA, encontrado Lexema "+ yytext());
     System.out.println("Token PUNTO_COMA encontrado, Lexema "+ yytext());
-    return new Symbol(sym.PUNTO_COMA, yytext());
+    return new Symbol(sym.PUNTO_COMA, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 66: break;
           case 20: 
             { lista.add("Token COMA, encontrado Lexema "+ yytext());
     System.out.println("Token COMA encontrado, Lexema "+ yytext());
-    return new Symbol(sym.COMA, yytext());
+    return new Symbol(sym.COMA, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 67: break;
           case 21: 
             { lista.add("Token PUNTO, encontrado Lexema "+ yytext());
     System.out.println("Token PUNTO encontrado, Lexema "+ yytext());
-    return new Symbol(sym.PUNTO, yytext());
+    return new Symbol(sym.PUNTO, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 68: break;
@@ -1073,7 +1073,7 @@ public class Lexico implements java_cup.runtime.Scanner {
     {
         agregarATablaDeSimbolos("CONST_DOU", yytext());
         lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
-        return new Symbol(sym.CONST_DOU, yytext());
+        return new Symbol(sym.CONST_DOU, yycolumn + 1, yyline + 1, yytext());
     } else {
         throw new Exception("Constante real fuera de rango: |" + yytext() + "|" );
     }
@@ -1083,49 +1083,49 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 23: 
             { lista.add("Token OP_DECLARACION, encontrado Lexema "+ yytext());
     System.out.println("Token OP_DECLARACION encontrado, Lexema: "+ yytext());
-    return new Symbol(sym.OP_DECLARACION, yytext());
+    return new Symbol(sym.OP_DECLARACION, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 70: break;
           case 24: 
             { lista.add("Token OP_IGUAL, encontrado Lexema "+ yytext());
     System.out.println("Token OP_IGUAL encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_IGUAL, yytext());
+    return new Symbol(sym.OP_IGUAL, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 71: break;
           case 25: 
             { lista.add("Token OP_MENOR_IGUAL, encontrado Lexema "+ yytext());
     System.out.println("Token OP_MENOR_IGUAL encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_MENOR_IGUAL, yytext());
+    return new Symbol(sym.OP_MENOR_IGUAL, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 72: break;
           case 26: 
             { lista.add("Token OP_MAYOR_IGUAL, encontrado Lexema "+ yytext());
     System.out.println("Token OP_MAYOR_IGUAL encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_MAYOR_IGUAL, yytext());
+    return new Symbol(sym.OP_MAYOR_IGUAL, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 73: break;
           case 27: 
             { lista.add("Token OP_DISTINTO, encontrado Lexema "+ yytext());
     System.out.println("Token OP_DISTINTO encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_DISTINTO, yytext());
+    return new Symbol(sym.OP_DISTINTO, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 74: break;
           case 28: 
             { lista.add("Token OP_OR, encontrado Lexema "+ yytext());
     System.out.println("Token OP_OR encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_OR, yytext());
+    return new Symbol(sym.OP_OR, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 75: break;
           case 29: 
             { System.out.println("Token IF, encontrado Lexema "+ yytext());
     lista.add("Token IF, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.IF, yytext());
+    return new Symbol(sym.IF, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 76: break;
@@ -1135,7 +1135,7 @@ public class Lexico implements java_cup.runtime.Scanner {
     {
         agregarATablaDeSimbolos("CONST_STR", yytext());
         lista.add("Token CONST_STR, encontrado Lexema "+ yytext());
-        return new Symbol(sym.CONST_STR, yytext());
+        return new Symbol(sym.CONST_STR, yycolumn + 1, yyline + 1, yytext());
     } else {
         throw new Exception("Constante string fuera de rango: |" + yytext() + "|" );
     }
@@ -1145,21 +1145,21 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 31: 
             { lista.add("Token OP_ASIGNACION, encontrado Lexema "+ yytext());
     System.out.println("Token OP_ASIGNACION encontrado, Lexema: "+ yytext());
-    return new Symbol(sym.OP_ASIGNACION, yytext());
+    return new Symbol(sym.OP_ASIGNACION, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 78: break;
           case 32: 
             { lista.add("Token OP_AND, encontrado Lexema "+ yytext());
     System.out.println("Token OP_AND encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_AND, yytext());
+    return new Symbol(sym.OP_AND, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 79: break;
           case 33: 
             { lista.add("Token OP_NOT, encontrado Lexema "+ yytext());
     System.out.println("Token OP_NOT encontrado, Lexema "+ yytext());
-    return new Symbol(sym.OP_NOT, yytext());
+    return new Symbol(sym.OP_NOT, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 80: break;
@@ -1167,98 +1167,98 @@ public class Lexico implements java_cup.runtime.Scanner {
             { System.out.println("Token CONST_BIN, encontrado Lexema "+ yytext()); 
     agregarATablaDeSimbolos("CONST_BIN", yytext());
     lista.add("Token CONST_BIN, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.CONST_BIN, yytext());
+    return new Symbol(sym.CONST_BIN, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 81: break;
           case 35: 
             { System.out.println("Token THEN, encontrado Lexema "+ yytext());
     lista.add("Token THEN, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.THEN, yytext());
+    return new Symbol(sym.THEN, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 82: break;
           case 36: 
             { System.out.println("Token ELSE, encontrado Lexema "+ yytext());
     lista.add("Token ELSE, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.ELSE, yytext());
+    return new Symbol(sym.ELSE, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 83: break;
           case 37: 
             { System.out.println("Token WRITE, encontrado Lexema "+ yytext());
     lista.add("Token WRITE, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.WRITE, yytext());
+    return new Symbol(sym.WRITE, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 84: break;
           case 38: 
             { System.out.println("Token WHILE, encontrado Lexema "+ yytext());
     lista.add("Token WHILE, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.WHILE, yytext());
+    return new Symbol(sym.WHILE, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 85: break;
           case 39: 
             { System.out.println("Token ENDIF, encontrado Lexema "+ yytext());
     lista.add("Token ENDIF, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.ENDIF, yytext());
+    return new Symbol(sym.ENDIF, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 86: break;
           case 40: 
             { System.out.println("Token FLOAT, encontrado Lexema "+ yytext()); 
     lista.add("Token FLOAT, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.FLOAT, yytext());
+    return new Symbol(sym.FLOAT, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 87: break;
           case 41: 
             { System.out.println("Token STRING, encontrado Lexema "+ yytext());
     lista.add("Token STRING, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.STRING, yytext());
+    return new Symbol(sym.STRING, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 88: break;
           case 42: 
             { System.out.println("Token INTEGER, encontrado Lexema "+ yytext()); 
     lista.add("Token INTEGER, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.INTEGER, yytext());
+    return new Symbol(sym.INTEGER, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 89: break;
           case 43: 
             { System.out.println("Token CONTAR_PRIMOS, encontrado Lexema "+ yytext());
     lista.add("Token CONTAR_PRIMOS, encontrado Lexema "+ yytext());
-    return new Symbol(sym.CONTAR_PRIMOS, yytext());
+    return new Symbol(sym.CONTAR_PRIMOS, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 90: break;
           case 44: 
             { System.out.println("Token DECLARE, encontrado Lexema "+ yytext());
     lista.add("Token DECLARE, encontrado Lexema "+ yytext());
-    return new Symbol(sym.DECLARE, yytext());
+    return new Symbol(sym.DECLARE, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 91: break;
           case 45: 
             { System.out.println("Token PROGRAM_SECTION, encontrado Lexema "+ yytext());
     lista.add("Token PROGRAM_SECTION, encontrado Lexema "+ yytext());
-    return new Symbol(sym.PROGRAM, yytext());
+    return new Symbol(sym.PROGRAM, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 92: break;
           case 46: 
             { System.out.println("Token ENDDECLARE, encontrado Lexema "+ yytext());
     lista.add("Token ENDDECLARE, encontrado Lexema "+ yytext()); 
-    return new Symbol(sym.ENDDECLARE, yytext());
+    return new Symbol(sym.ENDDECLARE, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 93: break;
           case 47: 
             { System.out.println("Token ENDPROGRAM_SECTION, encontrado Lexema "+ yytext());
     lista.add("Token ENDPROGRAM_SECTION, encontrado Lexema "+ yytext());
-    return new Symbol(sym.ENDPROGRAM, yytext());
+    return new Symbol(sym.ENDPROGRAM, yycolumn + 1, yyline + 1, yytext());
             } 
             // fall through
           case 94: break;
