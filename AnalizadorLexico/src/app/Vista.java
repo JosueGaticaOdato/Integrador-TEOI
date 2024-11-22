@@ -132,7 +132,10 @@ public class Vista {
 		btnCompile.setForeground(new Color(255, 255, 255));
 		btnCompile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {					
+				parser sintactico = null;
+					
+				try {
+							
 					//Dado el codigo presente en la pantalla de input
 					Reader reader = new StringReader(inputTextArea.getText());
 					
@@ -144,11 +147,11 @@ public class Vista {
 					Lexico lexer = new Lexico(reader);
 					//lexer.next_token();
 					
-					parser sintactico = new parser(lexer, lexer.getTS());
+					sintactico = new parser(lexer, lexer.getTS());
 					sintactico.parse();
-
+		
 					outputTextArea.setText("");
-
+		
 					// Obtengo la lista de elementos que fue guardando el Lexico
 					//ArrayList<String> elements = lexer.getList();
 					ArrayList<String> elements = (ArrayList<String>) sintactico.getList();
@@ -160,7 +163,7 @@ public class Vista {
 						String element = elements.get(i);
 						outputTextArea.append(element + "\n"); //Salto de linea al final
 					}
-
+		
 					lexer.vaciarLista();
 					
 		            ArrayList<SymbolTableEntry> ts = (ArrayList<SymbolTableEntry>) parser.getTS();
@@ -191,7 +194,7 @@ public class Vista {
 
 				} catch(Exception error ) {
 					outputTextArea.setForeground(Color.RED);
-					outputTextArea.setText(error.getMessage());
+					outputTextArea.setText(parser.getErrorMsg());
 					JOptionPane.showMessageDialog(null,  error.getMessage(), "Error de compilación", JOptionPane.ERROR_MESSAGE);
 				}
 			}

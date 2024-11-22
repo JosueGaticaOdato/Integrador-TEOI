@@ -278,6 +278,8 @@ public class parser extends java_cup.runtime.lr_parser {
     private List<String> reglas = new ArrayList<String>();
     private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
 
+    private static String errorMsg;
+
     public parser(java_cup.runtime.Scanner s, ArrayList<SymbolTableEntry> table) {
         super(s);
         parser.ts = table;
@@ -285,8 +287,8 @@ public class parser extends java_cup.runtime.lr_parser {
 
     // Metodo al que se llama automaticamente ante algun error sintactico.
     public void syntax_error(Symbol s){
-        System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
-            + s + " no reconocido. valor " + s.value );
+        errorMsg = "Error en la linea " + (s.right + 1) + " columna " + (s.left + 1) + ". "
+            + s + " no reconocido. valor " + s.value;
     }
 
     public List<String> getList() {
@@ -297,8 +299,8 @@ public class parser extends java_cup.runtime.lr_parser {
         return ts;
     }
 
-    public void addDataType (String id, String type){
-        // Agregar el tipo de dato a la entrada en la tabla de simbolos.
+    public static String getErrorMsg() {
+        return errorMsg;
     }
 
     public void agregarTipo(Object id, Object type) {
