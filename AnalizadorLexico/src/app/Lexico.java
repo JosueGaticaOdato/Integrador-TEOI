@@ -2,10 +2,6 @@
 
 package app;
 import java_cup.runtime.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 
@@ -510,18 +506,6 @@ public class Lexico implements java_cup.runtime.Scanner {
   /* user code: */
     private ArrayList<String> lista = new ArrayList<>();
     private ArrayList<SymbolTableEntry> tsEntries = new ArrayList<>();
-    private PrintWriter writer = null;
-
-    public Lexico(java.io.Reader in, String filePath) {
-        this.zzReader = in;
-        try {
-            File file = new File(filePath);
-            file.createNewFile();
-            writer = new PrintWriter(new FileWriter(filePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     
     public ArrayList getList() {
         return this.lista;
@@ -531,16 +515,21 @@ public class Lexico implements java_cup.runtime.Scanner {
         this.lista.clear();
     }
 
-    public void agregarATablaDeSimbolos(String token, String valor) {
-        boolean existe = false;
-        for (SymbolTableEntry entrada : tsEntries) {
-            if (entrada.getToken().equals(token) && ((entrada.getNombre().equals(valor)) || (entrada.getNombre().equals("_" + valor)))) {
-                existe = true;
-            }
-        }
-
-        if (!existe) tsEntries.add(new SymbolTableEntry(valor, token));
+    public ArrayList<SymbolTableEntry> getTS(){
+        return this.tsEntries;
     }
+
+    public void agregarATablaDeSimbolos(String token, String valor) {
+      boolean existe = false;
+      for (SymbolTableEntry entrada : tsEntries) {
+        if (entrada.getToken().equals(token) && ((entrada.getNombre().equals(valor)) || (entrada.getNombre().equals("_" + valor)))) {
+          existe = true;
+          }
+      }
+
+      if (!existe) tsEntries.add(new SymbolTableEntry(valor, token));
+    }
+
 
 
   /**
@@ -773,17 +762,7 @@ public class Lexico implements java_cup.runtime.Scanner {
   private void zzDoEOF() throws java.io.IOException {
     if (!zzEOFDone) {
       zzEOFDone = true;
-        if (writer != null) {
-    	String header = String.format("%-25s | %-15s | %-10s | %-25s |%-5s", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONGITUD");
-    	writer.println(header);
-    	for(SymbolTableEntry entryInstance: tsEntries) {
-    		String entry = entryInstance.getEntry();
-    		writer.println(entry);
-    	}
-        
-        writer.close();
-    }
-  yyclose();
+      yyclose();
     }
   }
 

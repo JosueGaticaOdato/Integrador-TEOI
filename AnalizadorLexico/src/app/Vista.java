@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -137,10 +140,11 @@ public class Vista {
 					String path = filePath.getText();
 					
 					//Creo el objeto Lexico pasandole el codigo y el path donde se guardara la tabla de simbolos
-					Lexico lexer = new Lexico(reader, path);
+					//Lexico lexer = new Lexico(reader, path);
+					Lexico lexer = new Lexico(reader);
 					//lexer.next_token();
 					
-					parser sintactico = new parser(lexer);
+					parser sintactico = new parser(lexer, lexer.getTS());
 					sintactico.parse();
 
 					outputTextArea.setText("");
@@ -158,6 +162,32 @@ public class Vista {
 					}
 
 					lexer.vaciarLista();
+					
+		            ArrayList<SymbolTableEntry> ts = (ArrayList<SymbolTableEntry>) parser.getTS();
+		            PrintWriter writer = null;
+		            try {
+		              File file = new File(path);
+		              file.createNewFile();
+		              writer = new PrintWriter(new FileWriter(path));
+		            } catch (IOException ex) {
+		              ex.printStackTrace();
+		            }
+		            if (writer != null) {
+		              String header = String.format(
+		                "%-25s | %-15s | %-10s | %-25s |%-5s",
+		                "NOMBRE",
+		                "TOKEN",
+		                "TIPO",
+		                "VALOR",
+		                "LONGITUD"
+		              );
+		              writer.println(header);
+		              for (SymbolTableEntry entryInstance : ts) {
+		                String entry = entryInstance.getEntry();
+		                writer.println(entry);
+		              }
+		              writer.close();
+		            }
 
 				} catch(Exception error ) {
 					outputTextArea.setForeground(Color.RED);

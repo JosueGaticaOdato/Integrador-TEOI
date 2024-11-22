@@ -4,14 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 parser code {:
+  
+    private List<String> reglas = new ArrayList<String>();
+    private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
+
+    public parser(java_cup.runtime.Scanner s, ArrayList<SymbolTableEntry> table) {
+        super(s);
+        parser.ts = table;
+    }
+
     // Metodo al que se llama automaticamente ante algun error sintactico.
     public void syntax_error(Symbol s){
         System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
             + s + " no reconocido. valor " + s.value );
     }
-    private List<String> reglas = new ArrayList<String>();
+
     public List<String> getList() {
         return this.reglas;
+    }
+
+    public static List<SymbolTableEntry> getTS() {
+        return ts;
+    }
+
+    public void addDataType (String id, String type){
+        // Agregar el tipo de dato a la entrada en la tabla de simbolos.
+    }
+
+    public void agregarTipo(Object id, Object type) {
+        for (SymbolTableEntry entrada : ts) {
+            if (entrada.getToken().equals("ID") && entrada.getNombre().equals(id)) {
+                entrada.tipo = (String) type;
+            }
+        }
     }
 :}
 
@@ -36,12 +61,30 @@ declaracion ::= asignacion_tipos {: reglas.add("Regla N°4: asignacion_tipos ");
 
 asignacion_tipos ::= CORCHETE_ABRE lista CORCHETE_CIERRA {: reglas.add("Regla N°5: CORCHETE_ABRE lista CORCHETE_CIERRA "); :};
 
-lista ::= ID COMA lista COMA tipo {: reglas.add("Regla N°6: ID COMA lista COMA tipo "); :};
-lista ::= ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo {: reglas.add("Regla N°7: ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo "); :};
+lista ::= ID:id COMA lista COMA tipo:type {:
+    reglas.add("Regla N°6: ID COMA lista COMA tipo ");
+    RESULT = id;
+    agregarTipo(id,type);
+:};
+lista ::= ID:id CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo:type {: 
+  reglas.add("Regla N°7: ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo ");
+  RESULT = id;
+  agregarTipo(id,type);
+:};
 
-tipo ::= INTEGER  {: reglas.add("Regla N°8: INTEGER"); :};
-tipo ::= STRING   {: reglas.add("Regla N°9: STRING"); :};
-tipo ::= FLOAT   {: reglas.add("Regla N°10: FLOAT"); :};
+
+tipo ::= INTEGER:integer  {: 
+  reglas.add("Regla N°8: INTEGER -> " + integer);
+  RESULT = integer;
+:};
+tipo ::= STRING:string  {:
+  reglas.add("Regla N°9: STRING -> " + string);
+  RESULT = string;
+:};
+tipo ::= FLOAT:flotante   {:
+  reglas.add("Regla N°10: FLOAT -> " + flotante);
+  RESULT = flotante;
+:};
 
 
 

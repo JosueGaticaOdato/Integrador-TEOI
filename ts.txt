@@ -1,14 +1,14 @@
 NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
-a1                        | ID              |            | -                         |-    
-b1                        | ID              |            | -                         |-    
-p1                        | ID              |            | -                         |-    
-p2                        | ID              |            | -                         |-    
-p3                        | ID              |            | -                         |-    
+a1                        | ID              | INTEGER    | -                         |-    
+b1                        | ID              | FLOAT      | -                         |-    
+p1                        | ID              | INTEGER    | -                         |-    
+p2                        | ID              | FLOAT      | -                         |-    
+p3                        | ID              | FLOAT      | -                         |-    
 i                         | ID              |            | -                         |-    
 _1                        | CONST_INTEGER   | -          | 1                         |-    
 msg                       | ID              |            | -                         |-    
-_numero par               | CONST_STR       | -          | numero par                |10   
-_100                      | CONST_INTEGER   | -          | 100                       |-    
+_numero 2                 | CONST_STR       | -          | numero 2                  |8    
+_5                        | CONST_INTEGER   | -          | 5                         |-    
 _2                        | CONST_INTEGER   | -          | 2                         |-    
 z                         | ID              |            | -                         |-    
 _0                        | CONST_INTEGER   | -          | 0                         |-    

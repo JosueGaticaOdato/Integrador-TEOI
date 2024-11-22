@@ -7,13 +7,14 @@ ENDDECLARE.SECTION
 
 PROGRAM.SECTION
 i::=1
-msg::='numero par'
-while(i < 100){
+msg::='numero 2'
+while(i < 5){
    if(i == 2) then
      WRITE msg
-     i::=i+1
    endif
+   i::=i+1
 }
+
 
 z::=0
 a::=2
