@@ -51,123 +51,123 @@ non terminal programa, declaraciones, asignacion_tipos, declaracion, lista, tipo
 
 start with programa;
 
-programa ::= declaraciones miprograma {: reglas.add("Regla N°0: declaraciones miprograma"); :};
-programa ::= miprog {: reglas.add("Regla N°1: miprog "); :};
+programa ::= declaraciones miprograma {: reglas.add("Regla N°0: programa -> declaraciones miprograma"); :};
+programa ::= miprog {: reglas.add("Regla N°1: programa -> miprog "); :};
 
 
 
-declaraciones ::= DECLARE declaracion ENDDECLARE {: reglas.add("Regla N°2: DECLARE declaracion ENDDECLARE "); :};
+declaraciones ::= DECLARE declaracion ENDDECLARE {: reglas.add("Regla N°2: declaraciones -> DECLARE declaracion ENDDECLARE "); :};
 
-declaracion ::= declaracion asignacion_tipos {: reglas.add("Regla N°3: declaracion asignacion_tipos "); :};
-declaracion ::= asignacion_tipos {: reglas.add("Regla N°4: asignacion_tipos "); :};
+declaracion ::= declaracion asignacion_tipos {: reglas.add("Regla N°3: declaracion ->  declaracion asignacion_tipos "); :};
+declaracion ::= asignacion_tipos {: reglas.add("Regla N°4: declaracion -> asignacion_tipos "); :};
 
-asignacion_tipos ::= CORCHETE_ABRE lista CORCHETE_CIERRA {: reglas.add("Regla N°5: CORCHETE_ABRE lista CORCHETE_CIERRA "); :};
+asignacion_tipos ::= CORCHETE_ABRE lista CORCHETE_CIERRA {: reglas.add("Regla N°5: asignacion_tipos ->  CORCHETE_ABRE lista CORCHETE_CIERRA "); :};
 
 lista ::= ID:id COMA lista COMA tipo:type {:
-    reglas.add("Regla N°6: ID COMA lista COMA tipo ");
+    reglas.add("Regla N°6: lista -> ID COMA lista COMA tipo ");
     RESULT = id;
     agregarTipo(id,type);
 :};
 lista ::= ID:id CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo:type {: 
-  reglas.add("Regla N°7: ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo ");
+  reglas.add("Regla N°7: lista -> ID CORCHETE_CIERRA OP_DECLARACION CORCHETE_ABRE tipo ");
   RESULT = id;
   agregarTipo(id,type);
 :};
 
 
 tipo ::= INTEGER:integer  {: 
-  reglas.add("Regla N°8: INTEGER");
+  reglas.add("Regla N°8: tipo -> INTEGER");
   RESULT = integer;
 :};
 tipo ::= STRING:string  {:
-  reglas.add("Regla N°9: STRING");
+  reglas.add("Regla N°9: tipo -> STRING");
   RESULT = string;
 :};
 tipo ::= FLOAT:flotante   {:
-  reglas.add("Regla N°10: FLOAT");
+  reglas.add("Regla N°10: tipo -> FLOAT");
   RESULT = flotante;
 :};
 
 
 
 
-miprograma ::= PROGRAM codigo ENDPROGRAM {: reglas.add("Regla N°11: PROGRAM codigo ENDPROGRAM"); :};
-miprog ::= miprog sentWrite {: reglas.add("Regla N°12: miprog sentWrite"); :};
-sentWrite ::= WRITE CONST_STR {: reglas.add("Regla N°13: WRITE CONST_STR"); :};
+miprograma ::= PROGRAM codigo ENDPROGRAM {: reglas.add("Regla N°11: miprograma -> PROGRAM codigo ENDPROGRAM"); :};
+miprog ::= miprog sentWrite {: reglas.add("Regla N°12: miprog -> miprog sentWrite"); :};
+sentWrite ::= WRITE CONST_STR {: reglas.add("Regla N°13: sentWrite -> WRITE CONST_STR"); :};
 
 
 
 
-codigo ::= asignacion {: reglas.add("Regla N°14: asignacion"); :};
-codigo ::= asignacion codigo {: reglas.add("Regla N°15: asignacion codigo"); :};
+codigo ::= asignacion {: reglas.add("Regla N°14: codigo -> asignacion"); :};
+codigo ::= asignacion codigo {: reglas.add("Regla N°15: codigo -> asignacion codigo"); :};
 
-codigo ::= iteracion {: reglas.add("Regla N°16: iteracion"); :};
-codigo ::= iteracion codigo {: reglas.add("Regla N°17: iteracion codigo"); :};
+codigo ::= iteracion {: reglas.add("Regla N°16: codigo -> iteracion"); :};
+codigo ::= iteracion codigo {: reglas.add("Regla N°17: codigo -> iteracion codigo"); :};
 
-codigo ::= seleccion {: reglas.add("Regla N°18: seleccion"); :};
-codigo ::= seleccion codigo {: reglas.add("Regla N°19: seleccion codigo"); :};
+codigo ::= seleccion {: reglas.add("Regla N°18: codigo -> seleccion"); :};
+codigo ::= seleccion codigo {: reglas.add("Regla N°19: codigo -> seleccion codigo"); :};
 
-codigo ::= salida {: reglas.add("Regla N°20: salida"); :};
-codigo ::= salida codigo {: reglas.add("Regla N°21: salida codigo"); :};
-
-
-
-
-asignacion ::= ID OP_ASIGNACION expresion {: reglas.add("Regla N°22: ID OP_ASIGNACION expresion"); :};
-asignacion ::= ID OP_ASIGNACION CONST_STR {: reglas.add("Regla N°23: ID OP_ASIGNACION CONST_STR"); :};
-
-expresion ::= expresion OP_SUMA termino {: reglas.add("Regla N°24: expresion OP_SUMA termino"); :};
-expresion ::= expresion OP_RESTA termino {: reglas.add("Regla N°25: expresion OP_RESTA termino"); :};
-expresion ::= termino  {: reglas.add("Regla N°26: termino "); :};
-
-termino  ::= termino OP_MULTIPLICACION factor  {: reglas.add("Regla N°27: termino OP_MULTIPLICACION factor "); :};
-termino  ::= termino OP_DIVISION factor  {: reglas.add("Regla N°28: termino OP_DIVISION factor "); :};
-termino  ::= factor  {: reglas.add("Regla N°29: factor "); :};
-
-factor   ::= PARENTESIS_ABRE expresion PARENTESIS_CIERRA  {: reglas.add("Regla N°30: PARENTESIS_ABRE expresion PARENTESIS_CIERRA "); :};
-factor   ::= ID {: reglas.add("Regla N°31: ID"); :};
-factor   ::= CONST_DOU {: reglas.add("Regla N°32: CONST_DOU"); :};
-factor   ::= CONST_BIN {: reglas.add("Regla N°33: CONST_BIN"); :};
-factor   ::= CONST_INTEGER {: reglas.add("Regla N°34: CONST_INTEGER"); :};
-factor   ::= funcioncontarprimos {: reglas.add("Regla N°35: funcioncontarprimos"); :};
+codigo ::= salida {: reglas.add("Regla N°20: codigo -> salida"); :};
+codigo ::= salida codigo {: reglas.add("Regla N°21: codigo -> salida codigo"); :};
 
 
 
 
-iteracion ::= WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA {: reglas.add("Regla N°36: WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA "); :};
+asignacion ::= ID OP_ASIGNACION expresion {: reglas.add("Regla N°22: asignacion -> ID OP_ASIGNACION expresion"); :};
+asignacion ::= ID OP_ASIGNACION CONST_STR {: reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR"); :};
+
+expresion ::= expresion OP_SUMA termino {: reglas.add("Regla N°24: expresion -> expresion OP_SUMA termino"); :};
+expresion ::= expresion OP_RESTA termino {: reglas.add("Regla N°25: expresion -> expresion OP_RESTA termino"); :};
+expresion ::= termino  {: reglas.add("Regla N°26: expresion -> termino "); :};
+
+termino  ::= termino OP_MULTIPLICACION factor  {: reglas.add("Regla N°27: termino -> termino OP_MULTIPLICACION factor "); :};
+termino  ::= termino OP_DIVISION factor  {: reglas.add("Regla N°28: termino -> termino OP_DIVISION factor "); :};
+termino  ::= factor  {: reglas.add("Regla N°29: termino -> factor "); :};
+
+factor   ::= PARENTESIS_ABRE expresion PARENTESIS_CIERRA  {: reglas.add("Regla N°30: factor -> PARENTESIS_ABRE expresion PARENTESIS_CIERRA "); :};
+factor   ::= ID {: reglas.add("Regla N°31: factor -> ID"); :};
+factor   ::= CONST_DOU {: reglas.add("Regla N°32: factor -> CONST_DOU"); :};
+factor   ::= CONST_BIN {: reglas.add("Regla N°33: factor -> CONST_BIN"); :};
+factor   ::= CONST_INTEGER {: reglas.add("Regla N°34: factor -> CONST_INTEGER"); :};
+factor   ::= funcioncontarprimos {: reglas.add("Regla N°35: factor -> funcioncontarprimos"); :};
 
 
 
 
-seleccion ::= IF condicion THEN codigo ENDIF {: reglas.add("Regla N°37: IF condicion THEN codigo ENDIF "); :};
-seleccion ::= IF condicion THEN codigo ELSE ENDIF {: reglas.add("Regla N°38: IF condicion THEN codigo ELSE ENDIF"); :};
+iteracion ::= WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA {: reglas.add("Regla N°36: iteracion -> WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA "); :};
 
 
 
 
-condicion ::= comparacion {: reglas.add("Regla N°39: comparacion"); :};
-condicion ::= comparacion OP_AND comparacion {: reglas.add("Regla N°40: comparacion OP_AND comparacion"); :};
-condicion ::= comparacion OP_OR comparacion {: reglas.add("Regla N°41: comparacion OP_OR comparacion"); :};
-
-
-comparacion ::= PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA {: reglas.add("Regla N°42: PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA "); :};
-comparacion ::= OP_NOT comparacion  {: reglas.add("Regla N°43: OP_NOT comparacion  "); :};
-
-
-comparador ::= OP_MENOR {: reglas.add("Regla N°44: OP_MENOR"); :};
-comparador ::= OP_MAYOR {: reglas.add("Regla N°45: OP_MAYOR"); :};
-comparador ::= OP_MAYOR_IGUAL {: reglas.add("Regla N°46: OP_MAYOR_IGUAL"); :};
-comparador ::= OP_MENOR_IGUAL {: reglas.add("Regla N°47: OP_MENOR_IGUAL"); :};
-comparador ::= OP_IGUAL {: reglas.add("Regla N°48: OP_IGUAL"); :};
-comparador ::= OP_DISTINTO {: reglas.add("Regla N°49: OP_DISTINTO "); :};
-
-
-salida ::= WRITE ID {: reglas.add("Regla N°50: WRITE ID"); :};
-salida ::= WRITE CONST_STR {: reglas.add("Regla N°51: WRITE CONST_STR"); :};
+seleccion ::= IF condicion THEN codigo ENDIF {: reglas.add("Regla N°37: seleccion -> IF condicion THEN codigo ENDIF "); :};
+seleccion ::= IF condicion THEN codigo ELSE ENDIF {: reglas.add("Regla N°38: seleccion -> IF condicion THEN codigo ELSE ENDIF"); :};
 
 
 
 
-funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {: reglas.add("Regla N°52: CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); :};
-parametros ::= expresion {: reglas.add("Regla N°53: expresion"); :};
-parametros ::= expresion COMA parametros {: reglas.add("Regla N°54: expresion COMA parametros"); :};
+condicion ::= comparacion {: reglas.add("Regla N°39: condicion -> comparacion"); :};
+condicion ::= comparacion OP_AND comparacion {: reglas.add("Regla N°40: condicion -> comparacion OP_AND comparacion"); :};
+condicion ::= comparacion OP_OR comparacion {: reglas.add("Regla N°41: condicion -> comparacion OP_OR comparacion"); :};
+
+
+comparacion ::= PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA {: reglas.add("Regla N°42: comparacion -> PARENTESIS_ABRE  expresion comparador expresion PARENTESIS_CIERRA "); :};
+comparacion ::= OP_NOT comparacion  {: reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  "); :};
+
+
+comparador ::= OP_MENOR {: reglas.add("Regla N°44: comparador -> OP_MENOR"); :};
+comparador ::= OP_MAYOR {: reglas.add("Regla N°45: comparador -> OP_MAYOR"); :};
+comparador ::= OP_MAYOR_IGUAL {: reglas.add("Regla N°46: comparador -> OP_MAYOR_IGUAL"); :};
+comparador ::= OP_MENOR_IGUAL {: reglas.add("Regla N°47: comparador -> OP_MENOR_IGUAL"); :};
+comparador ::= OP_IGUAL {: reglas.add("Regla N°48: comparador -> OP_IGUAL"); :};
+comparador ::= OP_DISTINTO {: reglas.add("Regla N°49: comparador -> OP_DISTINTO "); :};
+
+
+salida ::= WRITE ID {: reglas.add("Regla N°50: salida -> WRITE ID"); :};
+salida ::= WRITE CONST_STR {: reglas.add("Regla N°51: salida -> WRITE CONST_STR"); :};
+
+
+
+
+funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {: reglas.add("Regla N°52: funcioncontarprimos ->  CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); :};
+parametros ::= expresion {: reglas.add("Regla N°53: parametros -> expresion"); :};
+parametros ::= expresion COMA parametros {: reglas.add("Regla N°54: parametros -> expresion COMA parametros"); :};
