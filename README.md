@@ -8,8 +8,6 @@
 - Lucas Latessa
 - Enzo Bianchi
 
-## Primera Entrega: Analizador Lexicografico - 3/10/2024
-
 ### Material:
 - Lexico.flex: El archivo jflex
 - prueba.txt: Archivo de pruebas generales para el analizador
