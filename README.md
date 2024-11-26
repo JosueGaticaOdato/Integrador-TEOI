@@ -9,19 +9,19 @@
 - Enzo Bianchi
 
 ### Material:
-- Lexico.flex: El archivo jflex
+- Lexico.flex: El archivo jflex con todas las expresiones regulares
+- Sintactico.cup: El archivo sintactico con las reglas definidas
 - prueba.txt: Archivo de pruebas generales para el analizador
 - ts.txt: Tabla de simbolos construida
 - AnalizadorLexico: Codigo fuente del proyecto
-- AnalizadorGrupo01: Ejecutable JAR
 
 ### Instrucciones:
 
-- (Desde el eclipse) Agreegar el jar "java-cup-11b-runtime" al build path del proyecto
+- (Desde el eclipse) Agregar el jar "java-cup-11b-runtime" al build path del proyecto
 - Ejecutar la aplicacion desde el eclipse, o tambien puede ejecutarse con el .jar en consola usando:
 
 ```
-java -jar AnalizadorGrupo01.jar
+java -jar AnalizadorSintacticoGrupo01.jar
 ``` 
 
 - Indicar el archivo de prueba que se quiere agregar al editor para compilar, caso contrario se puede utilizar la misma aplicacion como IDE
