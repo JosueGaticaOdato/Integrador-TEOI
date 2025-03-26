@@ -22,7 +22,7 @@ git clone  https://github.com/JosueGaticaOdato/Integrador-TEOI.git
 https://github.com/JosueGaticaOdato/Integrador-TEOI/archive/refs/heads/main.zip
 ``` 
 
-### Material:
+## Material:
 - Lexico.flex: El archivo jflex con todas las expresiones regulares
 - Sintactico.cup: El archivo sintactico con las reglas definidas
 - prueba.txt: Archivo de pruebas generales para el analizador
@@ -41,7 +41,7 @@ java -jar AnalizadorSintacticoGrupo01.jar
 - Indicar el archivo de prueba que se quiere agregar al editor para compilar, caso contrario se puede utilizar la misma aplicacion como IDE
 - Compilar el programa
 
-#### Cambios en Analizador Lexico:
+### Cambios en Analizador Lexico:
 
 Si se decide realizar algun cambio en el archivo lexico.java, es necesario realizar las modificaiones necesario en el archivo "Lexico.flex". Luego, compilar nuevamente el Jflex con el siguiente comando
 
@@ -51,7 +51,7 @@ java -jar jflex-full-1.7.0.kar Lexico.flex
 
 El nuevo archivo Lexico.java se reemplaza por el viejo archivo en la carpeta del proyecto.
 
-#### Cambios en Analizador Sintactico:
+### Cambios en Analizador Sintactico:
 
 Si se decide realizar algun cambio en los archivos parser.java y sym.java, es necesario realizar las modificaiones necesario en el archivo "Sintactico.cup". Luego, compilar nuevamente el java-cup con el siguiente comando
 
