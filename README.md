@@ -8,6 +8,20 @@
 - Lucas Latessa
 - Enzo Bianchi
 
+### Descargar el repositorio:
+
+- En el caso de tener Git instalado en su computadora, es posible descargar el proyecto realizando un clone del mismo. Abriendo una terminal en su computadora, ingrese el siguiente comando:
+
+```
+git clone  https://github.com/JosueGaticaOdato/Integrador-TEOI.git
+``` 
+
+- En el caso de no tener Git, es posible descargar el ZIP del repositorio dando click en el siguiente enlace
+
+``` 
+https://github.com/JosueGaticaOdato/Integrador-TEOI/archive/refs/heads/main.zip
+``` 
+
 ### Material:
 - Lexico.flex: El archivo jflex con todas las expresiones regulares
 - Sintactico.cup: El archivo sintactico con las reglas definidas
