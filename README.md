@@ -22,14 +22,14 @@ git clone  https://github.com/JosueGaticaOdato/Integrador-TEOI.git
 https://github.com/JosueGaticaOdato/Integrador-TEOI/archive/refs/heads/main.zip
 ``` 
 
-### Material:
+## Material:
 - Lexico.flex: El archivo jflex con todas las expresiones regulares
 - Sintactico.cup: El archivo sintactico con las reglas definidas
 - prueba.txt: Archivo de pruebas generales para el analizador
 - ts.txt: Tabla de simbolos construida
 - AnalizadorLexico: Codigo fuente del proyecto
 
-### Instrucciones:
+## Instrucciones:
 
 - (Desde el eclipse) Agregar el jar "java-cup-11b-runtime" al build path del proyecto
 - Ejecutar la aplicacion desde el eclipse, o tambien puede ejecutarse con el .jar en consola usando:
