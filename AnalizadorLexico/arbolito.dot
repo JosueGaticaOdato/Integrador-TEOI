@@ -1,0 +1,26 @@
+graph G {nodo_programa [label="Programa"]
+nodo_2074407503 [label=":="]
+nodo_programa -- nodo_2074407503
+nodo_189568618 [label="ID: z"]
+nodo_2074407503 -- nodo_189568618
+nodo_793589513 [label="CTE: 0"]
+nodo_2074407503 -- nodo_793589513
+nodo_20132171 [label=":="]
+nodo_programa -- nodo_20132171
+nodo_186370029 [label="ID: a"]
+nodo_20132171 -- nodo_186370029
+nodo_2094548358 [label="CTE: 2"]
+nodo_20132171 -- nodo_2094548358
+nodo_51228289 [label=":="]
+nodo_programa -- nodo_51228289
+nodo_455896770 [label="ID: b"]
+nodo_51228289 -- nodo_455896770
+nodo_1323165413 [label="CTE: 2"]
+nodo_51228289 -- nodo_1323165413
+nodo_1880587981 [label=":="]
+nodo_programa -- nodo_1880587981
+nodo_511754216 [label="ID: c"]
+nodo_1880587981 -- nodo_511754216
+nodo_1721931908 [label="CTE: 53"]
+nodo_1880587981 -- nodo_1721931908
+}

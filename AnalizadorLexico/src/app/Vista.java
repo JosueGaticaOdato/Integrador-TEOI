@@ -158,10 +158,10 @@ public class Vista {
 					
 					//Recorro la lista y muestro la salida en pantalla
 					for (int i = 0; i < elements.size(); i++) {
-					//for (int i = elements.size() - 1; i > 0; i--) {
 						outputTextArea.setForeground(Color.getColor("#1b7161"));
 						String element = elements.get(i);
 						outputTextArea.append(element + "\n"); //Salto de linea al final
+						System.out.println(element);
 					}
 		
 					lexer.vaciarLista();
@@ -201,7 +201,36 @@ public class Vista {
               outputTextArea.setText(parser.getErrorMsg());	
           }
 				}
+				
+				/*try {
+					//Dado el codigo presente en la pantalla de input
+					Reader reader = new StringReader(inputTextArea.getText());
+					
+					//Path con la ubicacion al archivo ts.txt a crear donde se guarda la tabla de simbolos
+					String path = filePath.getText();
+					
+					Lexico lexer = new Lexico(reader);
+					parser sintactico = new parser(lexer);
+					NodoPrograma programa = (NodoPrograma) sintactico.parse().value;
+					FileWriter archivo = new FileWriter("arbolito.dot");
+		            PrintWriter pw = new PrintWriter(archivo);
+		            pw.println(programa.graficar());
+		            archivo.close();
+				} catch (Exception e1){
+					System.out.println(e1);
+				}
+				String cmd = "C:\\Program Files (x86)\\Graphviz2.34\\bin\\dot -Tpng arbolito.dot -o arbolito.png";
+			    try {
+					Runtime.getRuntime().exec(cmd);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			    outputTextArea.append("Arbol generado");
+				*/
 			}
+				
 		});
 		btnCompile.setFont(new Font("Calibri", Font.PLAIN, 18));
 		btnCompile.setBounds(698, 358, 190, 44);

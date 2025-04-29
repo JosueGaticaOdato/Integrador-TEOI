@@ -7,6 +7,7 @@ import java.util.List;
 
 parser code {:
   
+    public Nodo padre;
     private List<String> reglas = new ArrayList<String>();
     private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
 
@@ -52,10 +53,30 @@ action code {:
 
 terminal OP_ASIGNACION, OP_DECLARACION, OP_SUMA, OP_RESTA, OP_DIVISION, OP_MULTIPLICACION,OP_MENOR, OP_MAYOR, OP_MAYOR_IGUAL, OP_MENOR_IGUAL, OP_IGUAL, OP_DISTINTO, OP_AND, OP_OR, OP_NOT,PARENTESIS_ABRE,  PARENTESIS_CIERRA, LLAVE_ABRE, LLAVE_CIERRA, CORCHETE_ABRE, CORCHETE_CIERRA, PUNTO_COMA, COMA, PUNTO, DOS_PUNTOS, IGUAL, INTEGER, STRING, FLOAT, WHILE, IF, THEN, ELSE, ENDIF, WRITE,DECLARE, ENDDECLARE, PROGRAM,
 ENDPROGRAM, CONTAR_PRIMOS;
-terminal String ID, CONST_STR, CONST_INTEGER, CONST_DOU, CONST_BIN;
+terminal String ID, CONST_STR;
+terminal Integer CONST_INTEGER, CONST_DOU, CONST_BIN;
+
+/*non terminal NodoPrograma programa;
+non terminal NodoMiProg miprog;
+non terminal NodoSalida sentWrite, salida;
+non terminal List<NodoDeclaracion> declaraciones;
+non terminal NodoDeclaracion declaracion;
+non terminal NodoAsignacionTipos asignacion_tipos;
+non terminal NodoLista lista;
+non terminal NodoTipo tipo;
+non terminal List<NodoCodigo> miprograma;
+non terminal NodoCodigo codigo;
+non terminal NodoExpresion expresion, termino, factor;
+non terminal NodoAsignacion asignacion;
+non terminal NodoExpresionBooleana condicion,comparacion;
+non terminal NodoIf seleccion;
+non terminal NodoCiclo iteracion;
+non terminal NodoComparador comparador;
+non terminal NodoContarPrimos funcioncontarprimos;
+non terminal NodoParametros parametros;*/
 
 non terminal NodoPrograma programa;
-non terminal NodoPrograma miprograma;
+non terminal List<NodoSentencia> miprograma;
 non terminal List<NodoSentencia> sentencias;
 non terminal NodoSentencia sentencia;
 non terminal NodoExpresion expresion, termino, factor; 
@@ -67,17 +88,14 @@ non terminal NodoExpresion parametros;
 
 non terminal declaraciones, asignacion_tipos, codigo, declaracion, lista, tipo, miprog, sentWrite, comparador, salida, funcioncontarprimos;
 
-precedence left OP_OR;
-precedence left OP_AND;
-precedence left OP_NOT;
-
 start with programa;
 
-programa ::= miprograma:s {: 
-    reglas.add("Regla N°-1: programa -> miprograma");
-    RESULT = s;
-    System.out.println("Programa sin declaraciones");
-:};
+programa ::= sentencias:s {:
+                RESULT = new NodoPrograma(s);
+                System.out.println("Inicio programa");
+                System.out.println(RESULT);
+            :}
+          ;
 programa ::= declaraciones miprograma {: reglas.add("Regla N°0: programa -> declaraciones miprograma"); :};
 programa ::= miprog {: reglas.add("Regla N°1: programa -> miprog "); :};
 
@@ -118,85 +136,77 @@ tipo ::= FLOAT:flotante   {:
 
 
 
-miprograma ::= PROGRAM sentencias:s ENDPROGRAM {: 
-    reglas.add("Regla N°11: miprograma -> PROGRAM sentencia ENDPROGRAM");
-    RESULT = new NodoPrograma(s);
-    System.out.println("Comienzo de programa");
-:};
+miprograma ::= PROGRAM sentencias ENDPROGRAM {: reglas.add("Regla N°11: miprograma -> PROGRAM codigo ENDPROGRAM"); :};
 miprog ::= miprog sentWrite {: reglas.add("Regla N°12: miprog -> miprog sentWrite"); :};
 sentWrite ::= WRITE CONST_STR {: reglas.add("Regla N°13: sentWrite -> WRITE CONST_STR"); :};
 
 
+
+
 sentencias ::= sentencias:ss sentencia:s {:
-                  ss.add(s);
-                  RESULT = ss;
-                  System.out.println("sentencias sentencia");
+                   ss.add(s);
+                   RESULT = ss;
+                   System.out.println("sentencia");
                :}
              | sentencia:s {:a = new ArrayList<NodoSentencia>();
-                            a.add(s);
-                            RESULT = a;
-                            System.out.println("sentencia");
+                             a.add(s);
+                             RESULT = a;
+                            System.out.println("crea y agrega sentencia");
 
                :}
  /* se puede reemplazar la ultima regla por lambda
              |  {:RESULT = new ArrayList<NodoSentencia>(); :}  */
              ;
 
-sentencia ::=  
-      asignacion:sas 
-      {: reglas.add("Regla N°15: sentencia -> asignacion");
-         RESULT = sas;:}
-    | iteracion:sif  
-        {: RESULT = sif; :}
-    | seleccion:sic  {: RESULT = sic; :}
+/*codigo ::= iteracion {: reglas.add("Regla N°16: codigo -> iteracion"); :};
+codigo ::= iteracion codigo {: reglas.add("Regla N°17: codigo -> iteracion codigo"); :};
+
+codigo ::= seleccion {: reglas.add("Regla N°18: codigo -> seleccion"); :};
+codigo ::= seleccion codigo {: reglas.add("Regla N°19: codigo -> seleccion codigo"); :};
+
+codigo ::= salida {: reglas.add("Regla N°20: codigo -> salida"); :};
+codigo ::= salida codigo {: reglas.add("Regla N°21: codigo -> salida codigo"); :};*/
+
+/*
+sentencia ::= asignacion {: 
+  reglas.add("Regla N°14: sentencia -> asignacion");:};
+sentencia ::= asignacion sentencia {: reglas.add("Regla N°15: codigo -> asignacion codigo"); :};
+
+sentencia ::= iteracion {: reglas.add("Regla N°16: codigo -> iteracion"); :};
+sentencia ::= iteracion sentencia {: reglas.add("Regla N°17: codigo -> iteracion codigo"); :};
+
+sentencia ::= seleccion {: reglas.add("Regla N°18: codigo -> seleccion"); :};
+sentencia ::= seleccion sentencia {: reglas.add("Regla N°19: codigo -> seleccion codigo"); :};
+
+sentencia ::= salida {: reglas.add("Regla N°20: codigo -> salida"); :};
+sentencia ::= salida sentencia {: reglas.add("Regla N°21: codigo -> salida codigo"); :};
+*/
+
+sentencia ::=  asignacion:sas {: RESULT = sas; :}
+    | seleccion:sif  {: RESULT = sif; :}
+    | iteracion:sic  {: RESULT = sic; :}
     ;
 
-asignacion ::= ID:id OP_ASIGNACION expresion:e {: 
-    RESULT= new NodoAsignacion(new NodoIdentificador(id), e); System.out.println("ID::=E");:};
-asignacion ::= ID OP_ASIGNACION CONST_STR {: reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR"); :};
 
-expresion ::= expresion:a OP_SUMA termino:b {: 
-    RESULT = new NodoSuma(a,b);
-    System.out.println("E + T");
-    reglas.add("Regla N°24: expresion -> expresion OP_SUMA termino");
-    :};
-expresion ::= expresion:a OP_RESTA termino:b {: 
-    RESULT = new NodoResta(a,b);
-    System.out.println("E - T");
-    reglas.add("Regla N°25: expresion -> expresion OP_RESTA termino"); :};
-expresion ::= termino:a  {: 
-    RESULT = a;
-    System.out.println("E es T");
-    reglas.add("Regla N°26: expresion -> termino ");:};
+asignacion ::= ID:id OP_ASIGNACION expresion:e {: RESULT= new NodoAsignacion(new NodoIdentificador(id), e); System.out.println("Asignacion id::=expresion");:};
 
-termino  ::= termino:a OP_MULTIPLICACION factor:b  {:
-    RESULT = new NodoMultiplicacion(a, b);
-    reglas.add("Regla N°27: termino -> termino OP_MULTIPLICACION factor ");
-    System.out.println("T = T*F");:};
-termino  ::= termino:a OP_DIVISION factor:b  {: 
-    RESULT = new NodoDivision(a, b);
-    System.out.println("T = T/F");
-    reglas.add("Regla N°28: termino -> termino OP_DIVISION factor ");:};
-termino  ::= factor:a  {:
-    RESULT = a;
-    System.out.println("T es F");
-    reglas.add("Regla N°29: termino -> factor ");
-    :};
+/*asignacion ::= ID:id OP_ASIGNACION CONST_STR:e {: RESULT= new NodoAsignacion(new NodoIdentificador(id), e); System.out.println("Asignacion id::=const_str");:};*/
 
+expresion ::= expresion:a OP_SUMA termino:b {: RESULT = new NodoSuma(a,b);
+System.out.println("Expresion + Termino"); :};
+expresion ::= expresion:a OP_RESTA termino:b {: RESULT = new NodoResta(a,b);
+System.out.println("Expresion - Termino"); :};
+expresion ::= termino:a  {: RESULT = a; System.out.println("Expresion es Termino"); :};
+
+termino  ::= termino:a OP_MULTIPLICACION factor:b  {: RESULT = new NodoMultiplicacion(a, b);System.out.println("Termino es Termino*Factor");:};
+termino  ::= termino:a OP_DIVISION factor:b  {: RESULT = new NodoDivision(a, b);System.out.println("Termino es Termino div Factor");:};
+termino  ::= factor:a  {: RESULT = a; System.out.println("Termino es Factor");:};
 
 factor   ::= PARENTESIS_ABRE expresion PARENTESIS_CIERRA  {: reglas.add("Regla N°30: factor -> PARENTESIS_ABRE expresion PARENTESIS_CIERRA "); :};
-
-factor   ::= ID:id {:
-    reglas.add("Regla N°31: factor -> ID");
-    RESULT = new NodoIdentificador(id);
-    System.out.println("ID");:};
-factor   ::= CONST_DOU {:reglas.add("Regla N°32: factor -> CONST_DOU"); :};
-factor   ::= CONST_BIN {: reglas.add("Regla N°33: factor -> CONST_BIN"); :};
-factor   ::= CONST_INTEGER:cte {:
-    reglas.add("Regla N°34: factor -> CONST_INTEGER");
-    RESULT =new NodoConstante(Integer.parseInt(cte));
-    System.out.println("cte");
-    :};
+factor   ::= ID:id {: RESULT =new NodoIdentificador(id);System.out.println("ID");:};
+factor   ::= CONST_DOU:cte {: RESULT =new NodoConstante(cte); System.out.println("CONST_DOU");:};
+factor   ::= CONST_BIN:cte {: RESULT =new NodoConstante(cte); System.out.println("CONST_BIN");:};
+factor   ::= CONST_INTEGER:cte {: RESULT =new NodoConstante(cte); System.out.println("CONST_INTEGER");:};
 factor   ::= funcioncontarprimos {: reglas.add("Regla N°35: factor -> funcioncontarprimos"); :};
 
 
@@ -236,6 +246,8 @@ salida ::= WRITE CONST_STR {: reglas.add("Regla N°51: salida -> WRITE CONST_STR
 
 
 
-funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {: reglas.add("Regla N°52: funcioncontarprimos ->  CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); :};
+funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {: 
+      RESULT = contadorPrimos;
+      System.out.println("funcioncontarprimos");:};
 parametros ::= expresion {: reglas.add("Regla N°53: parametros -> expresion"); :};
 parametros ::= expresion COMA parametros {: reglas.add("Regla N°54: parametros -> expresion COMA parametros"); :};
