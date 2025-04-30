@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java_cup.runtime.Symbol;
+import nodos.NodoAnd;
 import nodos.NodoAsignacion;
 import nodos.NodoCiclo;
 import nodos.NodoComparacion;
@@ -19,6 +20,8 @@ import nodos.NodoExpresionBooleana;
 import nodos.NodoIdentificador;
 import nodos.NodoIf;
 import nodos.NodoMultiplicacion;
+import nodos.NodoNot;
+import nodos.NodoOr;
 import nodos.NodoPrograma;
 import nodos.NodoResta;
 import nodos.NodoSentencia;
@@ -875,8 +878,16 @@ class CUP$parser$actions {
           case 38: // condicion ::= comparacion OP_AND comparacion 
             {
               NodoExpresionBooleana RESULT =null;
+		int c1left = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int c1right = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		NodoExpresionBooleana c1 = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int c2left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int c2right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		NodoExpresionBooleana c2 = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
     reglas.add("Regla N°40: condicion -> comparacion OP_AND comparacion");
+    RESULT = new NodoAnd(c1,c2);
+    System.out.println("c1 AND c2");
     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -886,8 +897,16 @@ class CUP$parser$actions {
           case 39: // condicion ::= comparacion OP_OR comparacion 
             {
               NodoExpresionBooleana RESULT =null;
+		int c1left = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int c1right = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		NodoExpresionBooleana c1 = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int c2left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int c2right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		NodoExpresionBooleana c2 = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
     reglas.add("Regla N°41: condicion -> comparacion OP_OR comparacion");
+    RESULT = new NodoOr(c1,c2);
+    System.out.println("c1 OR c2");
     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -922,7 +941,11 @@ class CUP$parser$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		NodoExpresionBooleana c = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  "); 
+		
+  reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  ");
+  RESULT = new NodoNot(c);
+  System.out.println("NOT c");
+  
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comparacion",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

@@ -210,8 +210,6 @@ iteracion ::= WHILE condicion:c LLAVE_ABRE sentencias:st LLAVE_CIERRA {:
 
 
 
-
-
 seleccion ::= IF condicion:c THEN sentencias:st ELSE sentencias:se ENDIF {:
     reglas.add("Regla N°38: seleccion -> IF condicion THEN sentencias ELSE sentencias ENDIF");
     RESULT= new NodoIf(c, st, se);
@@ -220,16 +218,19 @@ seleccion ::= IF condicion:c THEN sentencias:st ELSE sentencias:se ENDIF {:
 
 
 
-
 condicion ::= comparacion:c {:
     reglas.add("Regla N°39: condicion -> comparacion");
     RESULT = c;
     :};
-condicion ::= comparacion OP_AND comparacion {:
+condicion ::= comparacion:c1 OP_AND comparacion:c2 {:
     reglas.add("Regla N°40: condicion -> comparacion OP_AND comparacion");
+    RESULT = new NodoAnd(c1,c2);
+    System.out.println("c1 AND c2");
     :};
-condicion ::= comparacion OP_OR comparacion {: 
+condicion ::= comparacion:c1 OP_OR comparacion:c2 {: 
     reglas.add("Regla N°41: condicion -> comparacion OP_OR comparacion");
+    RESULT = new NodoOr(c1,c2);
+    System.out.println("c1 OR c2");
     :};
 
 
@@ -238,7 +239,11 @@ comparacion ::= PARENTESIS_ABRE  expresion:e1 comparador:c expresion:e2 PARENTES
   RESULT = new NodoComparacion((String) c, e1, e2); 
   System.out.println("E1 c E2");
   :};
-comparacion ::= OP_NOT comparacion:c  {: reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  "); :};
+comparacion ::= OP_NOT comparacion:c  {:
+  reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  ");
+  RESULT = new NodoNot(c);
+  System.out.println("NOT c");
+  :};
 
 
 comparador ::= OP_MENOR:op {:
