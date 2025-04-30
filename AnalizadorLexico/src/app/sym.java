@@ -8,53 +8,53 @@ package app;
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int OP_MAYOR = 9;
-  public static final int PARENTESIS_CIERRA = 17;
-  public static final int INTEGER = 27;
-  public static final int DOS_PUNTOS = 25;
-  public static final int OP_NOT = 15;
-  public static final int OP_AND = 13;
-  public static final int CONST_INTEGER = 43;
-  public static final int CONST_DOU = 44;
+  public static final int OP_MAYOR = 42;
+  public static final int PARENTESIS_CIERRA = 12;
+  public static final int INTEGER = 22;
+  public static final int DOS_PUNTOS = 20;
+  public static final int OP_NOT = 10;
+  public static final int OP_AND = 8;
+  public static final int CONST_INTEGER = 38;
+  public static final int CONST_DOU = 39;
   public static final int OP_MULTIPLICACION = 7;
-  public static final int WRITE = 35;
-  public static final int IGUAL = 26;
-  public static final int CORCHETE_CIERRA = 21;
-  public static final int ENDPROGRAM = 39;
-  public static final int IF = 31;
-  public static final int ID = 41;
-  public static final int PUNTO_COMA = 22;
-  public static final int CONST_BIN = 45;
+  public static final int WRITE = 30;
+  public static final int IGUAL = 21;
+  public static final int CORCHETE_CIERRA = 16;
+  public static final int ENDPROGRAM = 34;
+  public static final int IF = 26;
+  public static final int ID = 36;
+  public static final int PUNTO_COMA = 17;
+  public static final int CONST_BIN = 40;
   public static final int EOF = 0;
-  public static final int ENDDECLARE = 37;
+  public static final int ENDDECLARE = 32;
   public static final int OP_DIVISION = 6;
-  public static final int PROGRAM = 38;
   public static final int error = 1;
+  public static final int PROGRAM = 33;
   public static final int OP_DECLARACION = 3;
-  public static final int COMA = 23;
-  public static final int OP_OR = 14;
+  public static final int COMA = 18;
+  public static final int OP_OR = 9;
   public static final int OP_RESTA = 5;
-  public static final int CONTAR_PRIMOS = 40;
+  public static final int CONTAR_PRIMOS = 35;
   public static final int OP_ASIGNACION = 2;
-  public static final int LLAVE_ABRE = 18;
-  public static final int DECLARE = 36;
-  public static final int OP_DISTINTO = 12;
-  public static final int OP_MAYOR_IGUAL = 10;
-  public static final int CORCHETE_ABRE = 20;
-  public static final int ENDIF = 34;
-  public static final int ELSE = 33;
-  public static final int OP_IGUAL = 46;
-  public static final int PUNTO = 24;
-  public static final int WHILE = 30;
-  public static final int FLOAT = 29;
-  public static final int OP_MENOR_IGUAL = 11;
-  public static final int THEN = 32;
-  public static final int STRING = 28;
-  public static final int LLAVE_CIERRA = 19;
-  public static final int CONST_STR = 42;
+  public static final int LLAVE_ABRE = 13;
+  public static final int OP_DISTINTO = 46;
+  public static final int DECLARE = 31;
+  public static final int OP_MAYOR_IGUAL = 44;
+  public static final int CORCHETE_ABRE = 15;
+  public static final int ENDIF = 29;
+  public static final int ELSE = 28;
+  public static final int OP_IGUAL = 41;
+  public static final int PUNTO = 19;
+  public static final int WHILE = 25;
+  public static final int FLOAT = 24;
+  public static final int OP_MENOR_IGUAL = 45;
+  public static final int THEN = 27;
+  public static final int STRING = 23;
+  public static final int LLAVE_CIERRA = 14;
+  public static final int CONST_STR = 37;
   public static final int OP_SUMA = 4;
-  public static final int PARENTESIS_ABRE = 16;
-  public static final int OP_MENOR = 8;
+  public static final int PARENTESIS_ABRE = 11;
+  public static final int OP_MENOR = 43;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -64,11 +64,6 @@ public class sym {
   "OP_RESTA",
   "OP_DIVISION",
   "OP_MULTIPLICACION",
-  "OP_MENOR",
-  "OP_MAYOR",
-  "OP_MAYOR_IGUAL",
-  "OP_MENOR_IGUAL",
-  "OP_DISTINTO",
   "OP_AND",
   "OP_OR",
   "OP_NOT",
@@ -102,7 +97,12 @@ public class sym {
   "CONST_INTEGER",
   "CONST_DOU",
   "CONST_BIN",
-  "OP_IGUAL"
+  "OP_IGUAL",
+  "OP_MAYOR",
+  "OP_MENOR",
+  "OP_MAYOR_IGUAL",
+  "OP_MENOR_IGUAL",
+  "OP_DISTINTO"
   };
 }
 

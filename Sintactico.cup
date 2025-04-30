@@ -50,9 +50,9 @@ action code {:
   public int contadorPrimos = 0;
 :}
 
-terminal OP_ASIGNACION, OP_DECLARACION, OP_SUMA, OP_RESTA, OP_DIVISION, OP_MULTIPLICACION,OP_MENOR, OP_MAYOR, OP_MAYOR_IGUAL, OP_MENOR_IGUAL, OP_DISTINTO, OP_AND, OP_OR, OP_NOT,PARENTESIS_ABRE,  PARENTESIS_CIERRA, LLAVE_ABRE, LLAVE_CIERRA, CORCHETE_ABRE, CORCHETE_CIERRA, PUNTO_COMA, COMA, PUNTO, DOS_PUNTOS, IGUAL, INTEGER, STRING, FLOAT, WHILE, IF, THEN, ELSE, ENDIF, WRITE,DECLARE, ENDDECLARE, PROGRAM,
+terminal OP_ASIGNACION, OP_DECLARACION, OP_SUMA, OP_RESTA, OP_DIVISION, OP_MULTIPLICACION,OP_AND, OP_OR, OP_NOT,PARENTESIS_ABRE,  PARENTESIS_CIERRA, LLAVE_ABRE, LLAVE_CIERRA, CORCHETE_ABRE, CORCHETE_CIERRA, PUNTO_COMA, COMA, PUNTO, DOS_PUNTOS, IGUAL, INTEGER, STRING, FLOAT, WHILE, IF, THEN, ELSE, ENDIF, WRITE,DECLARE, ENDDECLARE, PROGRAM,
 ENDPROGRAM, CONTAR_PRIMOS;
-terminal String ID, CONST_STR, CONST_INTEGER, CONST_DOU, CONST_BIN, OP_IGUAL;
+terminal String ID, CONST_STR, CONST_INTEGER, CONST_DOU, CONST_BIN, OP_IGUAL, OP_MAYOR,OP_MENOR, OP_MAYOR_IGUAL, OP_MENOR_IGUAL, OP_DISTINTO;
 
 non terminal NodoPrograma programa;
 non terminal NodoPrograma miprograma;
@@ -229,25 +229,44 @@ condicion ::= comparacion OP_OR comparacion {:
     :};
 
 
-comparacion ::= PARENTESIS_ABRE  expresion:e1 OP_IGUAL:c expresion:e2 PARENTESIS_CIERRA {:
+comparacion ::= PARENTESIS_ABRE  expresion:e1 comparador:c expresion:e2 PARENTESIS_CIERRA {:
   reglas.add("Regla N°42: comparacion -> PARENTESIS_ABRE  expresion == expresion PARENTESIS_CIERRA "); 
-  RESULT = new NodoComparacion(c, e1, e2); 
-  System.out.println("E1 == E2");
+  RESULT = new NodoComparacion((String) c, e1, e2); 
+  System.out.println("E1 c E2");
   :};
-comparacion ::= OP_NOT comparacion  {: reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  "); :};
+comparacion ::= OP_NOT comparacion:c  {: reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  "); :};
 
 
-comparador ::= OP_MENOR {: reglas.add("Regla N°44: comparador -> OP_MENOR"); :};
-comparador ::= OP_MAYOR {: reglas.add("Regla N°45: comparador -> OP_MAYOR"); :};
-comparador ::= OP_MAYOR_IGUAL {: reglas.add("Regla N°46: comparador -> OP_MAYOR_IGUAL"); :};
-comparador ::= OP_MENOR_IGUAL {: reglas.add("Regla N°47: comparador -> OP_MENOR_IGUAL"); :};
+comparador ::= OP_MENOR:op {:
+  reglas.add("Regla N°44: comparador -> OP_MENOR");
+  RESULT = op;
+  System.out.println("<");
+  :};
+comparador ::= OP_MAYOR:op {:
+  reglas.add("Regla N°45: comparador -> OP_MAYOR");
+  RESULT = op;
+  System.out.println(">");
+  :};
+comparador ::= OP_MAYOR_IGUAL:op {:
+  reglas.add("Regla N°46: comparador -> OP_MAYOR_IGUAL");
+  RESULT = op;
+  System.out.println("=>");
+  :};
+comparador ::= OP_MENOR_IGUAL:op {:
+  reglas.add("Regla N°47: comparador -> OP_MENOR_IGUAL");
+  RESULT = op;
+  System.out.println("<=");
+  :};
 comparador ::= OP_IGUAL:op {:
   reglas.add("Regla N°48: comparador -> OP_IGUAL");
-  //RESULT = op;
+  RESULT = op;
   System.out.println("==");
   :};
-comparador ::= OP_DISTINTO {: reglas.add("Regla N°49: comparador -> OP_DISTINTO "); :};
-
+comparador ::= OP_DISTINTO:op {:
+  reglas.add("Regla N°49: comparador -> OP_DISTINTO ");
+  RESULT = op;
+  System.out.println("!=");
+  :};
 
 salida ::= WRITE ID {: reglas.add("Regla N°50: salida -> WRITE ID"); :};
 salida ::= WRITE CONST_STR {: reglas.add("Regla N°51: salida -> WRITE CONST_STR"); :};

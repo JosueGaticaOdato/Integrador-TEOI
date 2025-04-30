@@ -3,7 +3,7 @@ z::= 10 * 4
 a::= 2
 b::= 2
 c::= 53
-if(i == 5) then
+if(i != 5) then
      d::= 1 else
      d::= 2
 endif

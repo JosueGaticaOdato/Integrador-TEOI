@@ -29,7 +29,7 @@ nodo_769287236 [label="CTE: 53"]
 nodo_2046562095 -- nodo_769287236
 nodo_1587487668 [label="IF"]
 nodo_programa -- nodo_1587487668
-nodo_1199823423 [label="=="]
+nodo_1199823423 [label="!="]
 nodo_1587487668 -- nodo_1199823423
 nodo_932172204 [label="ID: i"]
 nodo_1199823423 -- nodo_932172204
