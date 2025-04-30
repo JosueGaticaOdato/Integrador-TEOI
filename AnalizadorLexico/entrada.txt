@@ -3,9 +3,11 @@ z::= 10 * 4
 a::= 2
 b::= 2
 c::= 53
+while(i < 5){
 if(i != 5) then
      d::= 1 else
      d::= 2
 endif
+}
 i::=i+1
 ENDPROGRAM.SECTION

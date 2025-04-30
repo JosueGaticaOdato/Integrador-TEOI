@@ -202,7 +202,11 @@ factor   ::= funcioncontarprimos {: reglas.add("Regla N°35: factor -> funcionco
 
 
 
-iteracion ::= WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA {: reglas.add("Regla N°36: iteracion -> WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA "); :};
+iteracion ::= WHILE condicion:c LLAVE_ABRE sentencias:st LLAVE_CIERRA {:
+    reglas.add("Regla N°36: iteracion -> WHILE condicion LLAVE_ABRE codigo LLAVE_CIERRA ");
+    RESULT = new NodoCiclo(c,st);
+    System.out.println("WHILE c {st}");
+    :};
 
 
 
