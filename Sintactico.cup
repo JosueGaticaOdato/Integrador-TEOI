@@ -48,6 +48,8 @@ action code {:
   public String resultado = "";
   public List<NodoSentencia> a ;
   public int contadorPrimos = 0;
+  public int i = 1;
+  public int j = 0;
 :}
 
 terminal OP_ASIGNACION, OP_DECLARACION, OP_SUMA, OP_RESTA, OP_DIVISION, OP_MULTIPLICACION,OP_AND, OP_OR, OP_NOT,PARENTESIS_ABRE,  PARENTESIS_CIERRA, LLAVE_ABRE, LLAVE_CIERRA, CORCHETE_ABRE, CORCHETE_CIERRA, PUNTO_COMA, COMA, PUNTO, DOS_PUNTOS, IGUAL, INTEGER, STRING, FLOAT, WHILE, IF, THEN, ELSE, ENDIF, WRITE,DECLARE, ENDDECLARE, PROGRAM,
@@ -235,15 +237,15 @@ condicion ::= comparacion:c1 OP_OR comparacion:c2 {:
 
 
 comparacion ::= PARENTESIS_ABRE  expresion:e1 comparador:c expresion:e2 PARENTESIS_CIERRA {:
-  reglas.add("Regla N°42: comparacion -> PARENTESIS_ABRE  expresion == expresion PARENTESIS_CIERRA "); 
-  RESULT = new NodoComparacion((String) c, e1, e2); 
-  System.out.println("E1 c E2");
-  :};
+    reglas.add("Regla N°42: comparacion -> PARENTESIS_ABRE  expresion == expresion PARENTESIS_CIERRA "); 
+    RESULT = new NodoComparacion((String) c, e1, e2); 
+    System.out.println("E1 c E2");
+    :};
 comparacion ::= OP_NOT comparacion:c  {:
-  reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  ");
-  RESULT = new NodoNot(c);
-  System.out.println("NOT c");
-  :};
+    reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  ");
+    RESULT = new NodoNot(c);
+    System.out.println("NOT c");
+    :};
 
 
 comparador ::= OP_MENOR:op {:
@@ -283,6 +285,18 @@ salida ::= WRITE CONST_STR {: reglas.add("Regla N°51: salida -> WRITE CONST_STR
 
 
 
-funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA {: reglas.add("Regla N°52: funcioncontarprimos ->  CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); :};
-parametros ::= expresion {: reglas.add("Regla N°53: parametros -> expresion"); :};
-parametros ::= expresion COMA parametros {: reglas.add("Regla N°54: parametros -> expresion COMA parametros"); :};
+funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p CORCHETE_CIERRA PARENTESIS_CIERRA {: 
+    reglas.add("Regla N°52: funcioncontarprimos ->  CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); 
+    RESULT = new NodoContarPrimos(p);
+    :};
+parametros ::= expresion:e {:
+    reglas.add("Regla N°53: parametros -> expresion");
+    List<Nodo> l = new ArrayList<>();
+    l.add(e);
+    RESULT = l;
+    :};
+parametros ::= expresion:e COMA parametros:p {:
+    reglas.add("Regla N°54: parametros -> expresion COMA parametros");
+    lp.add(0, e); // agregamos al principio para mantener el orden
+    RESULT = lp;
+    :};

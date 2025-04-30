@@ -1,13 +1,7 @@
 PROGRAM.SECTION
-z::= 10 * 4
-a::= 2
-b::= 2
-c::= 53
-while NOT(i < 5) OR (i > 3){
-if(i != 5) then
-     d::= 1 else
-     d::= 2
-endif
-}
-i::=i+1
+z::=0
+a::=2
+b::=2
+c::=53
+x ::= ContarPrimos([11,12,13])
 ENDPROGRAM.SECTION

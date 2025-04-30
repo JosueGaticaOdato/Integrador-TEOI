@@ -326,6 +326,8 @@ class CUP$parser$actions {
   public String resultado = "";
   public List<NodoSentencia> a ;
   public int contadorPrimos = 0;
+  public int i = 1;
+  public int j = 0;
 
   private final parser parser;
 
@@ -926,10 +928,10 @@ class CUP$parser$actions {
 		int e2right = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		NodoExpresion e2 = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
-  reglas.add("Regla N°42: comparacion -> PARENTESIS_ABRE  expresion == expresion PARENTESIS_CIERRA "); 
-  RESULT = new NodoComparacion((String) c, e1, e2); 
-  System.out.println("E1 c E2");
-  
+    reglas.add("Regla N°42: comparacion -> PARENTESIS_ABRE  expresion == expresion PARENTESIS_CIERRA "); 
+    RESULT = new NodoComparacion((String) c, e1, e2); 
+    System.out.println("E1 c E2");
+    
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comparacion",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -942,10 +944,10 @@ class CUP$parser$actions {
 		int cright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		NodoExpresionBooleana c = (NodoExpresionBooleana)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
-  reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  ");
-  RESULT = new NodoNot(c);
-  System.out.println("NOT c");
-  
+    reglas.add("Regla N°43: comparacion -> OP_NOT comparacion  ");
+    RESULT = new NodoNot(c);
+    System.out.println("NOT c");
+    
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comparacion",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -1068,7 +1070,13 @@ class CUP$parser$actions {
           case 50: // funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA 
             {
               Object RESULT =null;
-		 reglas.add("Regla N°52: funcioncontarprimos ->  CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); 
+		int pleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		NodoExpresion p = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		 
+    reglas.add("Regla N°52: funcioncontarprimos ->  CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); 
+    RESULT = new NodoConstante(contadorPrimos);
+    
               CUP$parser$result = parser.getSymbolFactory().newSymbol("funcioncontarprimos",23, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-5)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -1077,7 +1085,25 @@ class CUP$parser$actions {
           case 51: // parametros ::= expresion 
             {
               NodoExpresion RESULT =null;
-		 reglas.add("Regla N°53: parametros -> expresion"); 
+		int eleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		
+    reglas.add("Regla N°53: parametros -> expresion");
+    int nro = new NodoConstante(e);
+    int i = 1;
+    int j = 0;
+    while (i <= nro){
+      int c = nro/i;
+      if ((nro - (c*i)) = 0){
+        j = j + 1;
+      }
+      i = i + 1;
+    }
+    if (j == 2){
+      contadorPrimos = contadorPrimos + 1;
+    }
+    
               CUP$parser$result = parser.getSymbolFactory().newSymbol("parametros",12, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
