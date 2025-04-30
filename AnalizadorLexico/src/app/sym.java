@@ -9,51 +9,51 @@ package app;
 public class sym {
   /* terminals */
   public static final int OP_MAYOR = 9;
-  public static final int PARENTESIS_CIERRA = 18;
-  public static final int INTEGER = 28;
-  public static final int DOS_PUNTOS = 26;
-  public static final int OP_NOT = 16;
-  public static final int OP_AND = 14;
-  public static final int CONST_INTEGER = 44;
-  public static final int CONST_DOU = 45;
+  public static final int PARENTESIS_CIERRA = 17;
+  public static final int INTEGER = 27;
+  public static final int DOS_PUNTOS = 25;
+  public static final int OP_NOT = 15;
+  public static final int OP_AND = 13;
+  public static final int CONST_INTEGER = 43;
+  public static final int CONST_DOU = 44;
   public static final int OP_MULTIPLICACION = 7;
-  public static final int WRITE = 36;
-  public static final int IGUAL = 27;
-  public static final int CORCHETE_CIERRA = 22;
-  public static final int ENDPROGRAM = 40;
-  public static final int IF = 32;
-  public static final int ID = 42;
-  public static final int PUNTO_COMA = 23;
-  public static final int CONST_BIN = 46;
+  public static final int WRITE = 35;
+  public static final int IGUAL = 26;
+  public static final int CORCHETE_CIERRA = 21;
+  public static final int ENDPROGRAM = 39;
+  public static final int IF = 31;
+  public static final int ID = 41;
+  public static final int PUNTO_COMA = 22;
+  public static final int CONST_BIN = 45;
   public static final int EOF = 0;
-  public static final int ENDDECLARE = 38;
+  public static final int ENDDECLARE = 37;
   public static final int OP_DIVISION = 6;
-  public static final int PROGRAM = 39;
+  public static final int PROGRAM = 38;
   public static final int error = 1;
   public static final int OP_DECLARACION = 3;
-  public static final int COMA = 24;
-  public static final int OP_OR = 15;
+  public static final int COMA = 23;
+  public static final int OP_OR = 14;
   public static final int OP_RESTA = 5;
-  public static final int CONTAR_PRIMOS = 41;
+  public static final int CONTAR_PRIMOS = 40;
   public static final int OP_ASIGNACION = 2;
-  public static final int LLAVE_ABRE = 19;
-  public static final int DECLARE = 37;
-  public static final int OP_DISTINTO = 13;
+  public static final int LLAVE_ABRE = 18;
+  public static final int DECLARE = 36;
+  public static final int OP_DISTINTO = 12;
   public static final int OP_MAYOR_IGUAL = 10;
-  public static final int CORCHETE_ABRE = 21;
-  public static final int ENDIF = 35;
-  public static final int ELSE = 34;
-  public static final int PUNTO = 25;
-  public static final int OP_IGUAL = 12;
-  public static final int WHILE = 31;
-  public static final int FLOAT = 30;
+  public static final int CORCHETE_ABRE = 20;
+  public static final int ENDIF = 34;
+  public static final int ELSE = 33;
+  public static final int OP_IGUAL = 46;
+  public static final int PUNTO = 24;
+  public static final int WHILE = 30;
+  public static final int FLOAT = 29;
   public static final int OP_MENOR_IGUAL = 11;
-  public static final int THEN = 33;
-  public static final int STRING = 29;
-  public static final int LLAVE_CIERRA = 20;
-  public static final int CONST_STR = 43;
+  public static final int THEN = 32;
+  public static final int STRING = 28;
+  public static final int LLAVE_CIERRA = 19;
+  public static final int CONST_STR = 42;
   public static final int OP_SUMA = 4;
-  public static final int PARENTESIS_ABRE = 17;
+  public static final int PARENTESIS_ABRE = 16;
   public static final int OP_MENOR = 8;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -68,7 +68,6 @@ public class sym {
   "OP_MAYOR",
   "OP_MAYOR_IGUAL",
   "OP_MENOR_IGUAL",
-  "OP_IGUAL",
   "OP_DISTINTO",
   "OP_AND",
   "OP_OR",
@@ -102,7 +101,8 @@ public class sym {
   "CONST_STR",
   "CONST_INTEGER",
   "CONST_DOU",
-  "CONST_BIN"
+  "CONST_BIN",
+  "OP_IGUAL"
   };
 }
 

@@ -1,8 +1,11 @@
 PROGRAM.SECTION
-z::=0
-a::=2
-b::=2
-c::=53
-x ::= ContarPrimos([11,b+8,2,55,z*b+7,C])
-
+z::= 10 * 4
+a::= 2
+b::= 2
+c::= 53
+if(i == 5) then
+     d::= 1 else
+     d::= 2
+endif
+i::=i+1
 ENDPROGRAM.SECTION
