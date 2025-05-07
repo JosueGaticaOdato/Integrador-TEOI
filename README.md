@@ -1,4 +1,4 @@
-# Trabajo practico Integrador - TEOI - Grupo 01
+# Trabajo practico Integrador - TEOI/Compiladores - Grupo 01
 
 ## Integrantes
 
