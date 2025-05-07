@@ -3,10 +3,10 @@
 ## Integrantes
 
 - Josue Gatica Odato
-- Franco Zoia
+- Franco Zoia (Solo TEOI)
 - Mateo Asenzo
 - Lucas Latessa
-- Enzo Bianchi
+- Enzo Bianchi (Solo TEOI)
 
 ### Descargar el repositorio:
 
