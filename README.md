@@ -1,12 +1,12 @@
-# Trabajo practico Integrador - TEOI - Grupo 01
+# Trabajo practico Integrador - TEOI/Compiladores - Grupo 01
 
 ## Integrantes
 
 - Josue Gatica Odato
-- Franco Zoia
+- Franco Zoia (Solo TEOI)
 - Mateo Asenzo
 - Lucas Latessa
-- Enzo Bianchi
+- Enzo Bianchi (Solo TEOI)
 
 ### Descargar el repositorio:
 
