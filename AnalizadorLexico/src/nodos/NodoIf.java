@@ -13,6 +13,13 @@ public class NodoIf extends NodoSentencia {
         this.sentenciasThen = sentenciasThen;
         this.sentenciasElse = sentenciasElse;
     }
+    
+    public NodoIf(NodoExpresionBooleana condicion, List<NodoSentencia> sentenciasThen) {
+        super("IF");
+        this.condicion = condicion;
+        this.sentenciasThen = sentenciasThen;
+		this.sentenciasElse = null;
+    }
 
     @Override
     protected String graficar(String idPadre) {

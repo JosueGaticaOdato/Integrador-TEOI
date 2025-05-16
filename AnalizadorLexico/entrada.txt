@@ -1,7 +1,3 @@
 PROGRAM.SECTION
-z::=0
-a::=2
-b::=2
-c::=53
-x ::= ContarPrimos([11,12,13])
+x ::= ContarPrimos([10,11])
 ENDPROGRAM.SECTION
