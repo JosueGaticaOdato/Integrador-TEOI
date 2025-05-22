@@ -309,59 +309,113 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
     NodoConstante cero = new NodoConstante(0);
 
     // k = 0;
-    instrucciones.add(new NodoAsignacion(k, cero));
+    instrucciones.add(new NodoAsignacion(new NodoIdentificador("k"),new NodoConstante(0)));
 
     for (NodoExpresion expresion : listaExp) {
 
-      // nro = expr
-      NodoIdentificador nro = new NodoIdentificador("nro");
-      instrucciones.add(new NodoAsignacion(nro, expresion)); // nro = expresion;
+        // nro = expresion;
+        /*instrucciones.add(new NodoAsignacion(
+            new NodoIdentificador("nro"),
+            expresion
+        ));*/
 
-      NodoIdentificador i = new NodoIdentificador("i");
-      NodoIdentificador j = new NodoIdentificador("j");
+        // i = 1;
+        instrucciones.add(new NodoAsignacion(
+            new NodoIdentificador("i"),
+            new NodoConstante(1)
+        ));
 
-      instrucciones.add(new NodoAsignacion(i, new NodoConstante(1))); // i = 1;
-      instrucciones.add(new NodoAsignacion(j, new NodoConstante(0))); // j = 0;
+        // j = 0;
+        instrucciones.add(new NodoAsignacion(
+            new NodoIdentificador("j"),
+            new NodoConstante(0)
+        ));
 
-      // while (i <= nro)
-      NodoComparacion condicionWhile = new NodoComparacion("<=", i, nro);
-      List<NodoSentencia> cuerpoWhile = new ArrayList<>();
-    
-      NodoIdentificador c = new NodoIdentificador("c");
-      NodoDivision division = new NodoDivision(nro, i);
-      cuerpoWhile.add(new NodoAsignacion(c, division)); // c = nro / i;
+        // while (i <= nro)
+        NodoComparacion condicionWhile = new NodoComparacion(
+            "<=",
+            new NodoIdentificador("i"),
+            new NodoIdentificador("nro")
+        );
 
-      NodoMultiplicacion producto = new NodoMultiplicacion(c, i);
-      NodoResta resta = new NodoResta(nro, producto);
-      NodoComparacion condicionIf = new NodoComparacion("==", resta, new NodoConstante(0)); // nro - (c * i) == 0
+        List<NodoSentencia> cuerpoWhile = new ArrayList<>();
 
-      // if (nro - c*i == 0) j = j + 1
-      NodoSuma jMas1 = new NodoSuma(j, new NodoConstante(1));
-      NodoAsignacion jIncremento = new NodoAsignacion(j, jMas1);
+        // c = nro / i;
+        cuerpoWhile.add(new NodoAsignacion(
+            new NodoIdentificador("c"),
+            new NodoDivision(
+                new NodoIdentificador("nro"),
+                new NodoIdentificador("i")
+            )
+        ));
 
-      List<NodoSentencia> cuerpoIf = new ArrayList<>();
-      cuerpoIf.add(jIncremento);
+        // resultado = nro - (c * i)
+        NodoMultiplicacion producto = new NodoMultiplicacion(
+            new NodoIdentificador("c"),
+            new NodoIdentificador("i")
+        );
+        NodoResta resta = new NodoResta(
+            new NodoIdentificador("nro"),
+            producto
+        );
+        NodoAsignacion resultado = new NodoAsignacion(new NodoIdentificador("resultado"), resta);
 
-      cuerpoWhile.add(new NodoIf(condicionIf, cuerpoIf)); // if (...) { j = j + 1; }
+        // Agregás la sentencia al cuerpo del while (o donde corresponda)
+        cuerpoWhile.add(resultado);
 
-      // i = i + 1;
-      NodoSuma iMas1 = new NodoSuma(i, new NodoConstante(1));
-      cuerpoWhile.add(new NodoAsignacion(i, iMas1));
+        // if (resultado == 0)
+        NodoComparacion condicionIf = new NodoComparacion(
+            "==",
+            new NodoIdentificador("resultado"),
+            new NodoConstante(0)
+        );
 
-      instrucciones.add(new NodoCiclo(condicionWhile, cuerpoWhile));
+        // j = j + 1;
+        NodoAsignacion jIncremento = new NodoAsignacion(
+            new NodoIdentificador("j"),
+            new NodoSuma(
+                new NodoIdentificador("j"),
+                new NodoConstante(1)
+            )
+        );
 
-      // if (j == 2) k = k + 1;
-      NodoComparacion condicionJ = new NodoComparacion("==", j, new NodoConstante(2));
-      NodoSuma kMas1 = new NodoSuma(k, new NodoConstante(1));
-      NodoAsignacion kIncremento = new NodoAsignacion(k, kMas1);
+        List<NodoSentencia> cuerpoIf = new ArrayList<>();
+        cuerpoIf.add(jIncremento);
 
-      List<NodoSentencia> cuerpoIfFinal = new ArrayList<>();
-      cuerpoIfFinal.add(kIncremento);
+        cuerpoWhile.add(new NodoIf(condicionIf, cuerpoIf));
 
-      instrucciones.add(new NodoIf(condicionJ, cuerpoIfFinal));
+        // i = i + 1;
+        cuerpoWhile.add(new NodoAsignacion(
+            new NodoIdentificador("i"),
+            new NodoSuma(
+                new NodoIdentificador("i"),
+                new NodoConstante(1)
+            )
+        ));
+
+        instrucciones.add(new NodoCiclo(condicionWhile, cuerpoWhile));
+
+        // if (j == 2) k = k + 1;
+        NodoComparacion condicionJ = new NodoComparacion(
+            "==",
+            new NodoIdentificador("j"),
+            new NodoConstante(2)
+        );
+        NodoAsignacion kIncremento = new NodoAsignacion(
+            new NodoIdentificador("k"),
+            new NodoSuma(
+                new NodoIdentificador("k"),
+                new NodoConstante(1)
+            )
+        );
+
+        List<NodoSentencia> cuerpoIfFinal = new ArrayList<>();
+        cuerpoIfFinal.add(kIncremento);
+
+        instrucciones.add(new NodoIf(condicionJ, cuerpoIfFinal));
     }
 
-    RESULT = new NodoContarPrimos(instrucciones,k);
+    RESULT = new NodoContarPrimos(instrucciones, new NodoIdentificador("k"));
 
     :};
 

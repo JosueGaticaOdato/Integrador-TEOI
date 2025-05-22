@@ -1,3 +1,5 @@
 PROGRAM.SECTION
-x ::= ContarPrimos([10,11])
+z::=0
+b::=2
+x ::= ContarPrimos([11,b+8,z*b+7])
 ENDPROGRAM.SECTION
