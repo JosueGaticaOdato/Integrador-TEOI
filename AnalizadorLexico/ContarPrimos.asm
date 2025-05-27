@@ -20,9 +20,6 @@ fstp z
 fld _2
 fstp b
 
-fld null
-fstp x
-
 ; end of execution
 MOV EAX, 4C00h
 INT 21h
