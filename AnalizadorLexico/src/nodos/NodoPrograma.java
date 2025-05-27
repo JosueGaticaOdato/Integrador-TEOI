@@ -1,6 +1,15 @@
 package nodos;
 
+import static assembler.AssemblerHelper.buildCodeHeader;
+import static assembler.AssemblerHelper.buildFooter;
+import static assembler.AssemblerHelper.buildHeader;
+import static assembler.AssemblerHelper.buildDataSection;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import app.SymbolTableEntry;
 
 public class NodoPrograma extends Nodo {
     private final List<NodoSentencia> sentencias;
@@ -31,6 +40,23 @@ public class NodoPrograma extends Nodo {
         resultado.append("}");
 
         return resultado.toString();
+    }
+    
+    public String assemble(HashMap<String, SymbolTableEntry> symbolTable) {
+        StringBuilder codeAssembler = new StringBuilder();
+        AtomicInteger auxCount = new AtomicInteger(0);
+        for (NodoSentencia node : sentencias) {
+            node.assemble(codeAssembler, symbolTable, auxCount);
+        }
+
+        return buildHeader()
+            + "\n; vars from symbol table and aux vars\n"
+            + buildDataSection(symbolTable, auxCount.get())
+            + "\n; program instructions\n"
+            + buildCodeHeader()
+            + codeAssembler
+            + "\n; end of execution\n"
+            + buildFooter();
     }
 }
 

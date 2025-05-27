@@ -7,6 +7,7 @@ import java.util.List;
 
 parser code {:
   
+    public ParserHelper helper = new ParserHelper((Lexico) super.getScanner());
     private List<String> reglas = new ArrayList<String>();
     private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
 

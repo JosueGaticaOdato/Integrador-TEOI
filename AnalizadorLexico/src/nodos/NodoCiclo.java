@@ -1,6 +1,10 @@
 package nodos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import app.SymbolTableEntry;
 
 public class NodoCiclo extends NodoSentencia {
     private final NodoExpresionBooleana condicion;
@@ -49,6 +53,23 @@ public class NodoCiclo extends NodoSentencia {
         }
 */
         return resultado.toString();
+    }
+    
+    @Override
+    public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable,
+        AtomicInteger auxCount) {
+        int i = auxCount.getAndIncrement();
+        asm.append("\n");
+        asm.append("inicio_while").append(i).append(":");
+        this.condicion.assemble(asm, auxCount, Boolean.TRUE, "end_while" + i, "sentencias_while" + i);
+        asm.append("\n");
+        asm.append("sentencias_while").append(i).append(":").append("\n");
+        for (NodoSentencia nodoSentencia : this.cuerpo) {
+            nodoSentencia.assemble(asm, symbolTable, auxCount);
+        }
+        asm.append("JMP inicio_while").append(i).append("\n")
+           .append("end_while").append(i).append(":").append("\n");
+        return "";
     }
 }
 

@@ -1,5 +1,7 @@
 package nodos;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class NodoExpresionBinaria extends NodoExpresion {
     private final NodoExpresion izquierda;
     private final NodoExpresion derecha;
@@ -17,4 +19,17 @@ public class NodoExpresionBinaria extends NodoExpresion {
                 izquierda.graficar(miId) +
                 derecha.graficar(miId);
     }
+    
+    public NodoExpresion getIzquierda() {
+        return izquierda;
+    }
+
+    public NodoExpresion getDerecha() {
+        return derecha;
+    }
+
+    @Override
+    public String assemble(StringBuilder asm, AtomicInteger auxCount) {
+		return null;
+	}
 }

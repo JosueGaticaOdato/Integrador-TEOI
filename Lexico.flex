@@ -4,12 +4,12 @@ import java.util.*;
 
 %%
 
-%cup
 %public
 %class Lexico
 %line
 %column
-%char
+%cup
+%cupdebug
 
 %{
     private ArrayList<String> lista = new ArrayList<>();
@@ -36,6 +36,10 @@ import java.util.*;
       }
 
       if (!existe) tsEntries.add(new SymbolTableEntry(valor, token));
+    }
+
+    public String getNombreToken(int token) {
+      return getTokenName(token);
     }
 
 %}

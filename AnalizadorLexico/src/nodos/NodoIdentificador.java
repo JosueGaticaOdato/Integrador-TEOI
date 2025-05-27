@@ -1,5 +1,7 @@
 package nodos;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class NodoIdentificador extends NodoExpresion {
     private final String identificador;
 
@@ -11,5 +13,10 @@ public class NodoIdentificador extends NodoExpresion {
     @Override
     public String getDescripcionNodo() {
         return "ID: " + identificador;
+    }
+    
+    @Override
+    public String assemble(StringBuilder asm, AtomicInteger auxCount) {
+        return identificador;
     }
 }

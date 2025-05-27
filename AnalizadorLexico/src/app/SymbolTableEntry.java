@@ -28,12 +28,45 @@ public class SymbolTableEntry {
 		}
 	}
 	
+	public SymbolTableEntry (String valor, String token, String tipo, String longitud) {
+		this.nombre = "_" + valor;
+		this.token = token;
+		this.tipo = tipo;
+		this.longitud = longitud;
+		this.valor = valor;
+		if(this.token.equals("CONST_STR")) {
+			this.valor = this.valor.substring(1, this.valor.length() - 1);
+		    this.nombre = "_" + this.valor;
+			Integer longitudAsInt = this.valor.length();
+			this.longitud =  longitudAsInt.toString();    
+		}
+		
+		if(this.token.equals("ID")) {
+			this.tipo = " ";
+			this.nombre = valor;
+			this.valor = "-";
+		}
+	}
+	
+	
 	public String getToken() {
 		return this.token;
 	}
 	
 	public String getNombre() {
 		return this.nombre;
+	}
+	
+	public String getValor() {
+		return this.valor;
+	}
+	
+	public String getTipo() {
+		return this.tipo;
+	}
+	
+	public String getLongitud() {
+		return this.longitud;
 	}
 	
 	public String getEntry() {

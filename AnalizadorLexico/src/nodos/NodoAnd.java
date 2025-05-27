@@ -1,5 +1,6 @@
 package nodos;
 
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class NodoAnd extends NodoExpresionBooleana {
         
@@ -18,6 +19,13 @@ public NodoAnd (NodoExpresionBooleana izquierda, NodoExpresionBooleana derecha) 
                 izquierda.graficar(miId) +
                 derecha.graficar(miId);
     }
+ 
+ @Override
+ protected String assemble(StringBuilder asm, AtomicInteger auxCount, Boolean inverse, String jumpToLeft, String jumpToRight) {
+   izquierda.assemble(asm, auxCount, Boolean.TRUE, jumpToLeft, null);
+   derecha.assemble(asm, auxCount, Boolean.TRUE, jumpToLeft, null);
+   return "";
+ }
 
 }
 

@@ -5,11 +5,29 @@
 
 package app;
 
-import nodos.*;
-import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.List;
-import java_cup.runtime.XMLElement;
+
+import assembler.ParserHelper;
+import java_cup.runtime.Symbol;
+import nodos.NodoAnd;
+import nodos.NodoAsignacion;
+import nodos.NodoCiclo;
+import nodos.NodoComparacion;
+import nodos.NodoConstante;
+import nodos.NodoContarPrimos;
+import nodos.NodoDivision;
+import nodos.NodoExpresion;
+import nodos.NodoExpresionBooleana;
+import nodos.NodoIdentificador;
+import nodos.NodoIf;
+import nodos.NodoMultiplicacion;
+import nodos.NodoNot;
+import nodos.NodoOr;
+import nodos.NodoPrograma;
+import nodos.NodoResta;
+import nodos.NodoSentencia;
+import nodos.NodoSuma;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -265,6 +283,7 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
   
+    public ParserHelper helper = new ParserHelper((Lexico) super.getScanner());
     private List<String> reglas = new ArrayList<String>();
     private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
 
