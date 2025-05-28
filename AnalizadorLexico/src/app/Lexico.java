@@ -2,6 +2,7 @@
 
 package app;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import java_cup.runtime.Symbol;
 
@@ -518,6 +519,14 @@ public class Lexico implements java_cup.runtime.Scanner {
 
     public ArrayList<SymbolTableEntry> getTS(){
         return this.tsEntries;
+    }
+
+    public HashMap<String, SymbolTableEntry> getSymbolTableAsMap() {
+      HashMap<String, SymbolTableEntry> map = new HashMap<>();
+      for (SymbolTableEntry entry : tsEntries) {
+          map.put(entry.getNombre(), entry);
+      }
+      return map;
     }
 
     public void agregarATablaDeSimbolos(String token, String valor) {

@@ -222,6 +222,11 @@ seleccion ::= IF condicion:c THEN sentencias:st ELSE sentencias:se ENDIF {:
     RESULT= new NodoIf(c, st, se);
     System.out.println("IF c THEN st ELSE se ENDIF");
     :};
+seleccion ::= IF condicion:c THEN sentencias:st ENDIF {:
+    reglas.add("Regla N°38: seleccion -> IF condicion THEN sentencias ENDIF");
+    RESULT= new NodoIf(c, st);
+    System.out.println("IF c THEN st ENDIF");
+    :};
 
 
 

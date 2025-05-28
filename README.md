@@ -46,7 +46,7 @@ java -jar AnalizadorSintacticoGrupo01.jar
 Si se decide realizar algun cambio en el archivo lexico.java, es necesario realizar las modificaiones necesario en el archivo "Lexico.flex". Luego, compilar nuevamente el Jflex con el siguiente comando
 
 ```
-java -jar jflex-full-1.7.0.kar Lexico.flex
+java -jar jflex-full-1.7.0.jar Lexico.flex
 ``` 
 
 El nuevo archivo Lexico.java se reemplaza por el viejo archivo en la carpeta del proyecto.

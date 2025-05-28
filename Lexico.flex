@@ -27,6 +27,14 @@ import java.util.*;
         return this.tsEntries;
     }
 
+    public HashMap<String, SymbolTableEntry> getSymbolTableAsMap() {
+      HashMap<String, SymbolTableEntry> map = new HashMap<>();
+      for (SymbolTableEntry entry : tsEntries) {
+          map.put(entry.getNombre(), entry);
+      }
+      return map;
+    }
+
     public void agregarATablaDeSimbolos(String token, String valor) {
       boolean existe = false;
       for (SymbolTableEntry entrada : tsEntries) {

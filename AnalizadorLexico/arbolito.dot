@@ -1,14 +1,46 @@
 graph G {nodo_programa [label="Programa"]
-nodo_999966131 [label=":="]
-nodo_programa -- nodo_999966131
-nodo_793589513 [label="ID: z"]
-nodo_999966131 -- nodo_793589513
-nodo_1313922862 [label="CTE: 0"]
-nodo_999966131 -- nodo_1313922862
-nodo_186370029 [label=":="]
-nodo_programa -- nodo_186370029
-nodo_2094548358 [label="ID: b"]
-nodo_186370029 -- nodo_2094548358
-nodo_51228289 [label="CTE: 2"]
-nodo_186370029 -- nodo_51228289
+nodo_1828972342 [label=":="]
+nodo_programa -- nodo_1828972342
+nodo_883049899 [label="ID: z"]
+nodo_1828972342 -- nodo_883049899
+nodo_2093176254 [label="CTE: 0"]
+nodo_1828972342 -- nodo_2093176254
+nodo_1323165413 [label=":="]
+nodo_programa -- nodo_1323165413
+nodo_1880587981 [label="ID: b"]
+nodo_1323165413 -- nodo_1880587981
+nodo_511754216 [label="CTE: 2"]
+nodo_1323165413 -- nodo_511754216
+nodo_1721931908 [label=":="]
+nodo_programa -- nodo_1721931908
+nodo_1198108795 [label="ID: i"]
+nodo_1721931908 -- nodo_1198108795
+nodo_214126413 [label="CTE: 1"]
+nodo_1721931908 -- nodo_214126413
+nodo_396873410 [label="WHILE"]
+nodo_programa -- nodo_396873410
+nodo_1706234378 [label="<"]
+nodo_396873410 -- nodo_1706234378
+nodo_1867750575 [label="ID: i"]
+nodo_1706234378 -- nodo_1867750575
+nodo_2046562095 [label="CTE: 5"]
+nodo_1706234378 -- nodo_2046562095
+nodo_1342443276 [label="Cuerpo"]
+nodo_396873410 -- nodo_1342443276
+nodo_769287236 [label="IF"]
+nodo_1342443276 -- nodo_769287236
+nodo_1587487668 [label="=="]
+nodo_769287236 -- nodo_1587487668
+nodo_1199823423 [label="ID: i"]
+nodo_1587487668 -- nodo_1199823423
+nodo_932172204 [label="CTE: 2"]
+nodo_1587487668 -- nodo_932172204
+nodo_1225358173 [label="Then"]
+nodo_769287236 -- nodo_1225358173
+nodo_1848402763 [label=":="]
+nodo_1225358173 -- nodo_1848402763
+nodo_933699219 [label="ID: z"]
+nodo_1848402763 -- nodo_933699219
+nodo_2121055098 [label="CTE: 1"]
+nodo_1848402763 -- nodo_2121055098
 }

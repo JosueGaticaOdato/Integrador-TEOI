@@ -1,10 +1,12 @@
 package app;
 
-import java.awt.Color;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import nodos.NodoPrograma;
 
@@ -18,8 +20,36 @@ public class app {
 			System.out.println("Hubo un problema en la compilacion:" + e);
 		}
 	}*/
+	
+	public static void guardarTablaDeSimbolos(ArrayList<SymbolTableEntry> ts, String path) {
+	    try {
+	        File file = new File(path);
+	        file.createNewFile();
+	        PrintWriter writer = new PrintWriter(new FileWriter(file));
+
+	        String header = String.format(
+	            "%-25s | %-15s | %-10s | %-25s |%-5s",
+	            "NOMBRE",
+	            "TOKEN",
+	            "TIPO",
+	            "VALOR",
+	            "LONGITUD"
+	        );
+	        writer.println(header);
+
+	        for (SymbolTableEntry entry : ts) {
+	            writer.println(entry.getEntry());
+	        }
+
+	        writer.close();
+	    } catch (IOException ex) {
+	        ex.printStackTrace();
+	    }
+	}
+	
 	public static void main(String[] args) throws Exception {
-		parser sintactico= new parser (new Lexico(new FileReader("entrada.txt")));
+		Lexico lexer = new Lexico(new FileReader("entrada.txt"));
+		parser sintactico = new parser(lexer);
         NodoPrograma programa = (NodoPrograma) sintactico.parse().value;
         ArrayList<String> elements = (ArrayList<String>) sintactico.getList();
 		
@@ -36,7 +66,13 @@ public class app {
             archivo.close();
             FileWriter asm = new FileWriter("ContarPrimos" + ".asm");
             PrintWriter pw2 = new PrintWriter(asm);
-            String assembler = programa.assemble(sintactico.helper.getSymbolTable());
+            
+            guardarTablaDeSimbolos(lexer.getTS(), "ts.txt");
+            // Convertir la tabla de símbolos a HashMap
+            HashMap<String, SymbolTableEntry> symbolTable = lexer.getSymbolTableAsMap();
+            // Generar código assembler
+            String assembler = programa.assemble(symbolTable);
+            
             pw2.println(assembler);
             asm.close();
         } catch (Exception e) {
