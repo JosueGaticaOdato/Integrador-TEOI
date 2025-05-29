@@ -142,8 +142,6 @@ sentencias ::= sentencias:ss sentencia:s {:
                             System.out.println("sentencia");
 
                :}
- /* se puede reemplazar la ultima regla por lambda
-             |  {:RESULT = new ArrayList<NodoSentencia>(); :}  */
              ;
 
 sentencia ::=  
@@ -157,8 +155,12 @@ sentencia ::=
     ;
 
 asignacion ::= ID:id OP_ASIGNACION expresion:e {: 
-    RESULT= new NodoAsignacion(new NodoIdentificador(id), e); System.out.println("ID::=E");:};
-asignacion ::= ID OP_ASIGNACION CONST_STR {: reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR"); :};
+    RESULT= new NodoAsignacion(new NodoIdentificador(id), e);
+    System.out.println("ID::=E");:};
+asignacion ::= ID:id OP_ASIGNACION CONST_STR:cs {: 
+    reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR");
+    RESULT= new NodoAsignacion(new NodoIdentificador(id),(NodoExpresion) cs);
+    System.out.println("ID::=CONST_STR");:};
 
 expresion ::= expresion:a OP_SUMA termino:b {: 
     RESULT = new NodoSuma(a,b);

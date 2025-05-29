@@ -31,11 +31,11 @@ public class AssemblerHelper {
 	  }
 
 	  private static Object getSymbolTableEntryValue(SymbolTableEntry entry) {
-	    if (entry.getValor() != null) {
+	    if (entry.getValor() != null && entry.getValor() != "-") {
 	      if (entry.getTipo().equals("STRING")) {
 	        return String.format("\"%s$\"", entry.getValor());
 	      }
-	      if (entry.getTipo().equals("INT")) {
+	      if (entry.getTipo().equals("CONST_INTEGER")) {
 	        return entry.getValor() + ".0";
 	      }
 	      return entry.getValor();
@@ -56,7 +56,8 @@ public class AssemblerHelper {
 	      case "INT": return "dd";
 	      case "FLOAT": return "dd";
 	      case "STRING": return "db";
-	      default: return "";
+	      case "CONST_INTEGER": return "dd";
+	      default: return "dd";
 	    }
 	  }
 

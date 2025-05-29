@@ -5,29 +5,11 @@
 
 package app;
 
+import nodos.*;
+import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import assembler.ParserHelper;
-import java_cup.runtime.Symbol;
-import nodos.NodoAnd;
-import nodos.NodoAsignacion;
-import nodos.NodoCiclo;
-import nodos.NodoComparacion;
-import nodos.NodoConstante;
-import nodos.NodoContarPrimos;
-import nodos.NodoDivision;
-import nodos.NodoExpresion;
-import nodos.NodoExpresionBooleana;
-import nodos.NodoIdentificador;
-import nodos.NodoIf;
-import nodos.NodoMultiplicacion;
-import nodos.NodoNot;
-import nodos.NodoOr;
-import nodos.NodoPrograma;
-import nodos.NodoResta;
-import nodos.NodoSentencia;
-import nodos.NodoSuma;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -650,7 +632,16 @@ class CUP$parser$actions {
           case 22: // asignacion ::= ID OP_ASIGNACION CONST_STR 
             {
               NodoAsignacion RESULT =null;
-		 reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR"); 
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int csleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int csright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String cs = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 
+    reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR");
+    RESULT= new NodoAsignacion(new NodoIdentificador(id),(NodoExpresion) cs);
+    System.out.println("ID::=CONST_STR");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
