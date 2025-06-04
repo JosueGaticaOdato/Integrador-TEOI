@@ -1,5 +1,6 @@
 package app;
 
+import assembler.ParserHelper;
 import nodos.*;
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -159,7 +160,7 @@ asignacion ::= ID:id OP_ASIGNACION expresion:e {:
     System.out.println("ID::=E");:};
 asignacion ::= ID:id OP_ASIGNACION CONST_STR:cs {: 
     reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR");
-    RESULT= new NodoAsignacion(new NodoIdentificador(id),(NodoExpresion) cs);
+    //RESULT= new NodoAsignacion(new NodoIdentificador(id),(NodoExpresion) cs);
     System.out.println("ID::=CONST_STR");:};
 
 expresion ::= expresion:a OP_SUMA termino:b {: 
@@ -311,21 +312,12 @@ parametros ::= expresion:e COMA parametros:resto {:
 funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p CORCHETE_CIERRA PARENTESIS_CIERRA {: 
     reglas.add("Regla N°52: funcioncontarprimos ->  CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); 
     List<NodoExpresion> listaExp = (List<NodoExpresion>)p;
-
     List<NodoSentencia> instrucciones = new ArrayList<>();
-    NodoIdentificador k = new NodoIdentificador("k");
-    NodoConstante cero = new NodoConstante(0);
 
     // k = 0;
     instrucciones.add(new NodoAsignacion(new NodoIdentificador("k"),new NodoConstante(0)));
 
     for (NodoExpresion expresion : listaExp) {
-
-        // nro = expresion;
-        /*instrucciones.add(new NodoAsignacion(
-            new NodoIdentificador("nro"),
-            expresion
-        ));*/
 
         // i = 1;
         instrucciones.add(new NodoAsignacion(
@@ -339,36 +331,36 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
             new NodoConstante(0)
         ));
 
-        // while (i <= nro)
+        // while (i <= expresion)
         NodoComparacion condicionWhile = new NodoComparacion(
             "<=",
             new NodoIdentificador("i"),
-            new NodoIdentificador("nro")
+            expresion.clonar()
         );
 
         List<NodoSentencia> cuerpoWhile = new ArrayList<>();
 
-        // c = nro / i;
+        // c = expresion / i;
         cuerpoWhile.add(new NodoAsignacion(
             new NodoIdentificador("c"),
             new NodoDivision(
-                new NodoIdentificador("nro"),
+                expresion.clonar(),
                 new NodoIdentificador("i")
             )
         ));
 
-        // resultado = nro - (c * i)
+        // resultado = expresion - (c * i)
         NodoMultiplicacion producto = new NodoMultiplicacion(
             new NodoIdentificador("c"),
             new NodoIdentificador("i")
         );
         NodoResta resta = new NodoResta(
-            new NodoIdentificador("nro"),
+            expresion.clonar(),
             producto
         );
         NodoAsignacion resultado = new NodoAsignacion(new NodoIdentificador("resultado"), resta);
 
-        // Agregás la sentencia al cuerpo del while (o donde corresponda)
+        // Agrego al cuerpo del while
         cuerpoWhile.add(resultado);
 
         // if (resultado == 0)
@@ -389,7 +381,6 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
 
         List<NodoSentencia> cuerpoIf = new ArrayList<>();
         cuerpoIf.add(jIncremento);
-
         cuerpoWhile.add(new NodoIf(condicionIf, cuerpoIf));
 
         // i = i + 1;

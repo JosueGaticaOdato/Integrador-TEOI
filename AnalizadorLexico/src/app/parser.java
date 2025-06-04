@@ -5,11 +5,29 @@
 
 package app;
 
-import nodos.*;
-import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.List;
-import java_cup.runtime.XMLElement;
+
+import assembler.ParserHelper;
+import java_cup.runtime.Symbol;
+import nodos.NodoAnd;
+import nodos.NodoAsignacion;
+import nodos.NodoCiclo;
+import nodos.NodoComparacion;
+import nodos.NodoConstante;
+import nodos.NodoContarPrimos;
+import nodos.NodoDivision;
+import nodos.NodoExpresion;
+import nodos.NodoExpresionBooleana;
+import nodos.NodoIdentificador;
+import nodos.NodoIf;
+import nodos.NodoMultiplicacion;
+import nodos.NodoNot;
+import nodos.NodoOr;
+import nodos.NodoPrograma;
+import nodos.NodoResta;
+import nodos.NodoSentencia;
+import nodos.NodoSuma;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -623,7 +641,8 @@ class CUP$parser$actions {
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
-    RESULT= new NodoAsignacion(new NodoIdentificador(id), e); System.out.println("ID::=E");
+    RESULT= new NodoAsignacion(new NodoIdentificador(id), e);
+    System.out.println("ID::=E");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -640,7 +659,7 @@ class CUP$parser$actions {
 		String cs = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
     reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR");
-    RESULT= new NodoAsignacion(new NodoIdentificador(id),(NodoExpresion) cs);
+    //RESULT= new NodoAsignacion(new NodoIdentificador(id),(NodoExpresion) cs);
     System.out.println("ID::=CONST_STR");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -1133,21 +1152,12 @@ class CUP$parser$actions {
 		 
     reglas.add("Regla N°52: funcioncontarprimos ->  CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros CORCHETE_CIERRA PARENTESIS_CIERRA"); 
     List<NodoExpresion> listaExp = (List<NodoExpresion>)p;
-
     List<NodoSentencia> instrucciones = new ArrayList<>();
-    NodoIdentificador k = new NodoIdentificador("k");
-    NodoConstante cero = new NodoConstante(0);
 
     // k = 0;
     instrucciones.add(new NodoAsignacion(new NodoIdentificador("k"),new NodoConstante(0)));
 
     for (NodoExpresion expresion : listaExp) {
-
-        // nro = expresion;
-        /*instrucciones.add(new NodoAsignacion(
-            new NodoIdentificador("nro"),
-            expresion
-        ));*/
 
         // i = 1;
         instrucciones.add(new NodoAsignacion(
@@ -1161,36 +1171,36 @@ class CUP$parser$actions {
             new NodoConstante(0)
         ));
 
-        // while (i <= nro)
+        // while (i <= expresion)
         NodoComparacion condicionWhile = new NodoComparacion(
             "<=",
             new NodoIdentificador("i"),
-            new NodoIdentificador("nro")
+            expresion.clonar()
         );
 
         List<NodoSentencia> cuerpoWhile = new ArrayList<>();
 
-        // c = nro / i;
+        // c = expresion / i;
         cuerpoWhile.add(new NodoAsignacion(
             new NodoIdentificador("c"),
             new NodoDivision(
-                new NodoIdentificador("nro"),
+                expresion.clonar(),
                 new NodoIdentificador("i")
             )
         ));
 
-        // resultado = nro - (c * i)
+        // resultado = expresion - (c * i)
         NodoMultiplicacion producto = new NodoMultiplicacion(
             new NodoIdentificador("c"),
             new NodoIdentificador("i")
         );
         NodoResta resta = new NodoResta(
-            new NodoIdentificador("nro"),
+            expresion.clonar(),
             producto
         );
         NodoAsignacion resultado = new NodoAsignacion(new NodoIdentificador("resultado"), resta);
 
-        // Agregás la sentencia al cuerpo del while (o donde corresponda)
+        // Agrego al cuerpo del while
         cuerpoWhile.add(resultado);
 
         // if (resultado == 0)
@@ -1211,7 +1221,6 @@ class CUP$parser$actions {
 
         List<NodoSentencia> cuerpoIf = new ArrayList<>();
         cuerpoIf.add(jIncremento);
-
         cuerpoWhile.add(new NodoIf(condicionIf, cuerpoIf));
 
         // i = i + 1;

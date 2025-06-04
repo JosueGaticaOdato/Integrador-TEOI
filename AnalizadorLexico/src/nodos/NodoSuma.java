@@ -21,4 +21,9 @@ public class NodoSuma extends NodoExpresionBinaria {
             .append("\n");
         return "_@aux" + auxCount.getAndIncrement();
     }
+    
+    @Override
+    public NodoExpresion clonar() {
+        return new NodoSuma(izquierda.clonar(), derecha.clonar());
+    }
 }

@@ -19,4 +19,9 @@ public class NodoConstante extends NodoExpresion {
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
         return "_" + valor;
     }
+    
+    @Override
+    public NodoExpresion clonar() {
+        return new NodoConstante(this.valor);
+    }
 }

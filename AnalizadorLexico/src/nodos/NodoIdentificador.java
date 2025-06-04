@@ -17,6 +17,11 @@ public class NodoIdentificador extends NodoExpresion {
     
     @Override
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
-        return identificador;
+    	return identificador;
+    }
+    
+    @Override
+    public NodoExpresion clonar() {
+        return new NodoIdentificador(this.identificador);
     }
 }

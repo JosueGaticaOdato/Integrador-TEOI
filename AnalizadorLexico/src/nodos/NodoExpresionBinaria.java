@@ -3,8 +3,8 @@ package nodos;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class NodoExpresionBinaria extends NodoExpresion {
-    private final NodoExpresion izquierda;
-    private final NodoExpresion derecha;
+    protected final NodoExpresion izquierda;
+    protected final NodoExpresion derecha;
 
     public NodoExpresionBinaria(String nombre, NodoExpresion izquierda, NodoExpresion derecha) {
         super(nombre);
@@ -32,4 +32,9 @@ public class NodoExpresionBinaria extends NodoExpresion {
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
 		return null;
 	}
+    
+    @Override
+    public NodoExpresion clonar() {
+        return new NodoSuma(izquierda.clonar(), derecha.clonar());
+    }
 }

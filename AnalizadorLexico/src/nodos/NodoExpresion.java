@@ -11,4 +11,8 @@ public class NodoExpresion extends Nodo {
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
 		return null;
 	}
+    
+    public NodoExpresion clonar() {
+		return null;
+	}
 }
