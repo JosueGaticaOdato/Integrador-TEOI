@@ -156,11 +156,12 @@ sentencia ::=
     ;
 
 asignacion ::= ID:id OP_ASIGNACION expresion:e {: 
+    reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION expresion");
     RESULT= new NodoAsignacion(new NodoIdentificador(id), e);
     System.out.println("ID::=E");:};
 asignacion ::= ID:id OP_ASIGNACION CONST_STR:cs {: 
     reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR");
-    //RESULT= new NodoAsignacion(new NodoIdentificador(id),(NodoExpresion) cs);
+    RESULT= new NodoAsignacion(new NodoIdentificador(id),new NodoConstanteString(cs));
     System.out.println("ID::=CONST_STR");:};
 
 expresion ::= expresion:a OP_SUMA termino:b {: 
@@ -198,11 +199,16 @@ factor   ::= ID:id {:
     reglas.add("Regla N°31: factor -> ID");
     RESULT = new NodoIdentificador(id);
     System.out.println("ID");:};
-factor   ::= CONST_DOU {:reglas.add("Regla N°32: factor -> CONST_DOU"); :};
-factor   ::= CONST_BIN {: reglas.add("Regla N°33: factor -> CONST_BIN"); :};
+factor   ::= CONST_DOU:cte {: 
+    reglas.add("Regla N°32: factor -> CONST_DOU");
+    RESULT =new NodoConstanteFloat(Float.valueOf(cte));
+    :};
+factor   ::= CONST_BIN:cte {:
+    reglas.add("Regla N°33: factor -> CONST_BIN");
+    :};
 factor   ::= CONST_INTEGER:cte {:
     reglas.add("Regla N°34: factor -> CONST_INTEGER");
-    RESULT =new NodoConstante(Integer.parseInt(cte));
+    RESULT =new NodoConstanteInteger(Integer.valueOf(cte));
     System.out.println("cte");:};
 factor   ::= funcioncontarprimos:f {:
     reglas.add("Regla N°35: factor -> funcioncontarprimos");
@@ -315,20 +321,20 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
     List<NodoSentencia> instrucciones = new ArrayList<>();
 
     // k = 0;
-    instrucciones.add(new NodoAsignacion(new NodoIdentificador("k"),new NodoConstante(0)));
+    instrucciones.add(new NodoAsignacion(new NodoIdentificador("k"),new NodoConstanteInteger(0)));
 
     for (NodoExpresion expresion : listaExp) {
 
         // i = 1;
         instrucciones.add(new NodoAsignacion(
             new NodoIdentificador("i"),
-            new NodoConstante(1)
+            new NodoConstanteInteger(1)
         ));
 
         // j = 0;
         instrucciones.add(new NodoAsignacion(
             new NodoIdentificador("j"),
-            new NodoConstante(0)
+            new NodoConstanteInteger(0)
         ));
 
         // while (i <= expresion)
@@ -367,7 +373,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
         NodoComparacion condicionIf = new NodoComparacion(
             "==",
             new NodoIdentificador("resultado"),
-            new NodoConstante(0)
+            new NodoConstanteInteger(0)
         );
 
         // j = j + 1;
@@ -375,7 +381,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
             new NodoIdentificador("j"),
             new NodoSuma(
                 new NodoIdentificador("j"),
-                new NodoConstante(1)
+                new NodoConstanteInteger(1)
             )
         );
 
@@ -388,7 +394,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
             new NodoIdentificador("i"),
             new NodoSuma(
                 new NodoIdentificador("i"),
-                new NodoConstante(1)
+                new NodoConstanteInteger(1)
             )
         ));
 
@@ -398,13 +404,13 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
         NodoComparacion condicionJ = new NodoComparacion(
             "==",
             new NodoIdentificador("j"),
-            new NodoConstante(2)
+            new NodoConstanteInteger(2)
         );
         NodoAsignacion kIncremento = new NodoAsignacion(
             new NodoIdentificador("k"),
             new NodoSuma(
                 new NodoIdentificador("k"),
-                new NodoConstante(1)
+                new NodoConstanteInteger(1)
             )
         );
 

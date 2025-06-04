@@ -14,7 +14,9 @@ import nodos.NodoAnd;
 import nodos.NodoAsignacion;
 import nodos.NodoCiclo;
 import nodos.NodoComparacion;
-import nodos.NodoConstante;
+import nodos.NodoConstanteFloat;
+import nodos.NodoConstanteInteger;
+import nodos.NodoConstanteString;
 import nodos.NodoContarPrimos;
 import nodos.NodoDivision;
 import nodos.NodoExpresion;
@@ -641,6 +643,7 @@ class CUP$parser$actions {
 		int eright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		NodoExpresion e = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
+    reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION expresion");
     RESULT= new NodoAsignacion(new NodoIdentificador(id), e);
     System.out.println("ID::=E");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -659,7 +662,7 @@ class CUP$parser$actions {
 		String cs = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
     reglas.add("Regla N°23: asignacion -> ID OP_ASIGNACION CONST_STR");
-    //RESULT= new NodoAsignacion(new NodoIdentificador(id),(NodoExpresion) cs);
+    RESULT= new NodoAsignacion(new NodoIdentificador(id),new NodoConstanteString(cs));
     System.out.println("ID::=CONST_STR");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -797,7 +800,13 @@ class CUP$parser$actions {
           case 31: // factor ::= CONST_DOU 
             {
               NodoExpresion RESULT =null;
-		reglas.add("Regla N°32: factor -> CONST_DOU"); 
+		int cteleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int cteright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String cte = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 
+    reglas.add("Regla N°32: factor -> CONST_DOU");
+    RESULT =new NodoConstanteFloat(Float.valueOf(cte));
+    
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -806,7 +815,12 @@ class CUP$parser$actions {
           case 32: // factor ::= CONST_BIN 
             {
               NodoExpresion RESULT =null;
-		 reglas.add("Regla N°33: factor -> CONST_BIN"); 
+		int cteleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int cteright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String cte = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		
+    reglas.add("Regla N°33: factor -> CONST_BIN");
+    
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -820,7 +834,7 @@ class CUP$parser$actions {
 		String cte = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
     reglas.add("Regla N°34: factor -> CONST_INTEGER");
-    RESULT =new NodoConstante(Integer.parseInt(cte));
+    RESULT =new NodoConstanteInteger(Integer.valueOf(cte));
     System.out.println("cte");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -1155,20 +1169,20 @@ class CUP$parser$actions {
     List<NodoSentencia> instrucciones = new ArrayList<>();
 
     // k = 0;
-    instrucciones.add(new NodoAsignacion(new NodoIdentificador("k"),new NodoConstante(0)));
+    instrucciones.add(new NodoAsignacion(new NodoIdentificador("k"),new NodoConstanteInteger(0)));
 
     for (NodoExpresion expresion : listaExp) {
 
         // i = 1;
         instrucciones.add(new NodoAsignacion(
             new NodoIdentificador("i"),
-            new NodoConstante(1)
+            new NodoConstanteInteger(1)
         ));
 
         // j = 0;
         instrucciones.add(new NodoAsignacion(
             new NodoIdentificador("j"),
-            new NodoConstante(0)
+            new NodoConstanteInteger(0)
         ));
 
         // while (i <= expresion)
@@ -1207,7 +1221,7 @@ class CUP$parser$actions {
         NodoComparacion condicionIf = new NodoComparacion(
             "==",
             new NodoIdentificador("resultado"),
-            new NodoConstante(0)
+            new NodoConstanteInteger(0)
         );
 
         // j = j + 1;
@@ -1215,7 +1229,7 @@ class CUP$parser$actions {
             new NodoIdentificador("j"),
             new NodoSuma(
                 new NodoIdentificador("j"),
-                new NodoConstante(1)
+                new NodoConstanteInteger(1)
             )
         );
 
@@ -1228,7 +1242,7 @@ class CUP$parser$actions {
             new NodoIdentificador("i"),
             new NodoSuma(
                 new NodoIdentificador("i"),
-                new NodoConstante(1)
+                new NodoConstanteInteger(1)
             )
         ));
 
@@ -1238,13 +1252,13 @@ class CUP$parser$actions {
         NodoComparacion condicionJ = new NodoComparacion(
             "==",
             new NodoIdentificador("j"),
-            new NodoConstante(2)
+            new NodoConstanteInteger(2)
         );
         NodoAsignacion kIncremento = new NodoAsignacion(
             new NodoIdentificador("k"),
             new NodoSuma(
                 new NodoIdentificador("k"),
-                new NodoConstante(1)
+                new NodoConstanteInteger(1)
             )
         );
 

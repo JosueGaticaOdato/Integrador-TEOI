@@ -2,10 +2,10 @@ package nodos;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class NodoConstante extends NodoExpresion {
+public class NodoConstanteInteger extends NodoExpresion {
     private final int valor;
 
-    public NodoConstante(int valor) {
+    public NodoConstanteInteger(int valor) {
         super("CTE");
         this.valor = valor;
     }
@@ -22,6 +22,6 @@ public class NodoConstante extends NodoExpresion {
     
     @Override
     public NodoExpresion clonar() {
-        return new NodoConstante(this.valor);
+        return new NodoConstanteInteger(this.valor);
     }
 }

@@ -5,3 +5,5 @@ x                         | ID              |            | -                    
 _11                       | CONST_INTEGER   | -          | 11                        |-    
 b                         | ID              |            | -                         |-    
 _8                        | CONST_INTEGER   | -          | 8                         |-    
+msg                       | ID              |            | -                         |-    
+_numero 2                 | CONST_STR       | -          | numero 2                  |8    
