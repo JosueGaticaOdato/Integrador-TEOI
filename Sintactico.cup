@@ -83,8 +83,12 @@ programa ::= miprograma:s {:
     RESULT = s;
     System.out.println("Programa sin declaraciones");
 :};
-programa ::= declaraciones miprograma {: reglas.add("Regla N°0: programa -> declaraciones miprograma"); :};
-programa ::= miprog {: reglas.add("Regla N°1: programa -> miprog "); :};
+programa ::= declaraciones miprograma:s {:
+    reglas.add("Regla N°0: programa -> declaraciones miprograma");
+    RESULT = s; :};
+programa ::= miprog {:
+    reglas.add("Regla N°1: programa -> miprog ");
+    :};
 
 
 
@@ -152,7 +156,10 @@ sentencia ::=
     | iteracion:sif  
       {: reglas.add("Regla N°16: sentencia -> iteracion");
          RESULT = sif; :}
-    | seleccion:sic  {: RESULT = sic; :}
+    | seleccion:sic 
+      {: RESULT = sic; :}
+    | salida:sal 
+      {: RESULT = (NodoSentencia) sal; :}
     ;
 
 asignacion ::= ID:id OP_ASIGNACION expresion:e {: 
@@ -298,8 +305,18 @@ comparador ::= OP_DISTINTO:op {:
   System.out.println("!=");
   :};
 
-salida ::= WRITE ID {: reglas.add("Regla N°50: salida -> WRITE ID"); :};
-salida ::= WRITE CONST_STR {: reglas.add("Regla N°51: salida -> WRITE CONST_STR"); :};
+salida ::= WRITE ID:id {: 
+    reglas.add("Regla N°50: salida -> WRITE ID");
+    RESULT = new NodoWrite(new NodoIdentificador(id));
+    :};
+salida ::= WRITE CONST_STR:cte {:
+    reglas.add("Regla N°51: salida -> WRITE CONST_STR");
+    RESULT = new NodoWrite(new NodoConstanteString(cte));
+    :};
+salida ::= WRITE CONST_INTEGER:cte {:
+    reglas.add("Regla N°51: salida -> WRITE CONST_INTEGER");
+    RESULT = new NodoWrite(new NodoConstanteInteger(Integer.valueOf(cte)));
+    :};
 
 
 parametros ::= expresion:e {:

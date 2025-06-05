@@ -20,7 +20,7 @@ public class AssemblerHelper {
 	    StringBuilder output = new StringBuilder();
 	    output.append(".DATA\n");
 	    symbolTable.forEach((symbol, entry) -> {
-	      String dataType = translateDataType(entry.getTipo());
+	      String dataType = translateDataType(entry.getToken());
 	      Object constVal = getSymbolTableEntryValue(entry);
 	      output.append(symbol).append(" ").append(dataType).append(" ").append(constVal).append("\n");
 	    });
@@ -32,10 +32,10 @@ public class AssemblerHelper {
 
 	  private static Object getSymbolTableEntryValue(SymbolTableEntry entry) {
 	    if (entry.getValor() != null && entry.getValor() != "-") {
-	      if (entry.getTipo().equals("STRING")) {
+	      if (entry.getToken().equals("CONST_STR")) {
 	        return String.format("\"%s$\"", entry.getValor());
 	      }
-	      if (entry.getTipo().equals("CONST_INTEGER")) {
+	      if (entry.getToken().equals("CONST_INTEGER")) {
 	        return entry.getValor() + ".0";
 	      }
 	      return entry.getValor();
@@ -53,11 +53,11 @@ public class AssemblerHelper {
 
 	  private static String translateDataType(String type) {
 	    switch (type) {
-	      case "INT": return "dd";
-	      case "FLOAT": return "dd";
-	      case "STRING": return "db";
+	      case "CONST_INT": return "dd";
+	      case "CONST_FLOAT": return "dd";
+	      case "CONST_STR": return "db";
 	      case "CONST_INTEGER": return "dd";
-	      default: return "dd";
+	      default: return "";
 	    }
 	  }
 

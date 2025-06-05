@@ -15,4 +15,8 @@ public class NodoExpresion extends Nodo {
     public NodoExpresion clonar() {
 		return null;
 	}
+    
+    public String getValor() {
+    	return null;
+    }
 }

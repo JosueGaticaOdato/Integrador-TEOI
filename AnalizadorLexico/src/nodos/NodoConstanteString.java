@@ -21,4 +21,9 @@ public class NodoConstanteString extends NodoExpresion {
         //return "CTE: " + valor;
         return valor;
     }
+    
+    @Override
+    public String getValor() {
+    	return valor.replace("'", "");
+    }
 }

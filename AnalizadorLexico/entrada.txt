@@ -1,7 +1,5 @@
 PROGRAM.SECTION
 
-z::=0
-x ::= ContarPrimos([11,b+8])
-msg::='numero 2'
+WRITE 'numero 2'
 
 ENDPROGRAM.SECTION
