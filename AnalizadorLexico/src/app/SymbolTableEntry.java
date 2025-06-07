@@ -48,7 +48,6 @@ public class SymbolTableEntry {
 		}
 	}
 	
-	
 	public String getToken() {
 		return this.token;
 	}

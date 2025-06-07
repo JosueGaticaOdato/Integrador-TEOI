@@ -12,6 +12,7 @@ import app.sym;
 public class ParserHelper {
 
     private final Lexico lexico;
+    
     private HashMap<String, SymbolTableEntry> symbolTable = new HashMap();
 
     private Stack<Integer> types = new Stack<>();

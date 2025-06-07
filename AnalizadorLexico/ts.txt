@@ -1,7 +1,3 @@
 NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
-a1                        | ID              | INTEGER    | -                         |-    
-b1                        | ID              | FLOAT      | -                         |-    
-p1                        | ID              | INTEGER    | -                         |-    
-p2                        | ID              | FLOAT      | -                         |-    
-p3                        | ID              | FLOAT      | -                         |-    
-_numero 2                 | CONST_STR       | -          | numero 2                  |8    
+i                         | ID              | INTEGER    | -                         |-    
+_1                        | CONST_INTEGER   | -          | 1                         |-    
