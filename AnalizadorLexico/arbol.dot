@@ -1,0 +1,6 @@
+graph G {nodo_programa [label="Programa"]
+nodo_963684847 [label="WRITE"]
+nodo_programa -- nodo_963684847
+nodo_785132882 [label="'numero 2'"]
+nodo_963684847 -- nodo_785132882
+}

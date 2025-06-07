@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -144,8 +145,10 @@ public class Vista {
 					Lexico lexer = new Lexico(reader);
 					//lexer.next_token();
 					
+					//sintactico = new parser(lexer, lexer.getTS());
 					sintactico = new parser(lexer, lexer.getTS());
-					sintactico.parse();
+					//sintactico.parse();
+					NodoPrograma programa = (NodoPrograma) sintactico.parse().value;
 		
 					outputTextArea.setText("");
 		
@@ -163,31 +166,53 @@ public class Vista {
 		
 					lexer.vaciarLista();
 					
-		            ArrayList<SymbolTableEntry> ts = (ArrayList<SymbolTableEntry>) parser.getTS();
-		            PrintWriter writer = null;
-		            try {
-		              File file = new File(path);
-		              file.createNewFile();
-		              writer = new PrintWriter(new FileWriter(path));
-		            } catch (IOException ex) {
-		              ex.printStackTrace();
-		            }
-		            if (writer != null) {
-		              String header = String.format(
-		                "%-25s | %-15s | %-10s | %-25s |%-5s",
-		                "NOMBRE",
-		                "TOKEN",
-		                "TIPO",
-		                "VALOR",
-		                "LONGITUD"
-		              );
-		              writer.println(header);
-		              for (SymbolTableEntry entryInstance : ts) {
-		                String entry = entryInstance.getEntry();
-		                writer.println(entry);
-		              }
-		              writer.close();
-		            }
+					try {
+						FileWriter archivo = new FileWriter("arbol.dot");
+			            PrintWriter pw = new PrintWriter(archivo);
+			            pw.println(programa.graficar());
+			            archivo.close();
+			            FileWriter asm = new FileWriter("ContarPrimos" + ".asm");
+			            PrintWriter pw2 = new PrintWriter(asm);
+			            
+			            ArrayList<SymbolTableEntry> ts = (ArrayList<SymbolTableEntry>) parser.getTS();
+			            PrintWriter writer = null;
+			            try {
+			              File file = new File(path);
+			              file.createNewFile();
+			              writer = new PrintWriter(new FileWriter(path));
+			            } catch (IOException ex) {
+			              ex.printStackTrace();
+			            }
+			            if (writer != null) {
+			              String header = String.format(
+			                "%-25s | %-15s | %-10s | %-25s |%-5s",
+			                "NOMBRE",
+			                "TOKEN",
+			                "TIPO",
+			                "VALOR",
+			                "LONGITUD"
+			              );
+			              writer.println(header);
+			              for (SymbolTableEntry entryInstance : ts) {
+			                String entry = entryInstance.getEntry();
+			                writer.println(entry);
+			              }
+			              writer.close();
+			            }
+			            
+			            // Convertir la tabla de símbolos a HashMap
+			            HashMap<String, SymbolTableEntry> symbolTable = lexer.getSymbolTableAsMap();
+			            // Generar código assembler
+			            String assembler = programa.assemble(symbolTable);
+			            
+			            pw2.println(assembler);
+			            asm.close();
+			            
+			            
+					} catch (Exception e1) {
+						System.out.println(e1);
+					}
+		            
 
 				} catch(Exception error ) {
 					outputTextArea.setForeground(Color.RED);
@@ -199,33 +224,13 @@ public class Vista {
           }
 				}
 				
-				/*try {
-					//Dado el codigo presente en la pantalla de input
-					Reader reader = new StringReader(inputTextArea.getText());
-					
-					//Path con la ubicacion al archivo ts.txt a crear donde se guarda la tabla de simbolos
-					String path = filePath.getText();
-					
-					Lexico lexer = new Lexico(reader);
-					parser sintactico = new parser(lexer);
-					NodoPrograma programa = (NodoPrograma) sintactico.parse().value;
-					FileWriter archivo = new FileWriter("arbolito.dot");
-		            PrintWriter pw = new PrintWriter(archivo);
-		            pw.println(programa.graficar());
-		            archivo.close();
-				} catch (Exception e1){
-					System.out.println(e1);
-				}
-				String cmd = "C:\\Program Files (x86)\\Graphviz2.34\\bin\\dot -Tpng arbolito.dot -o arbolito.png";
+			    String cmd = "C:\\Program Files (x86)\\Graphviz2.34\\bin\\dot -Tpng arbol.dot -o arbol.png";
 			    try {
 					Runtime.getRuntime().exec(cmd);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-			    outputTextArea.append("Arbol generado");*/
-				
 			}
 				
 		});

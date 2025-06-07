@@ -1,6 +1,0 @@
-graph G {nodo_programa [label="Programa"]
-nodo_2074407503 [label="WRITE"]
-nodo_programa -- nodo_2074407503
-nodo_189568618 [label="'numero 2'"]
-nodo_2074407503 -- nodo_189568618
-}
