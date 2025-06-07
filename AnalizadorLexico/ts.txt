@@ -1,3 +1,2 @@
 NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
-i                         | ID              | INTEGER    | -                         |-    
-_1                        | CONST_INTEGER   | -          | 1                         |-    
+_Estoy utilizando         | CONST_STR       | -          | Estoy utilizando          |16   

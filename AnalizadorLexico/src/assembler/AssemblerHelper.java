@@ -14,15 +14,14 @@ public class AssemblerHelper {
 	        + ".STACK  200h \n";
 	  }
 
-
-
 	  public static String buildDataSection(HashMap<String, SymbolTableEntry> symbolTable, int auxCount) {
 	    StringBuilder output = new StringBuilder();
 	    output.append(".DATA\n");
 	    symbolTable.forEach((symbol, entry) -> {
-	      String dataType = translateDataType(entry.getTipo());
+	      String dataType = translateDataType(entry.getToken(),entry.getTipo());
 	      Object constVal = getSymbolTableEntryValue(entry);
-	      output.append(symbol).append(" ").append(dataType).append(" ").append(constVal).append("\n");
+	      String sanitizedSymbol = symbol.replaceAll("[^a-zA-Z0-9_]", "_");
+	      output.append(sanitizedSymbol).append(" ").append(dataType).append(" ").append(constVal).append("\n");
 	    });
 	    for (int i = 0; i < auxCount; i++) {
 	      output.append("_@aux").append(i).append(" dd ?\n");
@@ -52,18 +51,19 @@ public class AssemblerHelper {
 	  }
 
 	  //Tipo de dato: Solamente es db si hablamos de string
-	  private static String translateDataType(String type) {
-	    /*switch (type) {
-	      case "INTEGER": return "dd";
-	      case "FLOAT": return "dd";
-	      case "STRING": return "db";
-	      default: return "";
-	    }*/
-		switch (type) {
-	      case "STRING": return "db";
-	      default: return "dd";
-	    }
-	  }
+	  private static String translateDataType(String token,String type) {
+		  if (token == "ID") {
+			  switch (type) {
+		      	case "STRING": return "db";
+		      	default: return "dd";
+		    }
+		  } else {
+			  switch (token) {
+		      	case "CONST_STR": return "db";
+		      	default: return "dd";
+			  }
+		  }
+	  }  
 
 	  public static String buildFooter() {
 	    return "MOV EAX, 4C00h\n"

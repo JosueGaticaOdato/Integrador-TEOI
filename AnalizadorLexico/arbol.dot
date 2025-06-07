@@ -1,8 +1,6 @@
 graph G {nodo_programa [label="Programa"]
-nodo_987650520 [label=":="]
-nodo_programa -- nodo_987650520
-nodo_1643518164 [label="ID: i"]
-nodo_987650520 -- nodo_1643518164
-nodo_1947889999 [label="CTE: 1"]
-nodo_987650520 -- nodo_1947889999
+nodo_1077254329 [label="WRITE"]
+nodo_programa -- nodo_1077254329
+nodo_440038503 [label="'Estoy utilizando'"]
+nodo_1077254329 -- nodo_440038503
 }

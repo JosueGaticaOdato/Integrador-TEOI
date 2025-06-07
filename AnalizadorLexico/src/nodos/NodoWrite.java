@@ -26,9 +26,10 @@ public class NodoWrite extends NodoSentencia {
         String assembled = valor.getValor();
         //System.out.println("_" + assembled);
         SymbolTableEntry symbolTableEntry = symbolTable.get("_" + assembled);
+        String sanitized = assembled.replaceAll("[^a-zA-Z0-9_]", "_");
         asm.append("\n");
         if (symbolTableEntry.getToken().equals("CONST_STR")) {
-            asm.append("displayString ").append("_" + assembled);
+            asm.append("displayString ").append("_" + sanitized);
         }
         else {
             asm.append("displayFloat ").append(assembled).append(", 2");

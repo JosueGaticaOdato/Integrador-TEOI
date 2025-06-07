@@ -6,8 +6,7 @@ include number.asm
 
 ; vars from symbol table and aux vars
 .DATA
-_1 dd 1.0
-i dd ?
+_Estoy_utilizando db "Estoy utilizando$"
 
 ; program instructions
 .CODE
@@ -16,8 +15,8 @@ MOV EAX,@DATA
 MOV DS,EAX
 MOV ES,EAX
 
-fld _1
-fstp i
+displayString _Estoy_utilizando
+newLine
 
 ; end of execution
 MOV EAX, 4C00h
