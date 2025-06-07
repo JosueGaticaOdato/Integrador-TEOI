@@ -27,20 +27,19 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
+import nodos.NodoPrograma;
+
 public class Vista {
 
 	JFrame frame;
 	
-	/**
-	 * Create the application.
-	 */
+	File archivoTS = new File("ts.txt");
+	File archivoCodigo = new File("entrada.txt");
+
 	public Vista() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 25, 924, 490);
@@ -90,8 +89,6 @@ public class Vista {
 		outputTextArea.setLineWrap(true);
 		outputTextArea.setEditable(false);
 		
-
-		
 		// -------------- Limpiar pantalla -------------
 		
 		JButton btnClear = new JButton("Limpiar");
@@ -110,7 +107,7 @@ public class Vista {
 		
 		// -------------- Manejo de archivo donde se guardara la tabla de simbolos -------------
 		
-		JLabel filePath = new JLabel("Ubicacion no seleccionada");
+		JLabel filePath = new JLabel("ts.txt");
 		filePath.setVerticalAlignment(SwingConstants.BOTTOM);
 		filePath.setFont(new Font("Calibri", Font.ITALIC, 14));
 		filePath.setBounds(10, 366, 309, 24);
@@ -227,15 +224,16 @@ public class Vista {
 					e1.printStackTrace();
 				}
 				
-			    outputTextArea.append("Arbol generado");
-				*/
+			    outputTextArea.append("Arbol generado");*/
+				
 			}
 				
 		});
 		btnCompile.setFont(new Font("Calibri", Font.PLAIN, 18));
 		btnCompile.setBounds(698, 358, 190, 44);
 		btnCompile.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		btnCompile.setEnabled(false);
+		btnCompile.setEnabled(true);
+		btnCompile.setBackground(new Color(0, 196, 0));
 		panel.add(btnCompile);
 		
 		//Boton para buscar donde dejar el archivo
@@ -293,7 +291,25 @@ public class Vista {
 		btnArchivo.setBounds(201, 8, 213, 30);
 		panel.add(btnArchivo);
 		
-
+		// -------------- Carga de entrada.txt directamente en input ----------------
+		
+		try {
+		    if (archivoCodigo.exists()) {
+		        BufferedReader bufferedReader = new BufferedReader(new FileReader(archivoCodigo));
+		        String linea;
+		        while ((linea = bufferedReader.readLine()) != null) {
+		            inputTextArea.append(linea + "\n");
+		        }
+		        bufferedReader.close();
+		    } else {
+		        JOptionPane.showMessageDialog(null, "No se encontró el archivo por defecto.", "Archivo no encontrado", JOptionPane.WARNING_MESSAGE);
+		    }
+		} catch (Exception error) {
+		    JOptionPane.showMessageDialog(null, "Error al abrir el archivo por defecto.", "Error", JOptionPane.ERROR_MESSAGE);
+		    error.printStackTrace();
+		}
+		
+		// ------------------ Carga de ts.txt directamente -------------------------
 		
 	}
 }

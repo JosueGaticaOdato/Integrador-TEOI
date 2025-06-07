@@ -12,16 +12,16 @@ import nodos.NodoPrograma;
 
 public class app {
 
-	/*public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 		try {
 			Vista vista = new Vista();
 			vista.frame.setVisible(true);
 		}catch (Exception e) {
 			System.out.println("Hubo un problema en la compilacion:" + e);
 		}
-	}*/
+	}
 	
-	public static void guardarTablaDeSimbolos(ArrayList<SymbolTableEntry> ts, String path) {
+	/*public static void guardarTablaDeSimbolos(ArrayList<SymbolTableEntry> ts, String path) {
 	    try {
 	        File file = new File(path);
 	        file.createNewFile();
@@ -80,5 +80,5 @@ public class app {
         }
     String cmd = "C:\\Program Files (x86)\\Graphviz2.34\\bin\\dot -Tpng arbolito.dot -o arbolito.png";
     Runtime.getRuntime().exec(cmd);
-    }
+    }*/
 }

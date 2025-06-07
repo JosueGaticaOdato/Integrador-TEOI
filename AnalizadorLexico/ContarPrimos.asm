@@ -6,7 +6,12 @@ include number.asm
 
 ; vars from symbol table and aux vars
 .DATA
+a1  ?
+p1  ?
+p2  ?
+p3  ?
 _numero 2 db "numero 2$"
+b1  ?
 
 ; program instructions
 .CODE
