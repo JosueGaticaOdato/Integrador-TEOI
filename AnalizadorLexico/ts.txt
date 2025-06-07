@@ -1,2 +1,11 @@
 NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
-_Estoy utilizando         | CONST_STR       | -          | Estoy utilizando          |16   
+a1                        | ID              | INTEGER    | -                         |-    
+b1                        | ID              | FLOAT      | -                         |-    
+p1                        | ID              | INTEGER    | -                         |-    
+p2                        | ID              | FLOAT      | -                         |-    
+p3                        | ID              | FLOAT      | -                         |-    
+i                         | ID              |            | -                         |-    
+_1                        | CONST_INTEGER   | -          | 1                         |-    
+_2                        | CONST_INTEGER   | -          | 2                         |-    
+_i es 2                   | CONST_STR       | -          | i es 2                    |6    
+_i es 1                   | CONST_STR       | -          | i es 1                    |6    

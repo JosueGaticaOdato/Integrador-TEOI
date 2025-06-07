@@ -1,6 +1,28 @@
 graph G {nodo_programa [label="Programa"]
-nodo_1077254329 [label="WRITE"]
-nodo_programa -- nodo_1077254329
-nodo_440038503 [label="'Estoy utilizando'"]
-nodo_1077254329 -- nodo_440038503
+nodo_1399362170 [label=":="]
+nodo_programa -- nodo_1399362170
+nodo_2131959347 [label="ID: i"]
+nodo_1399362170 -- nodo_2131959347
+nodo_1066666035 [label="CTE: 1"]
+nodo_1399362170 -- nodo_1066666035
+nodo_1994964382 [label="IF"]
+nodo_programa -- nodo_1994964382
+nodo_41411946 [label="=="]
+nodo_1994964382 -- nodo_41411946
+nodo_1710391697 [label="ID: i"]
+nodo_41411946 -- nodo_1710391697
+nodo_2050541708 [label="CTE: 2"]
+nodo_41411946 -- nodo_2050541708
+nodo_1234144792 [label="Then"]
+nodo_1994964382 -- nodo_1234144792
+nodo_1953398518 [label="WRITE"]
+nodo_1234144792 -- nodo_1953398518
+nodo_90277859 [label="'i es 2'"]
+nodo_1953398518 -- nodo_90277859
+nodo_966869867 [label="Else"]
+nodo_1994964382 -- nodo_966869867
+nodo_216790281 [label="WRITE"]
+nodo_966869867 -- nodo_216790281
+nodo_192263084 [label="'i es 1'"]
+nodo_216790281 -- nodo_192263084
 }

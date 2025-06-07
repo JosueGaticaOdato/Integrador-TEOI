@@ -6,6 +6,15 @@ DECLARE.SECTION
 ENDDECLARE.SECTION
 
 PROGRAM.SECTION
+
+i::=1
+if (i == 2) then
+  WRITE 'i es 2'
+  else
+  WRITE 'i es 1'
+  endif
+
+
 i::=1
 msg::='numero 2'
 while(i < 5){

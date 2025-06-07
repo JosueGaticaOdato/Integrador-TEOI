@@ -1,5 +1,13 @@
+DECLARE.SECTION
+[a1, b1] := [FLOAT, INTEGER]
+[p1, p2, p3] := [FLOAT,FLOAT,INTEGER]
+ENDDECLARE.SECTION
+
 PROGRAM.SECTION
-
-WRITE 'Estoy utilizando'
-
+i::=1
+if (i == 2) then
+  WRITE 'i es 2'
+ else
+  WRITE 'i es 1'
+ endif
 ENDPROGRAM.SECTION
