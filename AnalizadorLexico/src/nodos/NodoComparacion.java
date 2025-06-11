@@ -3,8 +3,8 @@ package nodos;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class NodoComparacion extends NodoExpresionBooleana {
-private final NodoExpresion  izquierda;
-private final NodoExpresion  derecha;
+	private final NodoExpresion  izquierda;
+	private final NodoExpresion  derecha;
 
     public NodoComparacion (String nombre,NodoExpresion izquierda, NodoExpresion derecha) {
         super(nombre);

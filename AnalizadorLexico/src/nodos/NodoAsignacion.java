@@ -7,7 +7,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import app.SymbolTableEntry;
 
 public class NodoAsignacion extends NodoSentencia {
-    private final NodoIdentificador identificador;
+
+	private final NodoIdentificador identificador;
     private final NodoExpresion expresion;
 
     public NodoAsignacion(NodoIdentificador identificador, NodoExpresion expresion) {

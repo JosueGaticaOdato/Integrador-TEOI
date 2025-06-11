@@ -28,6 +28,13 @@ MOV ES,EAX
 fld _1
 fstp i
 
+FLD i
+FLD _2
+FCOM
+FSTSW AX
+SAHF
+JNE else_part0
+
 then_part0:
 displayString _i_es_2
 newLine

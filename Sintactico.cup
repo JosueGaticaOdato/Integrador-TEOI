@@ -264,7 +264,9 @@ condicion ::= comparacion:c1 OP_OR comparacion:c2 {:
 
 comparacion ::= PARENTESIS_ABRE  expresion:e1 comparador:c expresion:e2 PARENTESIS_CIERRA {:
     reglas.add("Regla N°42: comparacion -> PARENTESIS_ABRE  expresion == expresion PARENTESIS_CIERRA "); 
-    RESULT = new NodoComparacion((String) c, e1, e2); 
+    //RESULT = new NodoComparacion((String) c, e1, e2);
+    System.out.println("e1 c e2");
+    RESULT = new NodoComparacionFactory().from((String) c, (NodoExpresion) e1, (NodoExpresion) e2);
     System.out.println("E1 c E2");
     :};
 comparacion ::= OP_NOT comparacion:c  {:

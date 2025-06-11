@@ -5,32 +5,12 @@
 
 package app;
 
+import assembler.ParserHelper;
+import nodos.*;
+import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import assembler.ParserHelper;
-import java_cup.runtime.Symbol;
-import nodos.NodoAnd;
-import nodos.NodoAsignacion;
-import nodos.NodoCiclo;
-import nodos.NodoComparacion;
-import nodos.NodoConstanteFloat;
-import nodos.NodoConstanteInteger;
-import nodos.NodoConstanteString;
-import nodos.NodoContarPrimos;
-import nodos.NodoDivision;
-import nodos.NodoExpresion;
-import nodos.NodoExpresionBooleana;
-import nodos.NodoIdentificador;
-import nodos.NodoIf;
-import nodos.NodoMultiplicacion;
-import nodos.NodoNot;
-import nodos.NodoOr;
-import nodos.NodoPrograma;
-import nodos.NodoResta;
-import nodos.NodoSentencia;
-import nodos.NodoSuma;
-import nodos.NodoWrite;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -1019,7 +999,9 @@ class CUP$parser$actions {
 		NodoExpresion e2 = (NodoExpresion)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		
     reglas.add("Regla N°42: comparacion -> PARENTESIS_ABRE  expresion == expresion PARENTESIS_CIERRA "); 
-    RESULT = new NodoComparacion((String) c, e1, e2); 
+    //RESULT = new NodoComparacion((String) c, e1, e2);
+    System.out.println("e1 c e2");
+    RESULT = new NodoComparacionFactory().from((String) c, (NodoExpresion) e1, (NodoExpresion) e2);
     System.out.println("E1 c E2");
     
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comparacion",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
