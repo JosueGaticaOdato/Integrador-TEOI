@@ -14,6 +14,11 @@ public class NodoConstanteInteger extends NodoExpresion {
     public String getDescripcionNodo() {
         return "CTE: " + Integer.toString(valor);
     }
+
+    @Override
+    public String getValor() {
+        return String.valueOf(valor);
+    }
     
     @Override
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {

@@ -20,7 +20,7 @@ public class NodoWrite extends NodoSentencia {
             valor.graficar(miId);
     }
 
-    @Override
+    /*@Override
     public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable,
         AtomicInteger auxCount) {
         String assembled = valor.getValor();
@@ -38,41 +38,36 @@ public class NodoWrite extends NodoSentencia {
             .append("newLine")
             .append("\n");
         return "";
+    }*/
+    
+    @Override
+    public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable,
+        AtomicInteger auxCount) {
+
+        asm.append("\n");
+
+        if (valor instanceof NodoConstanteString) {
+            String assembled = valor.getValor();
+            String sanitized = assembled.replaceAll("[^a-zA-Z0-9_]", "_");
+            asm.append("displayString ").append("_").append(sanitized).append("\n");
+        } else if (valor instanceof NodoConstanteInteger) {
+            String assembled = valor.getValor();
+            asm.append("displayFloat ").append("_").append(assembled).append(", 2\n");
+        } else if (valor instanceof NodoIdentificador) {
+            String assembled = valor.getValor();
+            SymbolTableEntry symbol = symbolTable.get(assembled);
+            System.out.println(symbol);
+            if (symbol.getTipo().equals("STRING")) {
+            	asm.append("displayString ").append(assembled).append("\n");
+            } else {
+                // por si es temporal o una var auxiliar generada
+                asm.append("displayFloat ").append(assembled).append(", 2\n");
+            }
+        }
+
+        asm.append("newLine\n");
+        return "";
     }
 
-	/*@Override
-	public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable,
-			AtomicInteger auxCount) {
-
-	    if (valor instanceof NodoConstanteString) {
-	    	NodoConstanteString nodoStr = (NodoConstanteString) valor;
-	        String texto = nodoStr.getDescripcionNodo(); // "hola", por ejemplo
-	
-	        // Quitar comillas si las tiene
-	        if (texto.startsWith("\"") && texto.endsWith("\"")) {
-	            texto = texto.substring(1, texto.length() - 1);
-	        }
-
-	        String nombreStr = "_msg" + auxCount.getAndIncrement();
-
-	        // Definir el string en .DATA (sin comillas adicionales)
-	        asm.insert(0, nombreStr + " db " + "\"" + texto + "\", 0\n");
-
-	        // Imprimir
-	        asm.append("displayString ").append(nombreStr).append("\n");
-	        asm.append("newLine\n");
-
-	        return "";
-	    }
-
-	    // Otro tipo de expresión
-	    String assembled = valor.assemble(asm, auxCount);
-	    asm.append("displayFloat ").append(assembled).append(", 2\n");
-	    asm.append("newLine\n");
-
-	    return "";
-    }*/
-
-    
     
 }

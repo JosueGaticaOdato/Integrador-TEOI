@@ -68,6 +68,10 @@ public class SymbolTableEntry {
 		return this.longitud;
 	}
 	
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
+	}
+	
 	public String getEntry() {
 		return String.format("%-25s | %-15s | %-10s | %-25s |%-5s", nombre, token, tipo, valor, longitud);
 	}

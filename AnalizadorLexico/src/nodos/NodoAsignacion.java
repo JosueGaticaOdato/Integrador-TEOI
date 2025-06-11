@@ -30,11 +30,16 @@ public class NodoAsignacion extends NodoSentencia {
         String expResult = expresion.assemble(asm, auxCount);
         String idResult = identificador.assemble(asm, auxCount);
         SymbolTableEntry entry = symbolTable.get(idResult);
+        if (expresion instanceof NodoConstanteString) {
+            entry.setLongitud(Integer.toString(((NodoConstanteString) expresion).getValor().length()));
+        }
+        System.out.println(entry.getLongitud());
         asm.append("\n");
         if (entry != null && Objects.equals(entry.getTipo(), "STRING")) {
             asm.append("mov edi, offset ").append(idResult).append("\n");
-            asm.append("mov esi, offset ").append(expResult).append("\n");
-            asm.append("mov ecx, ").append(symbolTable.get(expResult).getLongitud() + 1).append("\n");
+            asm.append("mov esi, offset ").append(expResult.replace("'","")).append("\n");
+            //asm.append("mov ecx, ").append(symbolTable.get(expResult).getLongitud() + 1).append("\n");
+            asm.append("mov ecx, ").append(entry.getLongitud() + 1).append("\n");
             asm.append("cld").append("\n");
             asm.append("rep movsb").append("\n");
         }

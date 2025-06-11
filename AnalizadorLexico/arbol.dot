@@ -1,28 +1,46 @@
 graph G {nodo_programa [label="Programa"]
-nodo_846485404 [label=":="]
-nodo_programa -- nodo_846485404
-nodo_41411946 [label="ID: i"]
-nodo_846485404 -- nodo_41411946
-nodo_1710391697 [label="CTE: 1"]
-nodo_846485404 -- nodo_1710391697
-nodo_2050541708 [label="IF"]
-nodo_programa -- nodo_2050541708
-nodo_1234144792 [label="!="]
-nodo_2050541708 -- nodo_1234144792
-nodo_1953398518 [label="ID: i"]
-nodo_1234144792 -- nodo_1953398518
-nodo_90277859 [label="CTE: 2"]
-nodo_1234144792 -- nodo_90277859
-nodo_966869867 [label="Then"]
-nodo_2050541708 -- nodo_966869867
-nodo_216790281 [label="WRITE"]
-nodo_966869867 -- nodo_216790281
-nodo_192263084 [label="'i es 2'"]
-nodo_216790281 -- nodo_192263084
-nodo_44196798 [label="Else"]
-nodo_2050541708 -- nodo_44196798
-nodo_824951450 [label="WRITE"]
-nodo_44196798 -- nodo_824951450
-nodo_1656437259 [label="'i es 1'"]
-nodo_824951450 -- nodo_1656437259
+nodo_824951450 [label=":="]
+nodo_programa -- nodo_824951450
+nodo_1803295957 [label="ID: i"]
+nodo_824951450 -- nodo_1803295957
+nodo_200810458 [label="CTE: 1"]
+nodo_824951450 -- nodo_200810458
+nodo_1858424890 [label="WHILE"]
+nodo_programa -- nodo_1858424890
+nodo_1714331644 [label="<"]
+nodo_1858424890 -- nodo_1714331644
+nodo_1841278296 [label="ID: i"]
+nodo_1714331644 -- nodo_1841278296
+nodo_653425146 [label="CTE: 5"]
+nodo_1714331644 -- nodo_653425146
+nodo_1651681694 [label="Cuerpo"]
+nodo_1858424890 -- nodo_1651681694
+nodo_1882262355 [label="WRITE"]
+nodo_1651681694 -- nodo_1882262355
+nodo_1626647904 [label="ID: i"]
+nodo_1882262355 -- nodo_1626647904
+nodo_1442587949 [label="IF"]
+nodo_1651681694 -- nodo_1442587949
+nodo_573921365 [label="!="]
+nodo_1442587949 -- nodo_573921365
+nodo_1512482003 [label="ID: i"]
+nodo_573921365 -- nodo_1512482003
+nodo_536649050 [label="CTE: 2"]
+nodo_573921365 -- nodo_536649050
+nodo_723322565 [label="Then"]
+nodo_1442587949 -- nodo_723322565
+nodo_593626115 [label="WRITE"]
+nodo_723322565 -- nodo_593626115
+nodo_1275931776 [label="'i es 2'"]
+nodo_593626115 -- nodo_1275931776
+nodo_937455126 [label=":="]
+nodo_1651681694 -- nodo_937455126
+nodo_1946709249 [label="ID: i"]
+nodo_937455126 -- nodo_1946709249
+nodo_1207512479 [label="+"]
+nodo_937455126 -- nodo_1207512479
+nodo_1647665356 [label="ID: i"]
+nodo_1207512479 -- nodo_1647665356
+nodo_1452356162 [label="CTE: 1"]
+nodo_1207512479 -- nodo_1452356162
 }

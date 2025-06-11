@@ -1,13 +1,17 @@
 DECLARE.SECTION
-[a1, b1] := [FLOAT, INTEGER]
-[p1, p2, p3] := [FLOAT,FLOAT,INTEGER]
+[i] := [INTEGER]
 ENDDECLARE.SECTION
 
 PROGRAM.SECTION
+
 i::=1
-if (i == 2) then
-  WRITE 'i es 2'
- else
-  WRITE 'i es 1'
- endif
+while(i < 5){
+   WRITE i
+   if(i == 2) then
+     WRITE 'i es 2'
+   endif
+   i::=i+1
+   
+}
+
 ENDPROGRAM.SECTION

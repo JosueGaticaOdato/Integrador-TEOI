@@ -16,6 +16,11 @@ public class NodoIdentificador extends NodoExpresion {
     }
     
     @Override
+    public String getValor() {
+        return this.identificador; // o como estés guardando el id
+    }
+    
+    @Override
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
     	return identificador;
     }
