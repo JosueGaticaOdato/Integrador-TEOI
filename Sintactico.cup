@@ -63,7 +63,7 @@ parser code {:
     }
 
     private void registrarConstante(String valor) {
-        String nombre = "_" + ((int) valor);
+        String nombre = "_" + (valor);
         if (!yaExiste(nombre)) {
             SymbolTableEntry nueva = new SymbolTableEntry(valor, "CONST_INTEGER");
             nueva.setValor(valor);
@@ -383,7 +383,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
         ));
 
         // while (i <= expresion)
-        NodoComparacion condicionWhile = new NodoComparacion(
+        NodoComparacion condicionWhile = new NodoComparacionFactory().from(
             "<=",
             new NodoIdentificador("i"),
             expresion.clonar()
@@ -415,7 +415,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
         cuerpoWhile.add(resultado);
 
         // if (resultado == 0)
-        NodoComparacion condicionIf = new NodoComparacion(
+        NodoComparacion condicionIf = new NodoComparacionFactory().from(
             "==",
             new NodoIdentificador("resultado"),
             new NodoConstanteInteger(0)
@@ -446,7 +446,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
         instrucciones.add(new NodoCiclo(condicionWhile, cuerpoWhile));
 
         // if (j == 2) k = k + 1;
-        NodoComparacion condicionJ = new NodoComparacion(
+        NodoComparacion condicionJ = new NodoComparacionFactory().from(
             "==",
             new NodoIdentificador("j"),
             new NodoConstanteInteger(2)
@@ -471,9 +471,9 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
     registrarVariable("k");
     registrarVariable("resultado");
 
-    registrarConstante(0);
-    registrarConstante(1);
-    registrarConstante(2);
+    registrarConstante("0");
+    registrarConstante("1");
+    registrarConstante("2");
 
     RESULT = new NodoContarPrimos(instrucciones, new NodoIdentificador("k"));
 

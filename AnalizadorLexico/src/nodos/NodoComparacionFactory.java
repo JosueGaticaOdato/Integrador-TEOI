@@ -3,6 +3,7 @@ package nodos;
 public class NodoComparacionFactory {
 
 	  public NodoComparacion from(String op, NodoExpresion left, NodoExpresion right) {
+	    System.out.println(op);
 	    switch (op) {
 	      case "==": return new NodoIgual(left, right);
 	      case "<": return new NodoMenor(left, right);

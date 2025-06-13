@@ -12,6 +12,7 @@ c dd ?
 _2 dd 2.0
 resultado dd ?
 x dd ?
+_uwu db "uwu$"
 i dd ?
 j dd ?
 k dd ?
@@ -44,6 +45,13 @@ fld _0
 fstp j
 
 inicio_while0:
+FLD i
+FLD _11
+FXCH
+FCOMP 
+FSTSW ax
+SAHF
+JA end_while0
 sentencias_while0:
 
 FLD _11
@@ -64,6 +72,13 @@ FSTP _@aux3
 
 fld _@aux3
 fstp resultado
+
+FLD resultado
+FLD _0
+FCOM
+FSTSW AX
+SAHF
+JNE else_part4
 
 then_part4:
 FLD j
@@ -89,6 +104,13 @@ fstp i
 JMP inicio_while0
 end_while0:
 
+FLD j
+FLD _2
+FXCH
+FCOMP 
+FSTSW ax
+SAHF
+JA else_part7
 then_part7:
 FLD k
 FLD _1
@@ -106,6 +128,12 @@ end_if7:
 
 fld k
 fstp x
+
+displayFloat x, 2
+newLine
+
+displayString _uwu
+newLine
 
 ; end of execution
 MOV EAX, 4C00h

@@ -5,33 +5,12 @@
 
 package app;
 
+import assembler.ParserHelper;
+import nodos.*;
+import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import assembler.ParserHelper;
-import java_cup.runtime.Symbol;
-import nodos.NodoAnd;
-import nodos.NodoAsignacion;
-import nodos.NodoCiclo;
-import nodos.NodoComparacion;
-import nodos.NodoComparacionFactory;
-import nodos.NodoConstanteFloat;
-import nodos.NodoConstanteInteger;
-import nodos.NodoConstanteString;
-import nodos.NodoContarPrimos;
-import nodos.NodoDivision;
-import nodos.NodoExpresion;
-import nodos.NodoExpresionBooleana;
-import nodos.NodoIdentificador;
-import nodos.NodoIf;
-import nodos.NodoMultiplicacion;
-import nodos.NodoNot;
-import nodos.NodoOr;
-import nodos.NodoPrograma;
-import nodos.NodoResta;
-import nodos.NodoSentencia;
-import nodos.NodoSuma;
-import nodos.NodoWrite;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -1278,7 +1257,7 @@ class CUP$parser$actions {
         ));
 
         // while (i <= expresion)
-        NodoComparacion condicionWhile = new NodoComparacion(
+        NodoComparacion condicionWhile = new NodoComparacionFactory().from(
             "<=",
             new NodoIdentificador("i"),
             expresion.clonar()
@@ -1310,7 +1289,7 @@ class CUP$parser$actions {
         cuerpoWhile.add(resultado);
 
         // if (resultado == 0)
-        NodoComparacion condicionIf = new NodoComparacion(
+        NodoComparacion condicionIf = new NodoComparacionFactory().from(
             "==",
             new NodoIdentificador("resultado"),
             new NodoConstanteInteger(0)
@@ -1341,7 +1320,7 @@ class CUP$parser$actions {
         instrucciones.add(new NodoCiclo(condicionWhile, cuerpoWhile));
 
         // if (j == 2) k = k + 1;
-        NodoComparacion condicionJ = new NodoComparacion(
+        NodoComparacion condicionJ = new NodoComparacionFactory().from(
             "==",
             new NodoIdentificador("j"),
             new NodoConstanteInteger(2)
@@ -1366,9 +1345,9 @@ class CUP$parser$actions {
     registrarVariable("k");
     registrarVariable("resultado");
 
-    registrarConstante(String.valueOf(0));
-    registrarConstante(String.valueOf(1));
-    registrarConstante(String.valueOf(2));
+    registrarConstante("0");
+    registrarConstante("1");
+    registrarConstante("2");
 
     RESULT = new NodoContarPrimos(instrucciones, new NodoIdentificador("k"));
 

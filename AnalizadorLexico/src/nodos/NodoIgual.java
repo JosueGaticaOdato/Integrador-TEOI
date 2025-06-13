@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class NodoIgual extends NodoComparacion {
 
 	  public NodoIgual(NodoExpresion left, NodoExpresion right) {
-	    super("!=", left, right);
+	    super("==", left, right);
 	    System.out.println("Nodo distinto");
 	  }
 
