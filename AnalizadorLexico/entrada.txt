@@ -6,6 +6,5 @@ PROGRAM.SECTION
 
 x ::= ContarPrimos([11])
 WRITE x
-WRITE 'uwu'
 
 ENDPROGRAM.SECTION

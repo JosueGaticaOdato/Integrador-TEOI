@@ -5,12 +5,33 @@
 
 package app;
 
-import assembler.ParserHelper;
-import nodos.*;
-import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.List;
-import java_cup.runtime.XMLElement;
+
+import assembler.ParserHelper;
+import java_cup.runtime.Symbol;
+import nodos.NodoAnd;
+import nodos.NodoAsignacion;
+import nodos.NodoCiclo;
+import nodos.NodoComparacion;
+import nodos.NodoComparacionFactory;
+import nodos.NodoConstanteFloat;
+import nodos.NodoConstanteInteger;
+import nodos.NodoConstanteString;
+import nodos.NodoContarPrimos;
+import nodos.NodoDivision;
+import nodos.NodoExpresion;
+import nodos.NodoExpresionBooleana;
+import nodos.NodoIdentificador;
+import nodos.NodoIf;
+import nodos.NodoMultiplicacion;
+import nodos.NodoNot;
+import nodos.NodoOr;
+import nodos.NodoPrograma;
+import nodos.NodoResta;
+import nodos.NodoSentencia;
+import nodos.NodoSuma;
+import nodos.NodoWrite;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -330,10 +351,10 @@ public class parser extends java_cup.runtime.lr_parser {
       return false;
     }
 
-    private void registrarVariable(String nombre) {
+    private void registrarVariable(String nombre, String tipo) {
         if (!yaExiste(nombre)) {
             SymbolTableEntry nueva = new SymbolTableEntry(nombre, "ID");
-            nueva.setTipo("INTEGER");
+            nueva.setTipo(tipo);
             ts.add(nueva);
         }
     }
@@ -1321,7 +1342,7 @@ class CUP$parser$actions {
 
         // if (j == 2) k = k + 1;
         NodoComparacion condicionJ = new NodoComparacionFactory().from(
-            "==",
+            "<=",
             new NodoIdentificador("j"),
             new NodoConstanteInteger(2)
         );
@@ -1339,11 +1360,11 @@ class CUP$parser$actions {
         instrucciones.add(new NodoIf(condicionJ, cuerpoIfFinal));
     }
 
-    registrarVariable("i");
-    registrarVariable("j");
-    registrarVariable("c");
-    registrarVariable("k");
-    registrarVariable("resultado");
+    registrarVariable("i","FLOAT");
+    registrarVariable("j","FLOAT");
+    registrarVariable("c","INTEGER");
+    registrarVariable("k","FLOAT");
+    registrarVariable("resultado","FLOAT");
 
     registrarConstante("0");
     registrarConstante("1");

@@ -1,12 +1,11 @@
 NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
 x                         | ID              | INTEGER    | -                         |-    
 _11                       | CONST_INTEGER   | -          | 11                        |-    
-i                         | ID              | INTEGER    | -                         |-    
-j                         | ID              | INTEGER    | -                         |-    
+i                         | ID              | FLOAT      | -                         |-    
+j                         | ID              | FLOAT      | -                         |-    
 c                         | ID              | INTEGER    | -                         |-    
-k                         | ID              | INTEGER    | -                         |-    
-resultado                 | ID              | INTEGER    | -                         |-    
+k                         | ID              | FLOAT      | -                         |-    
+resultado                 | ID              | FLOAT      | -                         |-    
 _0                        | CONST_INTEGER   | -          | 0                         |-    
 _1                        | CONST_INTEGER   | -          | 1                         |-    
 _2                        | CONST_INTEGER   | -          | 2                         |-    
-_uwu                      | CONST_STR       | -          | uwu                       |3    

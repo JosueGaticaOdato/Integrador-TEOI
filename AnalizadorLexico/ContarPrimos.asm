@@ -12,7 +12,6 @@ c dd ?
 _2 dd 2.0
 resultado dd ?
 x dd ?
-_uwu db "uwu$"
 i dd ?
 j dd ?
 k dd ?
@@ -59,7 +58,7 @@ FDIV i
 FSTP _@aux1
 
 fld _@aux1
-fstp c
+fistp c
 FLD c
 FLD i
 FMUL 
@@ -127,12 +126,9 @@ end_if7:
 ; === FIN ContarPrimos ===
 
 fld k
-fstp x
+fistp x
 
-displayFloat x, 2
-newLine
-
-displayString _uwu
+displayInteger x
 newLine
 
 ; end of execution

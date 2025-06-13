@@ -59,6 +59,10 @@ public class NodoWrite extends NodoSentencia {
             System.out.println(symbol);
             if (symbol.getTipo().equals("STRING")) {
             	asm.append("displayString ").append(assembled).append("\n");
+            } 
+            else if (symbol.getTipo().equals("INTEGER")) {
+                // por si es temporal o una var auxiliar generada
+                asm.append("displayInteger ").append(assembled).append("\n");
             } else {
                 // por si es temporal o una var auxiliar generada
                 asm.append("displayFloat ").append(assembled).append(", 2\n");

@@ -54,10 +54,10 @@ parser code {:
       return false;
     }
 
-    private void registrarVariable(String nombre) {
+    private void registrarVariable(String nombre, String tipo) {
         if (!yaExiste(nombre)) {
             SymbolTableEntry nueva = new SymbolTableEntry(nombre, "ID");
-            nueva.setTipo("INTEGER");
+            nueva.setTipo(tipo);
             ts.add(nueva);
         }
     }
@@ -447,7 +447,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
 
         // if (j == 2) k = k + 1;
         NodoComparacion condicionJ = new NodoComparacionFactory().from(
-            "==",
+            "<=",
             new NodoIdentificador("j"),
             new NodoConstanteInteger(2)
         );
@@ -465,11 +465,11 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
         instrucciones.add(new NodoIf(condicionJ, cuerpoIfFinal));
     }
 
-    registrarVariable("i");
-    registrarVariable("j");
-    registrarVariable("c");
-    registrarVariable("k");
-    registrarVariable("resultado");
+    registrarVariable("i","FLOAT");
+    registrarVariable("j","FLOAT");
+    registrarVariable("c","INTEGER");
+    registrarVariable("k","FLOAT");
+    registrarVariable("resultado","FLOAT");
 
     registrarConstante("0");
     registrarConstante("1");
