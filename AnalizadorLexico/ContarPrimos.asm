@@ -6,7 +6,15 @@ include number.asm
 
 ; vars from symbol table and aux vars
 .DATA
+_0 dd 0.0
+_1 dd 1.0
+c dd ?
+_2 dd 2.0
+resultado dd ?
 x dd ?
+i dd ?
+j dd ?
+k dd ?
 _11 dd 11.0
 _@aux0 dd ?
 _@aux1 dd ?

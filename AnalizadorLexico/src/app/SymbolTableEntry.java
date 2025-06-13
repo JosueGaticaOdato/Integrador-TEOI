@@ -72,8 +72,17 @@ public class SymbolTableEntry {
 		this.longitud = longitud;
 	}
 	
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+	
 	public String getEntry() {
 		return String.format("%-25s | %-15s | %-10s | %-25s |%-5s", nombre, token, tipo, valor, longitud);
+	}
+
+	public void setTipo(String tipo) {
+		// TODO Auto-generated method stub
+		this.tipo = tipo;
 	}
 	
 }

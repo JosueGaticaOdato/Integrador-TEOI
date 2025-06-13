@@ -342,6 +342,32 @@ public class parser extends java_cup.runtime.lr_parser {
         }
     }
 
+    public boolean yaExiste(String nombre) {
+      for (SymbolTableEntry entry : ts) {
+          if (entry.getNombre().equals(nombre)) {
+              return true;
+          }
+      }
+      return false;
+    }
+
+    private void registrarVariable(String nombre) {
+        if (!yaExiste(nombre)) {
+            SymbolTableEntry nueva = new SymbolTableEntry(nombre, "ID");
+            nueva.setTipo("INTEGER");
+            ts.add(nueva);
+        }
+    }
+
+    private void registrarConstante(String valor) {
+        String nombre = "_" + (valor);
+        if (!yaExiste(nombre)) {
+            SymbolTableEntry nueva = new SymbolTableEntry(valor, "CONST_INTEGER");
+            nueva.setValor(valor);
+            ts.add(nueva);
+        }
+    }
+
 
 /** Cup generated class to encapsulate user supplied action code.*/
 @SuppressWarnings({"rawtypes", "unchecked", "unused"})
@@ -1333,6 +1359,16 @@ class CUP$parser$actions {
 
         instrucciones.add(new NodoIf(condicionJ, cuerpoIfFinal));
     }
+
+    registrarVariable("i");
+    registrarVariable("j");
+    registrarVariable("c");
+    registrarVariable("k");
+    registrarVariable("resultado");
+
+    registrarConstante(String.valueOf(0));
+    registrarConstante(String.valueOf(1));
+    registrarConstante(String.valueOf(2));
 
     RESULT = new NodoContarPrimos(instrucciones, new NodoIdentificador("k"));
 

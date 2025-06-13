@@ -51,4 +51,21 @@ public class NodoContarPrimos extends NodoExpresion {
     	System.out.println("assemble");
         throw new UnsupportedOperationException("Usá el assemble con symbolTable para ContarPrimos");
     }
+    
+    void registrarVariable(String nombre, HashMap<String, SymbolTableEntry> symbolTable) {
+        if (!symbolTable.containsKey(nombre)) {
+            SymbolTableEntry entry = new SymbolTableEntry(nombre, "FLOAT");
+            entry.setLongitud("0");
+            symbolTable.put(nombre, entry);
+        }
+    }
+
+    void registrarConstante(String nombre, double valor, HashMap<String, SymbolTableEntry> symbolTable) {
+        String key = "_" + ((int) valor);
+        if (!symbolTable.containsKey(key)) {
+            SymbolTableEntry entry = new SymbolTableEntry(key, "CONST");
+            entry.setValor(String.valueOf(valor));
+            symbolTable.put(key, entry);
+        }
+    }
 }
