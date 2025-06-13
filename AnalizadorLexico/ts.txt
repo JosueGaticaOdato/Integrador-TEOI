@@ -1,6 +1,3 @@
 NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
-i                         | ID              | INTEGER    | -                         |-    
-_1                        | CONST_INTEGER   | -          | 1                         |-    
-_5                        | CONST_INTEGER   | -          | 5                         |-    
-_2                        | CONST_INTEGER   | -          | 2                         |-    
-_i es 2                   | CONST_STR       | -          | i es 2                    |6    
+x                         | ID              | INTEGER    | -                         |-    
+_11                       | CONST_INTEGER   | -          | 11                        |-    

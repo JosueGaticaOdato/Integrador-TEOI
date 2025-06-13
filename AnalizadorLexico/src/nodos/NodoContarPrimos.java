@@ -1,6 +1,10 @@
 package nodos;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import app.SymbolTableEntry;
 
 public class NodoContarPrimos extends NodoExpresion {
     private List<NodoSentencia> instrucciones;
@@ -29,6 +33,22 @@ public class NodoContarPrimos extends NodoExpresion {
     public NodoIdentificador getResultado() {
         return resultado;
     }
-
-    // más métodos si necesitás
+    
+    @Override
+    public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable, AtomicInteger auxCount) {
+    	asm.append("; === INICIO ContarPrimos ===\n");
+    	for (NodoSentencia instruccion : instrucciones) {
+    	    instruccion.assemble(asm, symbolTable, auxCount);
+    	}
+    	asm.append("; === FIN ContarPrimos ===\n");
+    	
+        return resultado.assemble(asm, auxCount); // Opcional: devuelve el nombre del resultado, por si lo querés usar
+    }
+    
+    @Override
+    public String assemble(StringBuilder asm, AtomicInteger auxCount) {
+        // Llamamos al otro método, suponiendo que tengas acceso a la symbolTable (pasala si podés)
+    	System.out.println("assemble");
+        throw new UnsupportedOperationException("Usá el assemble con symbolTable para ContarPrimos");
+    }
 }

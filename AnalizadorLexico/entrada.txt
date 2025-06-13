@@ -1,17 +1,9 @@
 DECLARE.SECTION
-[i] := [INTEGER]
+[x] := [INTEGER]
 ENDDECLARE.SECTION
 
 PROGRAM.SECTION
 
-i::=1
-while(i < 5){
-   WRITE i
-   if(i == 2) then
-     WRITE 'i es 2'
-   endif
-   i::=i+1
-   
-}
+x ::= ContarPrimos([11])
 
 ENDPROGRAM.SECTION

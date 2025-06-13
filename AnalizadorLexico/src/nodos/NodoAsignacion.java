@@ -27,13 +27,19 @@ public class NodoAsignacion extends NodoSentencia {
     
     @Override
     public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable, AtomicInteger auxCount) {
-        String expResult = expresion.assemble(asm, auxCount);
+        //String expResult = expresion.assemble(asm, auxCount);
+        String expResult;
+        if (expresion instanceof NodoContarPrimos) {
+            expResult = ((NodoContarPrimos) expresion).assemble(asm, symbolTable, auxCount);
+        } else {
+            expResult = expresion.assemble(asm, auxCount);
+        }
         String idResult = identificador.assemble(asm, auxCount);
         SymbolTableEntry entry = symbolTable.get(idResult);
         if (expresion instanceof NodoConstanteString) {
             entry.setLongitud(Integer.toString(((NodoConstanteString) expresion).getValor().length()));
         }
-        System.out.println(entry.getLongitud());
+        //System.out.println(entry.getLongitud());
         asm.append("\n");
         if (entry != null && Objects.equals(entry.getTipo(), "STRING")) {
             asm.append("mov edi, offset ").append(idResult).append("\n");
