@@ -6,25 +6,26 @@ include number.asm
 
 ; vars from symbol table and aux vars
 .DATA
-_13 dd 13.0
-_12 dd 12.0
-_15 dd 15.0
+a dd ?
+b dd ?
 _a db "a$"
-_14 dd 14.0
 c dd ?
-_17 dd 17.0
+d dd ?
 resultado dd ?
-_16 dd 16.0
-_19 dd 19.0
-_18 dd 18.0
 i dd ?
 j dd ?
 k dd ?
 _0 dd 0.0
+_11311 dd 11311.0
 _1 dd 1.0
 _2 dd 2.0
 x dd ?
+_7 dd 7.0
+_8 dd 8.0
+z dd ?
+_53 dd 53.0
 _11 dd 11.0
+_55 dd 55.0
 _@aux0 dd ?
 _@aux1 dd ?
 _@aux2 dd ?
@@ -97,15 +98,6 @@ _@aux68 dd ?
 _@aux69 dd ?
 _@aux70 dd ?
 _@aux71 dd ?
-_@aux72 dd ?
-_@aux73 dd ?
-_@aux74 dd ?
-_@aux75 dd ?
-_@aux76 dd ?
-_@aux77 dd ?
-_@aux78 dd ?
-_@aux79 dd ?
-_@aux80 dd ?
 
 ; program instructions
 .CODE
@@ -113,6 +105,22 @@ START:
 MOV EAX,@DATA
 MOV DS,EAX
 MOV ES,EAX
+
+fld _0
+frndint 
+fistp z
+
+fld _2
+frndint 
+fistp a
+
+fld _2
+frndint 
+fistp b
+
+fld _53
+frndint 
+fistp d
 ; === INICIO ContarPrimos ===
 
 fld _0
@@ -224,8 +232,13 @@ frndint
 fstp j
 
 inicio_while9:
+FLD b
+FLD _8
+FADD
+FSTP _@aux10
+
 FLD i
-FLD _12
+FLD _@aux10
 FXCH
 FCOMP 
 FSTSW ax
@@ -233,24 +246,34 @@ SAHF
 JA end_while9
 sentencias_while9:
 
-FLD _12
-FDIV i
-FSTP _@aux10
-
-fld _@aux10
-frndint 
-fstp c
-FLD c
-FLD i
-FMUL 
+FLD b
+FLD _8
+FADD
 FSTP _@aux11
 
-FLD _12
 FLD _@aux11
-FSUB
+FDIV i
 FSTP _@aux12
 
 fld _@aux12
+frndint 
+fstp c
+
+FLD b
+FLD _8
+FADD
+FSTP _@aux13
+FLD c
+FLD i
+FMUL 
+FSTP _@aux14
+
+FLD _@aux13
+FLD _@aux14
+FSUB
+FSTP _@aux15
+
+fld _@aux15
 frndint 
 fstp resultado
 
@@ -260,29 +283,29 @@ FXCH
 FCOMP
 FSTSW AX
 SAHF
-JNE else_part13
+JNE else_part16
 
-then_part13:
+then_part16:
 FLD j
 FLD _1
 FADD
-FSTP _@aux14
+FSTP _@aux17
 
-fld _@aux14
+fld _@aux17
 frndint 
 fstp j
 
-jmp end_if13
-else_part13:
+jmp end_if16
+else_part16:
 
-end_if13:
+end_if16:
 
 FLD i
 FLD _1
 FADD
-FSTP _@aux15
+FSTP _@aux18
 
-fld _@aux15
+fld _@aux18
 frndint 
 fstp i
 JMP inicio_while9
@@ -294,22 +317,22 @@ FXCH
 FCOMP
 FSTSW AX
 SAHF
-JNE else_part16
+JNE else_part19
 
-then_part16:
+then_part19:
 FLD k
 FLD _1
 FADD
-FSTP _@aux17
+FSTP _@aux20
 
-fld _@aux17
+fld _@aux20
 frndint 
 fstp k
 
-jmp end_if16
-else_part16:
+jmp end_if19
+else_part19:
 
-end_if16:
+end_if19:
 
 fld _1
 frndint 
@@ -319,73 +342,39 @@ fld _0
 frndint 
 fstp j
 
-inicio_while18:
+inicio_while21:
 FLD i
-FLD _13
+FLD _2
 FXCH
 FCOMP 
 FSTSW ax
 SAHF
-JA end_while18
-sentencias_while18:
+JA end_while21
+sentencias_while21:
 
-FLD _13
+FLD _2
 FDIV i
-FSTP _@aux19
+FSTP _@aux22
 
-fld _@aux19
+fld _@aux22
 frndint 
 fstp c
 FLD c
 FLD i
 FMUL 
-FSTP _@aux20
+FSTP _@aux23
 
-FLD _13
-FLD _@aux20
+FLD _2
+FLD _@aux23
 FSUB
-FSTP _@aux21
+FSTP _@aux24
 
-fld _@aux21
+fld _@aux24
 frndint 
 fstp resultado
 
 FLD resultado
 FLD _0
-FXCH
-FCOMP
-FSTSW AX
-SAHF
-JNE else_part22
-
-then_part22:
-FLD j
-FLD _1
-FADD
-FSTP _@aux23
-
-fld _@aux23
-frndint 
-fstp j
-
-jmp end_if22
-else_part22:
-
-end_if22:
-
-FLD i
-FLD _1
-FADD
-FSTP _@aux24
-
-fld _@aux24
-frndint 
-fstp i
-JMP inicio_while18
-end_while18:
-
-FLD j
-FLD _2
 FXCH
 FCOMP
 FSTSW AX
@@ -393,19 +382,53 @@ SAHF
 JNE else_part25
 
 then_part25:
-FLD k
+FLD j
 FLD _1
 FADD
 FSTP _@aux26
 
 fld _@aux26
 frndint 
-fstp k
+fstp j
 
 jmp end_if25
 else_part25:
 
 end_if25:
+
+FLD i
+FLD _1
+FADD
+FSTP _@aux27
+
+fld _@aux27
+frndint 
+fstp i
+JMP inicio_while21
+end_while21:
+
+FLD j
+FLD _2
+FXCH
+FCOMP
+FSTSW AX
+SAHF
+JNE else_part28
+
+then_part28:
+FLD k
+FLD _1
+FADD
+FSTP _@aux29
+
+fld _@aux29
+frndint 
+fstp k
+
+jmp end_if28
+else_part28:
+
+end_if28:
 
 fld _1
 frndint 
@@ -415,73 +438,39 @@ fld _0
 frndint 
 fstp j
 
-inicio_while27:
+inicio_while30:
 FLD i
-FLD _14
+FLD _55
 FXCH
 FCOMP 
 FSTSW ax
 SAHF
-JA end_while27
-sentencias_while27:
+JA end_while30
+sentencias_while30:
 
-FLD _14
+FLD _55
 FDIV i
-FSTP _@aux28
+FSTP _@aux31
 
-fld _@aux28
+fld _@aux31
 frndint 
 fstp c
 FLD c
 FLD i
 FMUL 
-FSTP _@aux29
+FSTP _@aux32
 
-FLD _14
-FLD _@aux29
+FLD _55
+FLD _@aux32
 FSUB
-FSTP _@aux30
+FSTP _@aux33
 
-fld _@aux30
+fld _@aux33
 frndint 
 fstp resultado
 
 FLD resultado
 FLD _0
-FXCH
-FCOMP
-FSTSW AX
-SAHF
-JNE else_part31
-
-then_part31:
-FLD j
-FLD _1
-FADD
-FSTP _@aux32
-
-fld _@aux32
-frndint 
-fstp j
-
-jmp end_if31
-else_part31:
-
-end_if31:
-
-FLD i
-FLD _1
-FADD
-FSTP _@aux33
-
-fld _@aux33
-frndint 
-fstp i
-JMP inicio_while27
-end_while27:
-
-FLD j
-FLD _2
 FXCH
 FCOMP
 FSTSW AX
@@ -489,92 +478,30 @@ SAHF
 JNE else_part34
 
 then_part34:
-FLD k
+FLD j
 FLD _1
 FADD
 FSTP _@aux35
 
 fld _@aux35
 frndint 
-fstp k
+fstp j
 
 jmp end_if34
 else_part34:
 
 end_if34:
 
-fld _1
-frndint 
-fstp i
-
-fld _0
-frndint 
-fstp j
-
-inicio_while36:
-FLD i
-FLD _15
-FXCH
-FCOMP 
-FSTSW ax
-SAHF
-JA end_while36
-sentencias_while36:
-
-FLD _15
-FDIV i
-FSTP _@aux37
-
-fld _@aux37
-frndint 
-fstp c
-FLD c
-FLD i
-FMUL 
-FSTP _@aux38
-
-FLD _15
-FLD _@aux38
-FSUB
-FSTP _@aux39
-
-fld _@aux39
-frndint 
-fstp resultado
-
-FLD resultado
-FLD _0
-FXCH
-FCOMP
-FSTSW AX
-SAHF
-JNE else_part40
-
-then_part40:
-FLD j
-FLD _1
-FADD
-FSTP _@aux41
-
-fld _@aux41
-frndint 
-fstp j
-
-jmp end_if40
-else_part40:
-
-end_if40:
-
 FLD i
 FLD _1
 FADD
-FSTP _@aux42
+FSTP _@aux36
 
-fld _@aux42
+fld _@aux36
 frndint 
 fstp i
-JMP inicio_while36
-end_while36:
+JMP inicio_while30
+end_while30:
 
 FLD j
 FLD _2
@@ -582,22 +509,22 @@ FXCH
 FCOMP
 FSTSW AX
 SAHF
-JNE else_part43
+JNE else_part37
 
-then_part43:
+then_part37:
 FLD k
 FLD _1
 FADD
-FSTP _@aux44
+FSTP _@aux38
 
-fld _@aux44
+fld _@aux38
 frndint 
 fstp k
 
-jmp end_if43
-else_part43:
+jmp end_if37
+else_part37:
 
-end_if43:
+end_if37:
 
 fld _1
 frndint 
@@ -607,29 +534,59 @@ fld _0
 frndint 
 fstp j
 
-inicio_while45:
+inicio_while39:
+FLD z
+FLD b
+FADD
+FSTP _@aux40
+
+FLD _@aux40
+FLD _7
+FADD
+FSTP _@aux41
+
 FLD i
-FLD _16
+FLD _@aux41
 FXCH
 FCOMP 
 FSTSW ax
 SAHF
-JA end_while45
-sentencias_while45:
+JA end_while39
+sentencias_while39:
 
-FLD _16
+FLD z
+FLD b
+FADD
+FSTP _@aux42
+
+FLD _@aux42
+FLD _7
+FADD
+FSTP _@aux43
+
+FLD _@aux43
 FDIV i
-FSTP _@aux46
+FSTP _@aux44
 
-fld _@aux46
+fld _@aux44
 frndint 
 fstp c
+
+FLD z
+FLD b
+FADD
+FSTP _@aux45
+
+FLD _@aux45
+FLD _7
+FADD
+FSTP _@aux46
 FLD c
 FLD i
 FMUL 
 FSTP _@aux47
 
-FLD _16
+FLD _@aux46
 FLD _@aux47
 FSUB
 FSTP _@aux48
@@ -669,8 +626,8 @@ FSTP _@aux51
 fld _@aux51
 frndint 
 fstp i
-JMP inicio_while45
-end_while45:
+JMP inicio_while39
+end_while39:
 
 FLD j
 FLD _2
@@ -705,7 +662,7 @@ fstp j
 
 inicio_while54:
 FLD i
-FLD _17
+FLD d
 FXCH
 FCOMP 
 FSTSW ax
@@ -713,7 +670,7 @@ SAHF
 JA end_while54
 sentencias_while54:
 
-FLD _17
+FLD d
 FDIV i
 FSTP _@aux55
 
@@ -725,7 +682,7 @@ FLD i
 FMUL 
 FSTP _@aux56
 
-FLD _17
+FLD d
 FLD _@aux56
 FSUB
 FSTP _@aux57
@@ -801,7 +758,7 @@ fstp j
 
 inicio_while63:
 FLD i
-FLD _18
+FLD _11311
 FXCH
 FCOMP 
 FSTSW ax
@@ -809,7 +766,7 @@ SAHF
 JA end_while63
 sentencias_while63:
 
-FLD _18
+FLD _11311
 FDIV i
 FSTP _@aux64
 
@@ -821,7 +778,7 @@ FLD i
 FMUL 
 FSTP _@aux65
 
-FLD _18
+FLD _11311
 FLD _@aux65
 FSUB
 FSTP _@aux66
@@ -886,102 +843,6 @@ jmp end_if70
 else_part70:
 
 end_if70:
-
-fld _1
-frndint 
-fstp i
-
-fld _0
-frndint 
-fstp j
-
-inicio_while72:
-FLD i
-FLD _19
-FXCH
-FCOMP 
-FSTSW ax
-SAHF
-JA end_while72
-sentencias_while72:
-
-FLD _19
-FDIV i
-FSTP _@aux73
-
-fld _@aux73
-frndint 
-fstp c
-FLD c
-FLD i
-FMUL 
-FSTP _@aux74
-
-FLD _19
-FLD _@aux74
-FSUB
-FSTP _@aux75
-
-fld _@aux75
-frndint 
-fstp resultado
-
-FLD resultado
-FLD _0
-FXCH
-FCOMP
-FSTSW AX
-SAHF
-JNE else_part76
-
-then_part76:
-FLD j
-FLD _1
-FADD
-FSTP _@aux77
-
-fld _@aux77
-frndint 
-fstp j
-
-jmp end_if76
-else_part76:
-
-end_if76:
-
-FLD i
-FLD _1
-FADD
-FSTP _@aux78
-
-fld _@aux78
-frndint 
-fstp i
-JMP inicio_while72
-end_while72:
-
-FLD j
-FLD _2
-FXCH
-FCOMP
-FSTSW AX
-SAHF
-JNE else_part79
-
-then_part79:
-FLD k
-FLD _1
-FADD
-FSTP _@aux80
-
-fld _@aux80
-frndint 
-fstp k
-
-jmp end_if79
-else_part79:
-
-end_if79:
 ; === FIN ContarPrimos ===
 
 fld k
