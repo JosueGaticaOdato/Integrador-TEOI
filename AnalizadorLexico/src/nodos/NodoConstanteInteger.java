@@ -1,6 +1,9 @@
 package nodos;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import app.SymbolTableEntry;
 
 public class NodoConstanteInteger extends NodoExpresion {
     private final int valor;
@@ -22,6 +25,11 @@ public class NodoConstanteInteger extends NodoExpresion {
     
     @Override
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
+        return "_" + valor;
+    }
+    
+    @Override
+    public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable, AtomicInteger auxCount) {
         return "_" + valor;
     }
     

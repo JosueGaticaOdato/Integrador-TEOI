@@ -1,6 +1,9 @@
 package nodos;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import app.SymbolTableEntry;
 
 public class NodoSuma extends NodoExpresionBinaria {
 
@@ -8,7 +11,7 @@ public class NodoSuma extends NodoExpresionBinaria {
         super("+", izquierda, derecha);
     }
     
-    @Override
+    /*@Override
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
         String leftChild = getIzquierda().assemble(asm, auxCount);
         String rightChild = getDerecha().assemble(asm, auxCount);
@@ -20,7 +23,30 @@ public class NodoSuma extends NodoExpresionBinaria {
             .append("FSTP _@aux").append(auxCount.get())
             .append("\n");
         return "_@aux" + auxCount.getAndIncrement();
-    }
+    }*/
+    
+    
+    @Override
+	public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable, AtomicInteger auxCount) {
+        System.out.println("llegue nodosuma");
+        String suma;
+        String leftChild = getIzquierda().assemble(asm, auxCount);
+        String rightChild = getDerecha().assemble(asm, auxCount);
+        asm.append("\n");
+        SymbolTableEntry tipoLeft = symbolTable.get(rightChild);
+        if (tipoLeft.getTipo().equals("INTEGER")) {
+        	suma = "FILD";
+        } else {
+        	suma = "FLD";
+        }
+        asm
+            .append(suma + " ").append(leftChild).append("\n")
+            .append(suma + " ").append(rightChild).append("\n")
+            .append("FADD").append("\n")
+            .append("FSTP _@aux").append(auxCount.get())
+            .append("\n");
+        return "_@aux" + auxCount.getAndIncrement();
+	}
     
     @Override
     public NodoExpresion clonar() {

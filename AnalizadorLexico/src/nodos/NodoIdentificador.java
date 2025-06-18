@@ -1,6 +1,9 @@
 package nodos;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import app.SymbolTableEntry;
 
 public class NodoIdentificador extends NodoExpresion {
     private final String identificador;
@@ -22,6 +25,11 @@ public class NodoIdentificador extends NodoExpresion {
     
     @Override
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
+    	return identificador;
+    }
+    
+    @Override
+    public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable, AtomicInteger auxCount) {
     	return identificador;
     }
     

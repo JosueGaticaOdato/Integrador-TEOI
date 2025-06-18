@@ -31,7 +31,8 @@ public class NodoAsignacion extends NodoSentencia {
         if (expresion instanceof NodoContarPrimos) {
             expResult = ((NodoContarPrimos) expresion).assemble(asm, symbolTable, auxCount);
         } else {
-            expResult = expresion.assemble(asm, auxCount);
+            expResult = expresion.assemble(asm, symbolTable, auxCount);
+        	//expResult = expresion.assemble(asm, auxCount);
         }
         String idResult = identificador.assemble(asm, auxCount);
         SymbolTableEntry entry = symbolTable.get(idResult);

@@ -1,14 +1,10 @@
 DECLARE.SECTION
-[z,a,b,d,x] := [INTEGER,INTEGER,INTEGER,INTEGER,INTEGER]
+[d,x] := [INTEGER,INTEGER]
 ENDDECLARE.SECTION
 
 PROGRAM.SECTION
-
-z::=0
-a::=2
-b::=2
-d::=53
-x ::= ContarPrimos([11,b+8,2,55,z*b+7,d])
+d ::= 11
+x ::= ContarPrimos([d])
 WRITE x
 
 ENDPROGRAM.SECTION
