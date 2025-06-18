@@ -4,7 +4,8 @@ ENDDECLARE.SECTION
 
 PROGRAM.SECTION
 
-x ::= ContarPrimos([11])
+x ::= ContarPrimos([11,12,13])
 WRITE x
+WRITE 'a'
 
 ENDPROGRAM.SECTION

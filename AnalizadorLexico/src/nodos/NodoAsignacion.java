@@ -54,6 +54,7 @@ public class NodoAsignacion extends NodoSentencia {
                .append("fstp ").append(idResult);
         } else {
         	asm.append("fld ").append(expResult).append("\n")
+        	.append("frndint ").append("\n")
             .append("fistp ").append(idResult);
         }
         asm.append("\n");

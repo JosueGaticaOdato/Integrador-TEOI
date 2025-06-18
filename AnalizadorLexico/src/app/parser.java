@@ -1342,7 +1342,7 @@ class CUP$parser$actions {
 
         // if (j == 2) k = k + 1;
         NodoComparacion condicionJ = new NodoComparacionFactory().from(
-            "<=",
+            "==",
             new NodoIdentificador("j"),
             new NodoConstanteInteger(2)
         );

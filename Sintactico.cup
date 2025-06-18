@@ -447,7 +447,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
 
         // if (j == 2) k = k + 1;
         NodoComparacion condicionJ = new NodoComparacionFactory().from(
-            "<=",
+            "==",
             new NodoIdentificador("j"),
             new NodoConstanteInteger(2)
         );

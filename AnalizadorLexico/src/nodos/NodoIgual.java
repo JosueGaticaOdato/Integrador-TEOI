@@ -20,7 +20,8 @@ public class NodoIgual extends NodoComparacion {
 
 	    asm.append("FLD ").append(leftChild).append("\n")
 	       .append("FLD ").append(rightChild).append("\n")
-	       .append("FCOM\n")
+	       .append("FXCH\n")
+	       .append("FCOMP\n")
 	       .append("FSTSW AX\n")
 	       .append("SAHF\n")
 	       .append(comp).append(" ").append(
