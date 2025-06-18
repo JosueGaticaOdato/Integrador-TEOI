@@ -467,7 +467,7 @@ funcioncontarprimos ::= CONTAR_PRIMOS PARENTESIS_ABRE CORCHETE_ABRE parametros:p
 
     registrarVariable("i","FLOAT");
     registrarVariable("j","FLOAT");
-    registrarVariable("c","INTEGER");
+    registrarVariable("c","FLOAT");
     registrarVariable("k","FLOAT");
     registrarVariable("resultado","FLOAT");
 

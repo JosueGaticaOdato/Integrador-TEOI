@@ -3,9 +3,15 @@ x                         | ID              | INTEGER    | -                    
 _11                       | CONST_INTEGER   | -          | 11                        |-    
 _12                       | CONST_INTEGER   | -          | 12                        |-    
 _13                       | CONST_INTEGER   | -          | 13                        |-    
+_14                       | CONST_INTEGER   | -          | 14                        |-    
+_15                       | CONST_INTEGER   | -          | 15                        |-    
+_16                       | CONST_INTEGER   | -          | 16                        |-    
+_17                       | CONST_INTEGER   | -          | 17                        |-    
+_18                       | CONST_INTEGER   | -          | 18                        |-    
+_19                       | CONST_INTEGER   | -          | 19                        |-    
 i                         | ID              | FLOAT      | -                         |-    
 j                         | ID              | FLOAT      | -                         |-    
-c                         | ID              | INTEGER    | -                         |-    
+c                         | ID              | FLOAT      | -                         |-    
 k                         | ID              | FLOAT      | -                         |-    
 resultado                 | ID              | FLOAT      | -                         |-    
 _0                        | CONST_INTEGER   | -          | 0                         |-    

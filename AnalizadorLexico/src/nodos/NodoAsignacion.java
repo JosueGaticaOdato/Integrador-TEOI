@@ -1,10 +1,9 @@
 package nodos;
 
+import app.SymbolTableEntry;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import app.SymbolTableEntry;
 
 public class NodoAsignacion extends NodoSentencia {
 
@@ -51,6 +50,7 @@ public class NodoAsignacion extends NodoSentencia {
         }
         else if (Objects.equals(entry.getTipo(), "FLOAT")){
             asm.append("fld ").append(expResult).append("\n")
+            .append("frndint ").append("\n")
                .append("fstp ").append(idResult);
         } else {
         	asm.append("fld ").append(expResult).append("\n")
