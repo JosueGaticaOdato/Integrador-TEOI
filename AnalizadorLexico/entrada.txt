@@ -1,10 +1,14 @@
 DECLARE.SECTION
-[d,x] := [INTEGER,INTEGER]
+[x] := [INTEGER]
+[d,a,b] := [FLOAT,FLOAT,FLOAT]
 ENDDECLARE.SECTION
 
 PROGRAM.SECTION
 d ::= 11
-x ::= ContarPrimos([d])
+a ::= 5
+b ::= 4
+
+x ::= ContarPrimos([d,a+d])
 WRITE x
 
 ENDPROGRAM.SECTION

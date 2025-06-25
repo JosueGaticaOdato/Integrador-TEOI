@@ -1,7 +1,11 @@
 NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
-d                         | ID              | INTEGER    | -                         |-    
 x                         | ID              | INTEGER    | -                         |-    
+d                         | ID              | FLOAT      | -                         |-    
+a                         | ID              | FLOAT      | -                         |-    
+b                         | ID              | FLOAT      | -                         |-    
 _11                       | CONST_INTEGER   | -          | 11                        |-    
+_5                        | CONST_INTEGER   | -          | 5                         |-    
+_4                        | CONST_INTEGER   | -          | 4                         |-    
 i                         | ID              | FLOAT      | -                         |-    
 j                         | ID              | FLOAT      | -                         |-    
 c                         | ID              | FLOAT      | -                         |-    

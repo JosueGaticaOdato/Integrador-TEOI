@@ -6,16 +6,20 @@ include number.asm
 
 ; vars from symbol table and aux vars
 .DATA
-_0 dd 0.0
-_1 dd 1.0
+a dd ?
+b dd ?
 c dd ?
-_2 dd 2.0
 d dd ?
 resultado dd ?
-x dd ?
 i dd ?
 j dd ?
 k dd ?
+_0 dd 0.0
+_1 dd 1.0
+_2 dd 2.0
+_4 dd 4.0
+_5 dd 5.0
+x dd ?
 _11 dd 11.0
 _@aux0 dd ?
 _@aux1 dd ?
@@ -26,6 +30,15 @@ _@aux5 dd ?
 _@aux6 dd ?
 _@aux7 dd ?
 _@aux8 dd ?
+_@aux9 dd ?
+_@aux10 dd ?
+_@aux11 dd ?
+_@aux12 dd ?
+_@aux13 dd ?
+_@aux14 dd ?
+_@aux15 dd ?
+_@aux16 dd ?
+_@aux17 dd ?
 
 ; program instructions
 .CODE
@@ -36,7 +49,15 @@ MOV ES,EAX
 
 fld _11
 frndint 
-fistp d
+fstp d
+
+fld _5
+frndint 
+fstp a
+
+fld _4
+frndint 
+fstp b
 ; === INICIO ContarPrimos ===
 
 fld _0
@@ -138,6 +159,102 @@ jmp end_if7
 else_part7:
 
 end_if7:
+
+fld _1
+frndint 
+fstp i
+
+fld _0
+frndint 
+fstp j
+
+inicio_while9:
+FLD i
+FLD null
+FXCH
+FCOMP 
+FSTSW ax
+SAHF
+JA end_while9
+sentencias_while9:
+
+FLD null
+FDIV i
+FSTP _@aux10
+
+fld _@aux10
+frndint 
+fstp c
+FLD c
+FLD i
+FMUL 
+FSTP _@aux11
+
+FLD null
+FLD _@aux11
+FSUB
+FSTP _@aux12
+
+fld _@aux12
+frndint 
+fstp resultado
+
+FLD resultado
+FLD _0
+FXCH
+FCOMP
+FSTSW AX
+SAHF
+JNE else_part13
+
+then_part13:
+FLD j
+FLD _1
+FADD
+FSTP _@aux14
+
+fld _@aux14
+frndint 
+fstp j
+
+jmp end_if13
+else_part13:
+
+end_if13:
+
+FLD i
+FLD _1
+FADD
+FSTP _@aux15
+
+fld _@aux15
+frndint 
+fstp i
+JMP inicio_while9
+end_while9:
+
+FLD j
+FLD _2
+FXCH
+FCOMP
+FSTSW AX
+SAHF
+JNE else_part16
+
+then_part16:
+FLD k
+FLD _1
+FADD
+FSTP _@aux17
+
+fld _@aux17
+frndint 
+fstp k
+
+jmp end_if16
+else_part16:
+
+end_if16:
 ; === FIN ContarPrimos ===
 
 fld k
