@@ -1,19 +1,17 @@
-# Trabajo practico Integrador - TEOI/Compiladores - Grupo 01
+# Trabajo practico Integrador - Compiladores
 
 ## Integrantes
 
 - Josue Gatica Odato
-- Franco Zoia (Solo TEOI)
 - Mateo Asenzo
 - Lucas Latessa
-- Enzo Bianchi (Solo TEOI)
 
 ### Descargar el repositorio:
 
 - En el caso de tener Git instalado en su computadora, es posible descargar el proyecto realizando un clone del mismo. Abriendo una terminal en su computadora, ingrese el siguiente comando:
 
 ```
-git clone  https://github.com/JosueGaticaOdato/Integrador-TEOI.git
+git clone https://github.com/JosueGaticaOdato/Integrador-TEOI.git
 ``` 
 
 - En el caso de no tener Git, es posible descargar el ZIP del repositorio dando click en el siguiente enlace
@@ -23,11 +21,16 @@ https://github.com/JosueGaticaOdato/Integrador-TEOI/archive/refs/heads/main.zip
 ``` 
 
 ## Material:
-- Lexico.flex: El archivo jflex con todas las expresiones regulares
-- Sintactico.cup: El archivo sintactico con las reglas definidas
-- prueba.txt: Archivo de pruebas generales para el analizador
-- ts.txt: Tabla de simbolos construida
-- AnalizadorLexico: Codigo fuente del proyecto
+
+- Analizadores/Lexico.flex: El archivo jflex con todas las expresiones regulares
+- Analizadores/Sintactico.cup: El archivo sintactico con las reglas definidas
+  
+- Compilador/src: Codigo fuente del proyecto
+- Compilaador/entrada.txt: Archivo entrada que recibira el compilador
+- Compilaador/ts.txt: Tabla de simbolos construida
+- Compilaador/arbo.png: Arbol construido luego de compilar
+- Compilaador/ContarPrimos.asm: Assembler generado luego de compilar
+
 
 ## Instrucciones:
 
@@ -35,7 +38,7 @@ https://github.com/JosueGaticaOdato/Integrador-TEOI/archive/refs/heads/main.zip
 - Ejecutar la aplicacion desde el eclipse, o tambien puede ejecutarse con el .jar en consola usando:
 
 ```
-java -jar AnalizadorSintacticoGrupo01.jar
+java -jar Entregables/Compilador.jar
 ``` 
 
 - Indicar el archivo de prueba que se quiere agregar al editor para compilar, caso contrario se puede utilizar la misma aplicacion como IDE
