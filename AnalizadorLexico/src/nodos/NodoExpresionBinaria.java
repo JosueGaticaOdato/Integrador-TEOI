@@ -1,6 +1,9 @@
 package nodos;
 
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import app.SymbolTableEntry;
 
 public class NodoExpresionBinaria extends NodoExpresion {
     protected final NodoExpresion izquierda;
@@ -30,6 +33,11 @@ public class NodoExpresionBinaria extends NodoExpresion {
 
     @Override
     public String assemble(StringBuilder asm, AtomicInteger auxCount) {
+		return null;
+	}
+    
+	public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable, AtomicInteger auxCount) {
+		// TODO Auto-generated method stub
 		return null;
 	}
     

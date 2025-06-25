@@ -42,7 +42,7 @@ public class NodoContarPrimos extends NodoExpresion {
     	}
     	asm.append("; === FIN ContarPrimos ===\n");
     	
-        return resultado.assemble(asm, auxCount); // Opcional: devuelve el nombre del resultado, por si lo querés usar
+        return resultado.assemble(asm, auxCount);
     }
     
     @Override

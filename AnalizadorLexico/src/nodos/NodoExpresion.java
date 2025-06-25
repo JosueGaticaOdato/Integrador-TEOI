@@ -12,8 +12,8 @@ public class NodoExpresion extends Nodo {
     }
     
     public NodoExpresion clonar() {
-		return null;
-	}
+        throw new UnsupportedOperationException("clonar() no implementado en " + this.getClass().getSimpleName());
+    }
     
     public String getValor() {
     	return null;

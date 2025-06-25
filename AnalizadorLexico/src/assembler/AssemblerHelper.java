@@ -20,7 +20,7 @@ public class AssemblerHelper {
 	    symbolTable.forEach((symbol, entry) -> {
 	      String dataType = translateDataType(entry.getToken(),entry.getTipo());
 	      Object constVal = getSymbolTableEntryValue(entry);
-	      String sanitizedSymbol = symbol.replaceAll("[^a-zA-Z0-9_]", "_");
+	      String sanitizedSymbol = symbol.replace(".", "_point_").replaceAll("[^a-zA-Z0-9_]", "_");
 	      output.append(sanitizedSymbol).append(" ").append(dataType).append(" ").append(constVal).append("\n");
 	    });
 	    for (int i = 0; i < auxCount; i++) {

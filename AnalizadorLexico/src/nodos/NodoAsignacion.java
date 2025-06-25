@@ -31,9 +31,10 @@ public class NodoAsignacion extends NodoSentencia {
         if (expresion instanceof NodoContarPrimos) {
             expResult = ((NodoContarPrimos) expresion).assemble(asm, symbolTable, auxCount);
         } else {
-            expResult = expresion.assemble(asm, auxCount);
+            expResult = expresion.assemble(asm, symbolTable, auxCount);
+        	//expResult = expresion.assemble(asm, auxCount);
         }
-        String idResult = identificador.assemble(asm, auxCount);
+        String idResult = identificador.assemble(asm, symbolTable, auxCount);
         SymbolTableEntry entry = symbolTable.get(idResult);
         if (expresion instanceof NodoConstanteString) {
             entry.setLongitud(Integer.toString(((NodoConstanteString) expresion).getValor().length()));
@@ -47,6 +48,10 @@ public class NodoAsignacion extends NodoSentencia {
             asm.append("mov ecx, ").append(entry.getLongitud() + 1).append("\n");
             asm.append("cld").append("\n");
             asm.append("rep movsb").append("\n");
+        }
+        else if (Objects.equals(entry.getTipo(), "FLOAT") && (expResult.contains("point"))){
+            asm.append("fld ").append(expResult).append("\n")
+               .append("fstp ").append(idResult);
         }
         else if (Objects.equals(entry.getTipo(), "FLOAT")){
             asm.append("fld ").append(expResult).append("\n")

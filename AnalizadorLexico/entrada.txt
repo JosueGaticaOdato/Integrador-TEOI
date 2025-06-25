@@ -1,9 +1,38 @@
+//* Ejemplo de programa *//
+
 DECLARE.SECTION
-[z,a,b,d,x] := [INTEGER,INTEGER,INTEGER,INTEGER,INTEGER]
+[l,o] := [FLOAT,FLOAT]
+[x] := [INTEGER]
+[u] := [FLOAT]
+[y] := [INTEGER]
+[z,a,b,d,f] := [FLOAT, FLOAT, FLOAT, FLOAT, FLOAT]
 ENDDECLARE.SECTION
 
 PROGRAM.SECTION
 
+y ::= 2
+WRITE 1.2
+WRITE y
+WRITE 'hola'
+
+l::=1
+if (l == 2) then
+  WRITE 'l es 2'
+  else
+  WRITE 'l es 1'
+  endif
+
+o::=1
+WHILE (o < 5){
+  if (o == 2) then
+    WRITE 'o es 2'
+    else
+    WRITE 'o no es 2'
+    endif
+  o ::= o + 1
+}
+
+//* No usar i, j, k o c como variables, ya que estan definidas en nuestro programa *//
 z::=0
 a::=2
 b::=2

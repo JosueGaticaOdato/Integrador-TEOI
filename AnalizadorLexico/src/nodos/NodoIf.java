@@ -66,7 +66,7 @@ public class NodoIf extends NodoSentencia {
     public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable,
         AtomicInteger auxCount) {
         int i = auxCount.getAndIncrement();
-        this.condicion.assemble(asm, auxCount, Boolean.TRUE, "else_part" + i, "then_part" + i);
+        this.condicion.assemble(asm, auxCount, Boolean.TRUE, "else_part" + i, "then_part" + i, symbolTable);
         asm.append("\n")
             .append("then_part").append(i).append(":");
         for (NodoSentencia nodoSentencia : this.sentenciasThen) {

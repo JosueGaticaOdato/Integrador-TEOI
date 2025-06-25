@@ -1,34 +1,36 @@
 //* Ejemplo de programa *//
 
 DECLARE.SECTION
-[a1, b1] := [FLOAT, INTEGER]
-[p1, p2, p3] := [FLOAT,FLOAT,INTEGER]
+[l,o] := [FLOAT,FLOAT]
+[x] := [INTEGER]
+[z,a,b,d,f] := [FLOAT, FLOAT, FLOAT, FLOAT, FLOAT]
 ENDDECLARE.SECTION
 
 PROGRAM.SECTION
 
-i::=1
-if (i == 2) then
-  WRITE 'i es 2'
+l::=1
+if (l == 2) then
+  WRITE 'l es 2'
   else
-  WRITE 'i es 1'
+  WRITE 'l es 1'
   endif
 
-
-i::=1
-msg::='numero 2'
-while(i < 5){
-   if(i == 2) then
-     WRITE msg
-   endif
-   i::=i+1
+o::=1
+WHILE (o < 5){
+  if (o == 2) then
+    WRITE 'o es 2'
+    else
+    WRITE 'o no es 2'
+    endif
+  o ::= o + 1
 }
 
-
+//* No usar i, j, k o c como variables, ya que estan definidas en nuestro programa *//
 z::=0
 a::=2
 b::=2
-c::=53
-x ::= ContarPrimos([11,b+8,2,55,z*b+7,C])
+d::=53
+x ::= ContarPrimos([11,b+8,2,55,z*b+7,d])
+WRITE x
 
 ENDPROGRAM.SECTION
