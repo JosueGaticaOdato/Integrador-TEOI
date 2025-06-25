@@ -53,6 +53,9 @@ public class NodoWrite extends NodoSentencia {
         } else if (valor instanceof NodoConstanteInteger) {
             String assembled = valor.getValor();
             asm.append("displayFloat ").append("_").append(assembled).append(", 2\n");
+        } else if (valor instanceof NodoConstanteFloat) {
+            String assembled = valor.getValor().replace(".", "_point_");
+            asm.append("displayFloat ").append("_").append(assembled).append(", 2\n");
         } else if (valor instanceof NodoIdentificador) {
             String assembled = valor.getValor();
             SymbolTableEntry symbol = symbolTable.get(assembled);

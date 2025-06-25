@@ -345,6 +345,10 @@ salida ::= WRITE CONST_INTEGER:cte {:
     reglas.add("Regla N°51: salida -> WRITE CONST_INTEGER");
     RESULT = new NodoWrite(new NodoConstanteInteger(Integer.valueOf(cte)));
     :};
+salida ::= WRITE CONST_DOU:cte {:
+    reglas.add("Regla N°51: salida -> WRITE CONST_DOU");
+    RESULT = new NodoWrite(new NodoConstanteFloat(Float.valueOf(cte)));
+    :};
 
 
 parametros ::= expresion:e {:

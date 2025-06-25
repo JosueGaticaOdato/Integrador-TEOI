@@ -3,34 +3,12 @@
 DECLARE.SECTION
 [l,o] := [FLOAT,FLOAT]
 [x] := [INTEGER]
+[u] := [FLOAT]
 [z,a,b,d,f] := [FLOAT, FLOAT, FLOAT, FLOAT, FLOAT]
 ENDDECLARE.SECTION
 
 PROGRAM.SECTION
 
-l::=1
-if (l == 2) then
-  WRITE 'l es 2'
-  else
-  WRITE 'l es 1'
-  endif
-
-o::=1
-WHILE (o < 5){
-  if (o == 2) then
-    WRITE 'o es 2'
-    else
-    WRITE 'o no es 2'
-    endif
-  o ::= o + 1
-}
-
-//* No usar i, j, k o c como variables, ya que estan definidas en nuestro programa *//
-z::=0
-a::=2
-b::=2
-d::=53
-x ::= ContarPrimos([11,b+8,2,55,z*b+7,d])
-WRITE x
+WRITE 1.2
 
 ENDPROGRAM.SECTION

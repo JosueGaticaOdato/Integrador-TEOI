@@ -49,6 +49,10 @@ public class NodoAsignacion extends NodoSentencia {
             asm.append("cld").append("\n");
             asm.append("rep movsb").append("\n");
         }
+        else if (Objects.equals(entry.getTipo(), "FLOAT") && (expResult.contains("point"))){
+            asm.append("fld ").append(expResult).append("\n")
+               .append("fstp ").append(idResult);
+        }
         else if (Objects.equals(entry.getTipo(), "FLOAT")){
             asm.append("fld ").append(expResult).append("\n")
             .append("frndint ").append("\n")

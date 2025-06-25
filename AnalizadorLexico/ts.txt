@@ -2,26 +2,10 @@ NOMBRE                    | TOKEN           | TIPO       | VALOR                
 l                         | ID              | FLOAT      | -                         |-    
 o                         | ID              | FLOAT      | -                         |-    
 x                         | ID              | INTEGER    | -                         |-    
+u                         | ID              | FLOAT      | -                         |-    
 z                         | ID              | FLOAT      | -                         |-    
 a                         | ID              | FLOAT      | -                         |-    
 b                         | ID              | FLOAT      | -                         |-    
 d                         | ID              | FLOAT      | -                         |-    
 f                         | ID              | FLOAT      | -                         |-    
-_1                        | CONST_INTEGER   | -          | 1                         |-    
-_2                        | CONST_INTEGER   | -          | 2                         |-    
-_l es 2                   | CONST_STR       | -          | l es 2                    |6    
-_l es 1                   | CONST_STR       | -          | l es 1                    |6    
-_5                        | CONST_INTEGER   | -          | 5                         |-    
-_o es 2                   | CONST_STR       | -          | o es 2                    |6    
-_o no es 2                | CONST_STR       | -          | o no es 2                 |9    
-_0                        | CONST_INTEGER   | -          | 0                         |-    
-_53                       | CONST_INTEGER   | -          | 53                        |-    
-_11                       | CONST_INTEGER   | -          | 11                        |-    
-_8                        | CONST_INTEGER   | -          | 8                         |-    
-_55                       | CONST_INTEGER   | -          | 55                        |-    
-_7                        | CONST_INTEGER   | -          | 7                         |-    
-i                         | ID              | FLOAT      | -                         |-    
-j                         | ID              | FLOAT      | -                         |-    
-c                         | ID              | FLOAT      | -                         |-    
-k                         | ID              | FLOAT      | -                         |-    
-resultado                 | ID              | FLOAT      | -                         |-    
+_1.2                      | CONST_DOU       | -          | 1.2                       |-    
