@@ -34,7 +34,7 @@ public class NodoAsignacion extends NodoSentencia {
             expResult = expresion.assemble(asm, symbolTable, auxCount);
         	//expResult = expresion.assemble(asm, auxCount);
         }
-        String idResult = identificador.assemble(asm, auxCount);
+        String idResult = identificador.assemble(asm, symbolTable, auxCount);
         SymbolTableEntry entry = symbolTable.get(idResult);
         if (expresion instanceof NodoConstanteString) {
             entry.setLongitud(Integer.toString(((NodoConstanteString) expresion).getValor().length()));

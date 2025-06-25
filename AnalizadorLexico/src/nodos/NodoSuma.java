@@ -30,8 +30,8 @@ public class NodoSuma extends NodoExpresionBinaria {
 	public String assemble(StringBuilder asm, HashMap<String, SymbolTableEntry> symbolTable, AtomicInteger auxCount) {
         System.out.println("llegue nodosuma");
         String suma;
-        String leftChild = getIzquierda().assemble(asm, auxCount);
-        String rightChild = getDerecha().assemble(asm, auxCount);
+        String leftChild = getIzquierda().assemble(asm, symbolTable, auxCount);
+        String rightChild = getDerecha().assemble(asm, symbolTable, auxCount);
         asm.append("\n");
         SymbolTableEntry tipoLeft = symbolTable.get(rightChild);
         if (tipoLeft.getTipo().equals("INTEGER")) {
@@ -47,6 +47,12 @@ public class NodoSuma extends NodoExpresionBinaria {
             .append("\n");
         return "_@aux" + auxCount.getAndIncrement();
 	}
+    
+    @Override
+    public String assemble(StringBuilder asm, AtomicInteger auxCount) {
+        throw new UnsupportedOperationException("Usá el assemble con symbolTable");
+    }
+
     
     @Override
     public NodoExpresion clonar() {

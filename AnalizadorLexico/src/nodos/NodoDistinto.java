@@ -1,7 +1,10 @@
 package nodos;
 
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import app.SymbolTableEntry;
 
 public class NodoDistinto extends NodoComparacion {
 
@@ -11,9 +14,9 @@ public class NodoDistinto extends NodoComparacion {
 	  }
 
 	  @Override
-	  protected String assemble(StringBuilder asm, AtomicInteger auxCount, Boolean inverse, String jumpToLeft, String jumpToRight) {
-	    String leftChild = getIzquierda().assemble(asm, auxCount);
-	    String rightChild = getDerecha().assemble(asm, auxCount);
+	  protected String assemble(StringBuilder asm, AtomicInteger auxCount, Boolean inverse, String jumpToLeft, String jumpToRight, HashMap<String, SymbolTableEntry> symbolTable) {
+	    String leftChild = getIzquierda().assemble(asm, symbolTable, auxCount);
+	    String rightChild = getDerecha().assemble(asm, symbolTable, auxCount);
 	    asm.append("\n");
 
 	    String comp = inverse ? "JE" : "JNE";
@@ -24,23 +27,4 @@ public class NodoDistinto extends NodoComparacion {
 	       .append(Optional.ofNullable(jumpToLeft).orElse(jumpToRight));
 	    return "";
 	  }
-	  
-	  /*
-	   *   @Override
-  protected String assemble(StringBuilder asm, AtomicInteger auxCount, Boolean inverse, String jumpToLeft, String jumpToRight) {
-    // Primero se ensamblan los operandos (deben hacer FLD)
-    getDerecha().assemble(asm, auxCount);  // FLD right
-    getIzquierda().assemble(asm, auxCount); // FLD left
-
-    // Compara ST(0) con ST(1) y setea flags, luego libera ST(1)
-    asm.append("fcomip st(0), st(1)\n");
-    asm.append("fstp st(0)\n"); // Limpia lo que quedó en el tope de la FPU
-
-    // Decide el salto según si es inverso o no
-    String jumpInstr = inverse ? "je" : "jne"; // distinto → JNE (si NO es igual)
-    asm.append(jumpInstr).append(" ").append(jumpToLeft).append("\n");
-    asm.append("jmp ").append(jumpToRight).append("\n");
-
-    return "";
-  }*/
 }

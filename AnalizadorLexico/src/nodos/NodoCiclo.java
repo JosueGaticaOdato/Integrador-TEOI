@@ -61,7 +61,7 @@ public class NodoCiclo extends NodoSentencia {
         int i = auxCount.getAndIncrement();
         asm.append("\n");
         asm.append("inicio_while").append(i).append(":");
-        this.condicion.assemble(asm, auxCount, Boolean.TRUE, "end_while" + i, "sentencias_while" + i);
+        this.condicion.assemble(asm, auxCount, Boolean.TRUE, "end_while" + i, "sentencias_while" + i, symbolTable);
         asm.append("\n");
         asm.append("sentencias_while").append(i).append(":").append("\n");
         for (NodoSentencia nodoSentencia : this.cuerpo) {
